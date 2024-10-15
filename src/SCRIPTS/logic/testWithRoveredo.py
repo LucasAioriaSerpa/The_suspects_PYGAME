@@ -1,11 +1,6 @@
 #imports
 import ttg as ttg
 
-# x = ttg.Truths(['p','q'],['p and q or ~p or ~q'],ints=False)
-# print(f'{x}\n{x.valuation()}\n\n')
-# x = ttg.Truths(['p','q'],['(p => q) and p and ~q'],ints=False)
-# print(f'{x}\n{x.valuation()}\n\n')
-
 class ex():
     def __init__(self, ex:int):
         self.ex = ex
