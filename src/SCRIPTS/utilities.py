@@ -15,17 +15,3 @@ class utility():
         return surface.get_rect(midbottom = (vector2))
     def font_rect(self, surface: _pyg.Surface, pos: float):
         return surface.get_rect(center = pos)
-class Mouse():
-    def __init__(self, display: _pyg.surface):
-        self.display = display
-        self.pos = _pyg.mouse.get_pos()
-        self.surface = utility(display).image_load('IMAGE','.png')
-        self.rect = self.surface.get_rect(center=(self.pos[0], self.pos[1]))
-        self.mask = _pyg.mask.from_surface(self.surface)
-        self.clicked = False
-    def update(self):
-        self.pos = _pyg.mouse.get_pos()
-        self.pos = (self.pos[0]/2, self.pos[1]/2)
-        self.rect.center = (self.pos[0], self.pos[1])
-    def render(self):
-        return self.display.blit(self.surface, self.rect)
