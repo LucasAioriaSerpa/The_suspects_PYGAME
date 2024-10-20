@@ -1,7 +1,7 @@
 #imports external
 import pygame as pyg
 #imports internal
-import mouse as _mou
+import SCRIPTS.mouse as _mou
 class MENU():
     def __init__(self, display:pyg.display, game_state:dict):
         self.display = display

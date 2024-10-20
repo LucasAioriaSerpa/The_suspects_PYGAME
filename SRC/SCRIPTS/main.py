@@ -1,9 +1,9 @@
 #imports external
 import pygame as pyg, sys
 #imports internal
-import utilities as _util
-import menu as _menu
-import game as _game
+import SCRIPTS.utilities as _util
+import SCRIPTS.menu as _menu
+import SCRIPTS.game as _game
 class Game():
     def __init__(self):
         self.RESOLUTION = (1200, 750)

@@ -1,5 +1,7 @@
-#imports
+#imports external
 import pygame as _pyg
+#imports internal
+...
 class utility():
     def __init__(self, display:_pyg.Surface):
         self.PATH = {
