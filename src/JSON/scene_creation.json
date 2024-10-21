@@ -1,0 +1,29 @@
+{
+  "NPCS": {
+    "TYPES": ["Assasino", "suspeito", "vitima"],
+    "TRUSFULL-type": ["O mentiroso", "O duvidoso", "O padero"],
+    "QTD": 6
+  },
+  "CASO": {
+    "CAUSA_DA_MORTE": ["Envenenado", "Esfaqueado", "Estrangulamento"],
+    "CASO_ENVENADO": {
+      /* "A" "B" "C" "D" "E" "F" - os 6 personagens
+        SE "F" DESCOBRIU O CASO ENTRE "A" E "B" ENTÃO "F" MATOU "A";
+        "F" NÃO ORGANIZOU UM ALMOÇO E...
+      */
+      "EVIDENCIAS_VERDADES": [],
+      "EVIDENCIAS_CONFLITANTES": [],
+      "EVIDENCIAS_FALSAS": []
+    },
+    "CASO_ESFAQUEADO": {
+      "EVIDENCIAS_VERDADES": [],
+      "EVIDENCIAS_CONFLITANTES": [],
+      "EVIDENCIAS_FALSAS": []
+    },
+    "CASO_ESTRANGULAMENTO": {
+      "EVIDENCIAS_VERDADES": [],
+      "EVIDENCIAS_CONFLITANTES": [],
+      "EVIDENCIAS_FALSAS": []
+    }
+  }
+}

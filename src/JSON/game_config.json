@@ -1,0 +1,24 @@
+{
+  "configs": {
+    "CAPTION": "project ttg",
+    "RESOLUTION": [1200, 750],
+    "BACKGROUND": "#000000",
+    "FPS": 60,
+    "GAME_STATE": {
+      "menu": true,
+      "game": false,
+      "game_over": false
+    }
+  },
+  "paths": {
+    "PATH-DEFAULT": "src",
+    "PATH-IMAGES": "src/IMAGES/",
+    "PATH-IMAGES-mouse": "src/IMAGES/mouse/",
+    "PATH-IMAGES-menu": "src/IMAGES/menu/",
+    "PATH-IMAGES-characteres": "src/IMAGES/characteres/",
+    "PATH-IMAGES-player": "src/IMAGES/player/",
+    "PATH-FONTS": "src/FONTS/",
+    "PATH-AUDIOS": "src/AUDIOS/",
+    "PATH-JSON": "src/JSON/"
+  }
+}

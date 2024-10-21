@@ -4,16 +4,16 @@ import pygame as pyg, sys
 import SCRIPTS.utilities as _util
 import SCRIPTS.menu as _menu
 import SCRIPTS.game as _game
+import SCRIPTS.load_json as _json
 class Game():
     def __init__(self):
-        self.RESOLUTION = (1200, 750)
-        self.BACKGROUND_COLOR = "#000000"
-        self.FPS = 60
-        self.game_state = {
-            'Menu': True,
-            'Game': False,
-            'Game_over': False
-        }
+        #? json configs
+        self.json_data = _json.CONFIG()
+        self.json_data.create_config()
+        self.RESOLUTION = (self.json_data.game_config["RESOLUTION"][0], self.json_data.game_config["RESOLUTION"][1])
+        self.BACKGROUND_COLOR = f"{self.json_data.game_config["BACKGROUND"]}"
+        self.FPS = self.json_data.game_config["FPS"]
+        self.game_state = self.json_data.game_config["GAME_STATE"]
         #?inicializando pygame
         pyg.init()
         pyg.mouse.set_visible(False)
