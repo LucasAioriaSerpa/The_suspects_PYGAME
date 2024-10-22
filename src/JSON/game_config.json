@@ -3,12 +3,7 @@
     "CAPTION": "project ttg",
     "RESOLUTION": [1200, 750],
     "BACKGROUND": "#000000",
-    "FPS": 60,
-    "GAME_STATE": {
-      "menu": true,
-      "game": false,
-      "game_over": false
-    }
+    "FPS": 60
   },
   "paths": {
     "PATH-DEFAULT": "src",
