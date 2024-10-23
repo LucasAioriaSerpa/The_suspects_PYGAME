@@ -1,26 +1,46 @@
 {
   "NPCS": {
     "TYPES": ["Assasino", "suspeito", "vitima"],
-    "TRUSFULL-type": ["O mentiroso", "O duvidoso", "O padero"],
-    "QTD": 6
+    "QTD": 6 // 4 suspeitos 1 assasino 1 vitima
   },
   "CASO": {
-    "CAUSA_DA_MORTE": ["Envenenado", "Esfaqueado", "Estrangulamento"],
+    "CAUSA_DA_MORTE": ["Envenenado", "Esfaqueado"],
     "CASO_ENVENADO": {
-      /* "A" "B" "C" "D" "E" "F" - os 6 personagens
-        SE "F" DESCOBRIU O CASO ENTRE "A" E "B" ENTÃO "F" MATOU "A";
-        "F" NÃO ORGANIZOU UM ALMOÇO E...
-      */
-      "EVIDENCIAS_VERDADES": [],
-      "EVIDENCIAS_CONFLITANTES": [],
-      "EVIDENCIAS_FALSAS": []
+      "EVIDENCIAS_INICIAS": [
+        ""
+      ],
+      "DEDUÇÕES_LOGICAS": [
+        ""
+      ],
+      "EVIDENCIAS_VERDADES": [
+        "Se 1 envenenou o vinho então 0 foi morto envenado",
+        "0 bebeu vinho",
+        "Se 0 não bebeu vinho então 1 não é o assasino",
+        "Se 3 não estava na cozinha então 0 bebeu vinho",
+        "0 morreu na cozinha",
+        "Se 2 viu 0 e 1 na cozinha então 1 matou 0 envenado",
+        "2 viu 0 e 1 na cozinha",
+        "Se 5 viu 3 na sala então 3 não é o assassino"
+      ],
+      "EVIDENCIAS_CONFLITANTES": [
+        "Se 1 jogava tenis nas quartas então 0 amava vinho",
+        "0 amava vinho ou 2 não gosta de animais",
+        "2 não gostava de animais e 4 estava na festa",
+        "1 chegou com 4 na festa",
+        "4 adora animais",
+        "5 fez facudade com 3",
+        "1 raramente saia de casa",
+        "0 vai ao psicologo toda quinta feira",
+        "3 é abobado",
+        "4 foi a festa"
+      ],
+      "EVIDENCIAS_FALSAS": [
+        "0 morreu esfaqueado",
+        "0 não morreu",
+        "Se 1 disse que 0 morreu esfaqueado então 1 não estava na cozinha"
+      ]
     },
     "CASO_ESFAQUEADO": {
-      "EVIDENCIAS_VERDADES": [],
-      "EVIDENCIAS_CONFLITANTES": [],
-      "EVIDENCIAS_FALSAS": []
-    },
-    "CASO_ESTRANGULAMENTO": {
       "EVIDENCIAS_VERDADES": [],
       "EVIDENCIAS_CONFLITANTES": [],
       "EVIDENCIAS_FALSAS": []

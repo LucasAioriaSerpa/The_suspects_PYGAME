@@ -10,10 +10,11 @@ class Game():
         #? json configs
         self.json_data = _json.CONFIG()
         self.json_data.create_config()
-        self.RESOLUTION = (self.json_data.game_config["RESOLUTION"][0], self.json_data.game_config["RESOLUTION"][1])
-        self.BACKGROUND_COLOR = f"{self.json_data.game_config["BACKGROUND"]}"
-        self.FPS = self.json_data.game_config["FPS"]
-        self.game_state = self.json_data.game_config["GAME_STATE"]
+        self.GAME_CONFIG = self.json_data.game_config
+        self.RESOLUTION = (self.GAME_CONFIG["RESOLUTION"][0], self.GAME_CONFIG["RESOLUTION"][1])
+        self.BACKGROUND_COLOR = self.GAME_CONFIG["BACKGROUND"]
+        self.FPS = self.GAME_CONFIG["FPS"]
+        self.game_state = self.GAME_CONFIG["GAME_STATE"]
         #?inicializando pygame
         pyg.init()
         pyg.mouse.set_visible(False)

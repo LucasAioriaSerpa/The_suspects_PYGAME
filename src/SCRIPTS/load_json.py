@@ -3,11 +3,10 @@ import json
 #imports internal
 ...
 class CONFIG():
-    """@CONFIG class.
-
+    """
     ...
     Attributes
-    ----------
+    ----------------------------------------------------------------
         @json_config : is a dictionary with the complete json DATA
         @game_config : is a dictionary with values for the game
             "CAPTION": "NAME OF THE GAME",
@@ -24,6 +23,7 @@ class CONFIG():
             "PATH-FONTS": "src/FONTS/",
             "PATH-AUDIOS": "src/AUDIOS/",
             "PATH-JSON": "src/JSON/"
+    ----------------------------------------------------------------
     """
     def __init__(self):
         self.json_config = dict
@@ -54,3 +54,6 @@ class CONFIG():
         #? loads paths dict with json_config
         for key in self.paths.keys(): self.paths[key] = self.json_config["paths"][key]
         print(f"paths DATA: {self.paths}")
+    def load_json(self, file_str:str) -> dict[str]:
+        path_json = f"{self.paths["PATH-JSON"]}{file_str}"
+        with open(path_json, "r") as file: return json.load(file)
