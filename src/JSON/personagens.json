@@ -279,121 +279,101 @@
   ],
   "DESCRICOES": [
     {
-      "idade": 28,
       "gênero": "feminino",
       "ocupação": "designer gráfico",
       "personalidade": "criativa e extrovertida"
     },
     {
-      "idade": 34,
       "gênero": "masculino",
       "ocupação": "engenheiro de software",
       "personalidade": "analítico e reservado"
     },
     {
-      "idade": 22,
       "gênero": "feminino",
       "ocupação": "estudante de medicina",
       "personalidade": "determinado e compassivo"
     },
     {
-      "idade": 45,
       "gênero": "masculino",
       "ocupação": "professor universitário",
       "personalidade": "sabido e paciente"
     },
     {
-      "idade": 30,
       "gênero": "feminino",
       "ocupação": "jornalista",
       "personalidade": "curiosa e ousada"
     },
     {
-      "idade": 50,
       "gênero": "masculino",
       "ocupação": "médico",
       "personalidade": "gentil e dedicado"
     },
     {
-      "idade": 27,
       "gênero": "feminino",
       "ocupação": "fotógrafa",
       "personalidade": "artística e espontânea"
     },
     {
-      "idade": 39,
       "gênero": "masculino",
       "ocupação": "executivo",
       "personalidade": "decidido e carismático"
     },
     {
-      "idade": 24,
       "gênero": "feminino",
       "ocupação": "programadora",
       "personalidade": "inteligente e determinada"
     },
     {
-      "idade": 33,
       "gênero": "masculino",
       "ocupação": "arquitetos",
       "personalidade": "visionário e criativo"
     },
     {
-      "idade": 29,
       "gênero": "feminino",
       "ocupação": "nutricionista",
       "personalidade": "empática e prática"
     },
     {
-      "idade": 42,
       "gênero": "masculino",
       "ocupação": "advogado",
       "personalidade": "persuasivo e analítico"
     },
     {
-      "idade": 36,
       "gênero": "feminino",
       "ocupação": "cientista",
       "personalidade": "curiosa e metódica"
     },
     {
-      "idade": 31,
       "gênero": "masculino",
       "ocupação": "chef de cozinha",
       "personalidade": "apaixonado e detalhista"
     },
     {
-      "idade": 25,
       "gênero": "feminino",
       "ocupação": "bailarina",
       "personalidade": "graciosa e dedicada"
     },
     {
-      "idade": 40,
       "gênero": "masculino",
       "ocupação": "gestor de projetos",
       "personalidade": "organizado e eficiente"
     },
     {
-      "idade": 19,
       "gênero": "feminino",
       "ocupação": "estudante de arte",
       "personalidade": "sonhadora e livre-espirituosa"
     },
     {
-      "idade": 38,
       "gênero": "masculino",
       "ocupação": "psicólogo",
       "personalidade": "atencioso e analítico"
     },
     {
-      "idade": 26,
       "gênero": "feminino",
       "ocupação": "atriz",
       "personalidade": "expressiva e carismática"
     },
     {
-      "idade": 47,
       "gênero": "masculino",
       "ocupação": "contador",
       "personalidade": "metódico e detalhista"

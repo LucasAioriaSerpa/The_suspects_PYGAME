@@ -19,7 +19,7 @@
     "Eu sei que 1 não gosta de 0, mas será que ele seria capaz de matá-lo?"
     (Questiona o caráter de 1, sem tomar partido diretamente.)
 
-* 3 (Suspeito)
+* 3 (Suspeito) → PRIMEIRO A SER ACUSADO
     "Eu nunca estive na cozinha aquela noite. Como eu poderia ter feito algo com 0?"
     (Frase que tenta fornecer um álibi claro, afastando 3 da cena do crime.)
 
@@ -29,7 +29,7 @@
     "É ridículo! Estão me acusando de algo sem provas. Isso é uma armadilha."
     (Frase de indignação, sugerindo que 3 se sente injustamente acusado.)
 
-* 4 (Novo personagem, possível cúmplice ou testemunha)
+? 4 (Novo personagem, possível cúmplice ou testemunha)
     "Eu estive na cozinha por um momento, mas não notei nada de estranho... 0 parecia bem."
     (Frase que sugere que 4 viu algo, mas não percebeu o perigo na hora.)
 
@@ -42,20 +42,10 @@
 * 5 (Suspeito com possível álibi)
     "Eu estava na sala o tempo todo com 3. Não saímos de lá."
     (Frase clara de defesa, sugerindo que 5 e 3 têm o mesmo álibi.)
-w
+
     "Por que eu mataria 0? Nem tenho motivos para isso."
     (Frase que tenta afastar qualquer motivação que 5 pudesse ter para o crime.)
 
     "Eu só vi 3 na sala, ninguém mais. Se aconteceu algo na cozinha, eu não sei de nada."
     (Frase que reforça a ideia de que 5 pode ser inocente, sem envolvimento direto.)
-
-* 6 (Novo personagem, possível testemunha ou inocente)
-    "Eu lembro de ter visto 1 saindo da cozinha, mas parecia tudo normal."
-    (Frase que pode levantar suspeitas sobre 1, mesmo sem ser uma acusação direta.)
-
-    "A cozinha estava estranhamente vazia quando passei por lá. Ninguém estava por perto."
-    (Frase que adiciona mistério ao que aconteceu antes do crime ser descoberto.)
-
-    "Se eu soubesse o que estava acontecendo, teria agido de maneira diferente. Mas ninguém suspeitava de nada."
-    (Frase que sugere que 6 poderia ter agido se soubesse do perigo.)
 """
