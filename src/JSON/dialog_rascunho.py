@@ -1,7 +1,3 @@
-#imports external
-import ttg
-#imports internal
-
 """
 ! 1 (Assassino)
     "Eu vi 0 na cozinha, mas não falei muito com ele... estava com pressa."
@@ -46,7 +42,7 @@ import ttg
 * 5 (Suspeito com possível álibi)
     "Eu estava na sala o tempo todo com 3. Não saímos de lá."
     (Frase clara de defesa, sugerindo que 5 e 3 têm o mesmo álibi.)
-
+w
     "Por que eu mataria 0? Nem tenho motivos para isso."
     (Frase que tenta afastar qualquer motivação que 5 pudesse ter para o crime.)
 
@@ -62,5 +58,4 @@ import ttg
 
     "Se eu soubesse o que estava acontecendo, teria agido de maneira diferente. Mas ninguém suspeitava de nada."
     (Frase que sugere que 6 poderia ter agido se soubesse do perigo.)
-
 """
