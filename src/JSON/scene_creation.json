@@ -46,7 +46,7 @@
             "PREMISSA": "9 ^ 10"}
         ],
         "EVIDENCIAS_CONFLITANTES": [
-          {"DIALOG": ["2", ["..."]],
+          {"DIALOG": ["5", ["..."]],
             "FRASE": "0 amava vinho e 2 tem medo de aranhas",
             "PREMISSA": null},
           {"DIALOG": ["2", ["..."]],
@@ -70,19 +70,19 @@
           }
         ],
         "EVIDENCIAS_FALSAS": [
-          {"DIALOG": ["2", ["..."]],
+          {"DIALOG": ["4", [""]],
             "FRASE": "Se 3 não estava na sala então 3 matou 0",
             "PREMISSA": "~1 → 2"},
-          {"DIALOG": ["2", ["..."]],
-            "FRASE": "Se 5 não estava na sala então 5 esfaqueou 0",
+          {"DIALOG": ["1", ["Eu estava na sala, mas a verdade é que o 3 não estava por lá naquele momento. Eu lembro de ter visto ele sair antes de tudo acontecer, e não sei onde ele foi parar. Eu estava apenas tentando relaxar na sala."]],
+            "FRASE": "Se 3 não estava na sala então 3 esfaqueou 0",
             "PREMISSA": "~3 → 4"},
-          {"DIALOG": ["2", ["..."]],
-            "FRASE": "3 não gosta de 0",
+          {"DIALOG": ["4", ["Olha, não quero me meter, mas sempre achei que o 3 e o 0 nçao se davam bem. Eles tinham suas desavenças, e não seria surpresa se algo tivesse acontecido entre eles. Eu estava ali, mas não vi o que realmente aconteceu, só percebi que a tensão estava no ar."]],
+            "FRASE": "Se 3 não gosta de 0 então 3 matou 0",
             "PREMISSA": ""},
-          {"DIALOG": ["2", ["..."]],
+          {"DIALOG": ["1", ["Eu gostava muito do 0, ele era um bom amigo. Nunca faria nada para prejudicar ele, de jeito nenhum. Sempre tivemos uma boa relação e eu realmente não entendo por que alguém faria esse tipo de coisa com ele."]],
             "FRASE": "Se 1 gostava de 0 então 1 não matou 0",
             "PREMISSA": "10 → ~1"},
-          {"DIALOG": ["2", ["..."]],
+          {"DIALOG": ["4", ["..."]],
             "FRASE": "Se 4 viu 2 e 3 indo na cozinha com canivete então 2 esfaqueou 0",
             "PREMISSA": "6 → 0"
           }
