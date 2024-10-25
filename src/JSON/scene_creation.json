@@ -82,10 +82,12 @@
           {"DIALOG": ["1", ["Eu gostava muito do 0, ele era um bom amigo. Nunca faria nada para prejudicar ele, de jeito nenhum. Sempre tivemos uma boa relação e eu realmente não entendo por que alguém faria esse tipo de coisa com ele."]],
             "FRASE": "Se 1 gostava de 0 então 1 não matou 0",
             "PREMISSA": "10 → ~1"},
-          {"DIALOG": ["4", ["..."]],
-            "FRASE": "Se 4 viu 2 e 3 indo na cozinha com canivete então 2 esfaqueou 0",
-            "PREMISSA": "6 → 0"
-          }
+          {"DIALOG": ["4", ["Olha, só para esclarecer, eu sempre achei estranho que o 3 anda com aquele canivete o tempo todo. Ele realmente parecia determinado ao ir para a cozinha naquela hora. Não sei exatamente o que ele estava pensando, mas é curioso como ele estava por ali logo antes do que aconteceu."]],
+            "FRASE": "Se 4 viu 3 indo na cozinha com canivete então 3 esfaqueou 0",
+            "PREMISSA": "6 → 0"},
+          {"DIALOG": ["1", [""]],
+          "FRASE": "Se 4 viu 3 indo na cozinha com canivete então 3 esfaqueou 0",
+          "PREMISSA": "6 → 0"}
         ]
       }
     },
