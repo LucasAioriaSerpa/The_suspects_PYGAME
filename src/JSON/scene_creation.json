@@ -34,27 +34,27 @@
           {
             "DIALOG": ["4",["Eu estava conversando com o 0 e o 1 mais cedo, mas logo depois fui resolver algumas coisas. Depois disso, vi o 3 andando pelos corredores, parecia bem nervoso. O 1 saiu logo depois de mim, ele estava tranquilo, não acho que faria algo tão grave. Agora, o 3... ele estava sumido por um tempo, e, sinceramente, sempre tive a impressão de que ele poderia estar envolvido em algo estranho. Não ficaria surpreso se ele tivesse causado todo esse problema."]],
             "FRASE": "Se 4 convidou 0 e 1 na cozinha então 4 é o possivel cúmplice",
-            "PREMISSA": "4 ^ 1 → ~3"
+            "PREMISSA": "2 → 3"
           },
           {
-            "DIALOG": ["2", ["..."]],
-            "FRASE": "Se 3 estava conversando com na sala ao lado então 3 e 5 são inocentes",
-            "PREMISSA": "(4 ^ 5) → 6"
+            "DIALOG": ["3", ["Eu lembro de estar na sala conversando com o 5 naquela hora. Estavamos tão imersos na conversa que nem percebi o tempo passando. Sei que fiquei lá com o 5 por um bom tempo, e não me lembro de ter saído da sala enquanto conversavamos."]],
+            "FRASE": "Se 3 estava conversando com 5 na sala ao lado então 3 e 5 são inocentes",
+            "PREMISSA": "4 → 5"
           },
           {
-            "DIALOG": ["2", ["..."]],
+            "DIALOG": ["5", ["Eu estava na sala conversando com o 3 durante todo aquele tempo. Estavámos distraídos com a conversa e, para ser honesto, não notei muita coisa acontecendo ao redor. Sei que o 3 também permaneceu lá comigo, e não lembro de termos saído da sala."]],
             "FRASE": "3 e 5 estavam na sala ao lado",
-            "PREMISSA": "4 ^ 5"
+            "PREMISSA": "6 ^ 7"
           },
           {
-            "DIALOG": ["2", ["..."]],
+            "DIALOG": ["3", ["No momento em que tudo aconteceu, eu estava conversando com o 5 na sala. Nós dois estavamos lá o tempo todo. Eu vi o 2 passar pela cozinha, mas não prestei atenção, pois estava distraído com a conversa."]],
             "FRASE": "Se 3 viu 2 indo na cozinha então 2 viu 1 e 0",
-            "PREMISSA": "6 → 0"
+            "PREMISSA": "8 → 0"
           },
           {
-            "DIALOG": ["2", ["..."]],
+            "DIALOG": ["2", ["Naquela hora, eu estava perto da cozinha, arrumando umas coisas, não estava fazendo nada demais. Acho que vi o suspeito 3 em algum momento, mas não lembro exatamente o que ele estava fazendo. Ah, e antes que perguntem, tanto eu quanto o 3 temos o costume de carregar um canivete, mas é só habito, sabe? Algo comum, que a gente usa no dia a dia, pra coisas simples, nada que tenha a ver com essa situação."]],
             "FRASE": "2 e 3 sempre andam com canivete",
-            "PREMISSA": "7 ^ 8"
+            "PREMISSA": "9 ^ 10"
           }
         ],
         "EVIDENCIAS_CONFLITANTES": [
