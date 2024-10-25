@@ -26,7 +26,7 @@
       "CAUSA_DA_MORTE": "0 morreu envenenado na cozinha",
       "EVIDENCIAS": {
         "EVIDENCIAS_VERDADES": [
-          {"DIALOG": ["2", ["..."]],
+          {"DIALOG": ["2", ["Eu estava na cozinha por um tempo, lavando a louça. Vi o 0 e o 1 por lá juntos, mas não me pareceu nada suspeito no momento. Depois sai para cuidar de algumas coisas. Quando saí, lembro que vi o 4 entrando na cozinha com uma garrafa de vinho."]],
             "FRASE": "Se 2 viu 1 e 0 na cozinha então 1 matou 0",
             "PREMISSA": "0 → 1"},
           {"DIALOG": ["4",["Eu estava conversando com o 0 e o 1 mais cedo, mas logo depois fui resolver algumas coisas. Depois disso, vi o 3 andando pelos corredores, parecia bem nervoso. O 1 saiu logo depois de mim, ele estava tranquilo, não acho que faria algo tão grave. Agora, o 3... ele estava sumido por um tempo, e, sinceramente, sempre tive a impressão de que ele poderia estar envolvido em algo estranho. Não ficaria surpreso se ele tivesse causado todo esse problema."]],
