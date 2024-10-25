@@ -32,7 +32,7 @@
             "PREMISSA": "0 → 1"
           },
           {
-            "DIALOG": ["2",["...", "..."]],
+            "DIALOG": ["2",["..."]],
             "FRASE": "Se 4 convidou 0 e 1 na cozinha então 4 é o possivel cúmplice",
             "PREMISSA": "2 → 3"
           },
