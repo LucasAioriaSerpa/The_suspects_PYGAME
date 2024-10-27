@@ -3,9 +3,9 @@
 
 0 morreu envenenado
 
-0 - pessoa que morreu		F
+0 - pessoa que morreu		  F
 1 - pessoa que assassinou	Sempre fala mentira || 50% fala uma conflitante
-2 - testemunha			    Sempre fala verdade || 25% fala uma conflitante
+2 - testemunha			      Sempre fala verdade || 25% fala uma conflitante
 3 - Suspeito principal		Sempre fala verdade || 25% fala uma conflitante
 4 - Cúmplice/testemunha		Sempre fala mentira || 50% fala uma conflitante
 5 - Suspeito (amigo de 3)	Sempre fala verdade || 25% fala uma conflitante
@@ -16,7 +16,7 @@ Falsas:
             "FRASE": "Se 3 não gosta de 0 então 3 matou 0",
             "FRASE": "Se 1 gostava de 0 então 1 não matou 0",
             "FRASE": "Se 4 viu 3 indo na cozinha com canivete então 3 esfaqueou 0",
-	        "FRASE": "...",
+	          "FRASE": "...",
 
 Verdadeiros:
             "FRASE": "Se 2 viu 1 e 0 na cozinha então 1 matou 0", -> objetivo
