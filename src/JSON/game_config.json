@@ -2,6 +2,10 @@
   "configs": {
     "CAPTION": "project ttg",
     "RESOLUTION": [1200, 750],
+    "GAME_STATE": {
+      "Menu": true,
+      "Game": false
+    },
     "BACKGROUND": "#000000",
     "FPS": 60
   },
