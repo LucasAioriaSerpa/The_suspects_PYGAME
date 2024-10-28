@@ -1,7 +1,7 @@
 {
   "configs": {
     "CAPTION": "project ttg",
-    "RESOLUTION": [1200, 750],
+    "RESOLUTION": [1280, 720],
     "GAME_STATE": {
       "Menu": true,
       "Game": false

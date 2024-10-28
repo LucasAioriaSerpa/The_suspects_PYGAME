@@ -31,6 +31,7 @@ class CONFIG():
             "CAPTION": ...,
             "RESOLUTION": ...,
             "BACKGROUND": ...,
+            "GAME_STATE": ...,
             "FPS": ...,
         }
         self.paths = {

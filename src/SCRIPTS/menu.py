@@ -8,5 +8,7 @@ class MENU():
         self.game_state = game_state
         self.mouse_obj = _mou.MOUSE(self.display)
     def render(self):
-        self.mouse_obj.update(1)
-        self.render()
+        self.display.blit(self.display, (0,0))
+        self.display.fill("#000000")
+        self.mouse_obj.render()
+        self.mouse_obj.update(4)
