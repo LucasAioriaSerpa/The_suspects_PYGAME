@@ -48,13 +48,13 @@ class CONFIG():
     def create_config(self):
         #? loads game_config.json to json_config dict
         with open('src/JSON/game_config.json', 'r') as file: self.json_config = json.load(file)
-        print(f"\nJSON DATA: {self.json_config}\n")
+        #print(f"\nJSON DATA: {self.json_config}\n")
         #? loads game_config dict with json_config
         for key in self.game_config.keys(): self.game_config[key] = self.json_config["configs"][key]
-        print(f"game_config DATA: {self.game_config}\n")
+        #print(f"game_config DATA: {self.game_config}\n")
         #? loads paths dict with json_config
         for key in self.paths.keys(): self.paths[key] = self.json_config["paths"][key]
-        print(f"paths DATA: {self.paths}")
+        #print(f"paths DATA: {self.paths}")
     def load_json(self, file_str:str) -> dict[str]:
         path_json = f"{self.paths["PATH-JSON"]}{file_str}"
         with open(path_json, "r") as file: return json.load(file)

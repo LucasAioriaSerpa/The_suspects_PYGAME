@@ -46,7 +46,7 @@ class Game:
             if event.key == pyg.K_ESCAPE: self.end()
             if self.game_state['Game']: print("butões sendo apertados")
     def end(self):
-        print("Game ending!")
+        print("Main ending!")
         pyg.quit()
         sys.exit()
 print("main.py loaded!")

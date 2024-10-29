@@ -9,11 +9,10 @@ class MOUSE():
         self.json_object.create_config()
         self.path_mouse = self.json_object.paths["PATH-IMAGES-mouse"]
         self.pos = pyg.mouse.get_pos()
-        #TODO: create mouse art
         self.surface = pyg.image.load(self.path_mouse+"mouse.png").convert_alpha()
         self.rect = self.surface.get_rect(center=(self.pos[0], self.pos[1]))
         self.mask = pyg.mask.from_surface(self.surface)
-        self.clicked=False
+        self.clicked = False
     def update(self, size_scale):
         self.pos = pyg.mouse.get_pos()
         self.pos = (self.pos[0]/size_scale, self.pos[1]/size_scale)

@@ -38,28 +38,43 @@ class text_fonts():
         self.display = display
         self.json_object = _json.CONFIG()
         self.json_object.create_config()
-        self.path_font = self.json_object.paths["PATH-FONTS"]
-        self.font_obj = _pyg.font.Font(self.path_font+font_ttf, size)
-        self.font_surface = self.font_obj.render(text, antialias, color).convert()
-        self.font_pos = pos
-        self.font_rect = self.font_surface.get_rect(center = self.font_pos)
-    def draw_rect(self, color:str, size:int):
-        return _pyg.draw.rect(self.display, color, self.font_rect, border_radius=size)
+        self.f_info = {
+            "font":font_ttf,
+            "size":size,
+            "text":text,
+            "antialias":antialias,
+            "color":color
+        }
+        self.f_pos = pos
+        self.f_path = self.json_object.paths["PATH-FONTS"]
+        self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
+        self.f_surface = self.f_obj.render(self.f_info["text"], self.f_info["antialias"], self.f_info["color"]).convert()
+        self.f_rect = self.f_surface.get_rect(center = self.f_pos)
+    def draw_rect(self, color:str, border_rad:int):
+        return _pyg.draw.rect(self.display, color, self.f_rect, border_radius=border_rad)
 
 class button_rect():
     def __init__(self, display: _pyg.Surface, size: tuple, pos: tuple, color:str, text_obj:text_fonts):
         self.display = display
-        self.text_obj = text_obj
-        self.surface = _pyg.Surface(size).convert()
-        self.color = color
-        self.fill = self.surface.fill(color)
-        self.rect = self.surface.get_rect(center=pos)
-        self.mask = _pyg.mask.from_surface(self.surface)
+        self.b_size = size
+        self.b_pos = pos
+        self.b_color = color
+        self.b_text_obj = text_obj
+        self.b_surface = _pyg.Surface(self.b_size).convert()
+        self.b_surface.fill(self.b_color)
+        self.b_rect = self.b_surface.get_rect(center=self.b_pos)
+        self.b_mask = _pyg.mask.from_surface(self.b_surface)
     def render(self):
-        self.display.blit(self.surface, self.rect)
-        self.display.blit(self.text_obj.font_surface, self.text_obj.font_rect)
-    def check_collision(self, m_obj: _mous.MOUSE, color: str):
-        self.surface.fill(self.color)
-        if self.mask.overlap(m_obj.mask, (m_obj.pos[0] - self.rect.x, m_obj.pos[1] - self.rect.y)):
-            self.surface.fill(color)
+        self.display.blit(self.b_surface, self.b_rect)
+        self.display.blit(self.b_text_obj.f_surface, self.b_text_obj.f_rect)
+    def collision_change(self, m_obj: _mous.MOUSE, color: str, text_info_update: dict):
+        self.b_surface.fill(self.b_color)
+        if self.b_mask.overlap(m_obj.mask, (m_obj.pos[0] - self.b_rect.x, m_obj.pos[1] - self.b_rect.y)):
+            self.b_surface.fill(color)
+            self.b_text_obj.f_info = text_info_update
+            self.b_text_obj.f_surface
             self.render()
+    def check_collision(self, m_obj: _mous.MOUSE) -> bool:
+        if self.b_mask.overlap(m_obj.mask, (m_obj.pos[0] - self.b_rect.x, m_obj.pos[1] - self.b_rect.y)):
+            return True
+        return False
