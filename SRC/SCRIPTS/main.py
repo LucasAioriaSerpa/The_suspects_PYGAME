@@ -5,6 +5,7 @@ import SCRIPTS.utilities as _util
 import SCRIPTS.menu as _menu
 import SCRIPTS.game as _game
 import SCRIPTS.load_json as _json
+import SCRIPTS.mouse as _mou
 class Game:
     def __init__(self):
         #? json configs
@@ -25,6 +26,7 @@ class Game:
         self.display = pyg.Surface((self.screen.get_width()/self.size_scale, self.screen.get_height()/self.size_scale)).convert()
         self.clock = pyg.time.Clock()
         #? objects
+        self.mouse_obj = _mou.MOUSE(self.display)
         self.objs_states = {
             "menu":_menu.MENU(self.display, self.game_state),
             "game":_game.GAME(self.display, self.game_state)
