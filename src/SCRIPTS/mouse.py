@@ -10,12 +10,12 @@ class MOUSE():
         self.path_mouse = self.json_object.paths["PATH-IMAGES-mouse"]
         self.pos = pyg.mouse.get_pos()
         self.surface = pyg.image.load(self.path_mouse+"mouse.png").convert_alpha()
-        self.rect = self.surface.get_rect(center=(self.pos[0], self.pos[1]))
+        self.rect = self.surface.get_rect(center=(self.pos[0]+4, self.pos[1]+4))
         self.mask = pyg.mask.from_surface(self.surface)
         self.clicked = False
     def update(self, size_scale):
         self.pos = pyg.mouse.get_pos()
         self.pos = (self.pos[0]/size_scale, self.pos[1]/size_scale)
-        self.rect.center = (self.pos[0], self.pos[1])
+        self.rect.center = (self.pos[0]+4, self.pos[1]+4)
     def render(self):
         return self.display.blit(self.surface, self.rect)
