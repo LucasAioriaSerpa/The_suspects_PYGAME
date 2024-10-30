@@ -10,6 +10,7 @@ class MENU():
         self.mouse_obj = _mou.MOUSE(self.display)
         self.util_obj = _util.utility(self.display)
         self.half_screen = (self.display.get_width()/2, self.display.get_height()/2)
+        self.title_text = _util.text_fonts(self.display, "SEASRN__.ttf", 30, (self.half_screen[0], self.half_screen[1]-30), "The Suspects", False, "#ffffff")
         self.start_text = _util.text_fonts(self.display, "upheavtt.ttf", 20, (self.half_screen[0], self.half_screen[1]+20), "START", False, "#999999")
         self.start_button = _util.button_rect(self.display, (128,32), (self.half_screen[0], self.half_screen[1]+20), "#454545", self.start_text)
         self.exit_text = _util.text_fonts(self.display, "upheavtt.ttf", 20, (self.half_screen[0], self.half_screen[1]+60), "SAIR", False, "#999999")
@@ -17,7 +18,6 @@ class MENU():
     def render(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#000000")
-
         if self.start_button.check_collision(self.mouse_obj):
             self.start_button.b_color = "#ffffff"
             self.start_button.b_text_obj.f_info["color"] = "#000000"
@@ -36,14 +36,13 @@ class MENU():
         else:
             self.exit_button.b_color = "#454545"
             self.exit_button.b_text_obj.f_info["color"] = "#999999"
-
+        self.title_text.render()
         self.start_button.render()
-        self.start_button.b_text_obj.update()
         self.start_button.update()
-
+        self.start_button.b_text_obj.update()
         self.exit_button.render()
-        self.exit_button.b_text_obj.update()
         self.exit_button.update()
+        self.exit_button.b_text_obj.update()
         self.mouse_obj.render()
         self.mouse_obj.update(4)
         for event in pyg.event.get():

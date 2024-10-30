@@ -52,6 +52,8 @@ class text_fonts():
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
     def draw_rect(self, color:str, border_rad:int):
         return _pyg.draw.rect(self.display, color, self.f_rect, border_radius=border_rad)
+    def render(self):
+        self.display.blit(self.f_surface, self.f_rect)
     def update(self):
         self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
         self.f_surface = self.f_obj.render(self.f_info["text"], self.f_info["antialias"], self.f_info["color"]).convert()

@@ -1,5 +1,5 @@
 #imports external
-import pygame as pyg
+import pygame as pyg, sys
 #imports internal
 ...
 class GAME():
@@ -7,4 +7,8 @@ class GAME():
         self.display = display
         self.game_state = game_state
     def render(self):
-        print("rendering!")
+        
+    def end(self):
+        print("Menu ending!")
+        pyg.quit()
+        sys.exit()
