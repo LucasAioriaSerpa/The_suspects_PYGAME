@@ -2,8 +2,8 @@
 import pygame as pyg
 #imports internal
 ...
-class case:
-    def __init__(self) -> None:
+class CASE:
+    def __init__(self, display: pyg.display) -> None:
         NPCS = []
     def generate_case(self):
         ...

@@ -3,6 +3,7 @@ import pygame as pyg, sys
 #imports internal
 import SCRIPTS.mouse as _mou
 import SCRIPTS.utilities as _util
+import SCRIPTS.generate_case as _gen
 class GAME():
     def __init__(self, display:pyg.display, game_state:dict):
         self.display = display
@@ -10,6 +11,7 @@ class GAME():
         self.loaded = False
         self.mouse_obj = _mou.MOUSE(self.display)
         self.util_obj = _util.utility(self.display)
+        self.case_obj = _gen.CASE(self.display)
         self.half_screen = (self.display.get_width()/2, self.display.get_height()/2)
         self.timer = 0
         self.loading_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]), "Loading assets please wait . . .", False, "#999999")
