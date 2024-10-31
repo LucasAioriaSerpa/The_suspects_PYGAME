@@ -1,5 +1,5 @@
 #imports external
-import pygame as pyg, random
+import random
 #imports internal
 import load_json as _json
 class CASE():
@@ -19,12 +19,43 @@ class CASE():
             "CONFLICTS": [...],
             "FALSES": [...]
         }
+    def set_types(self, npc: int, npc_str: str):
+        match self.CASO["DEATH_CASE"]:
+            case "Envenenado":
+                match npc:
+                    case 0:
+                        self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][2]
+                        print(f"0-Vitima:                 {npc_str}")
+                    case 1:
+                        self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][0]
+                        print(f"1-Assassino:              {npc_str}")
+                    case 2:
+                        self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][1]
+                        print(f"2-Testemunha:             {npc_str}")
+                    case 3:
+                        self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][1]
+                        print(f"3-Suspeito principal:     {npc_str}")
+                    case 4:
+                        self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][1]
+                        print(f"4-Cúmplice/testemunha:    {npc_str}")
+                    case 5:
+                        self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][1]
+                        print(f"5-Suspeito (amigo de 3):  {npc_str}")
+            case "Esfaqueado":
+                match npc:
+                    case 0:
+                        ...
     def generate_case(self):
-        name = random.choice(self.NPC_VALUES["NOMES"])
-        description = random.choice(self.NPC_VALUES["DESCRICOES"])
-        while name["genero"] != description["genero"][0]:
+        self.CASO["DEATH_CASE"] = "Envenenado" # random.choice(self.SCENE_VALUES["CASO"]["CAUSA_DA_MORTE"])
+        self.CASO["DEATH_PLACE"] = random.choice(self.SCENE_VALUES["CASO"]["LUGAR_DA_MORTE"])
+        print(self.CASO)
+        for _ in range(6):
+            name = random.choice(self.NPC_VALUES["NOMES"])
             description = random.choice(self.NPC_VALUES["DESCRICOES"])
-        print(name,"\n",description)
-        self.NPCS.append({"NAME":name["nome"],"DESCRIPTION":{"OCUPACAO":description["ocupacao"],"PERSONALIDADE":description["personalidade"]}})
-        print("true!")
-CASE().generate_case()
+            while name["genero"] != description["genero"][0]: description = random.choice(self.NPC_VALUES["DESCRICOES"])
+            self.NPCS.append({"NAME":name["nome"],"DESCRIPTION":{"OCUPACAO":description["ocupacao"],"PERSONALIDADE":description["personalidade"]}, "TYPE":...})
+        for npc in range(len(self.NPCS)):
+            npc_str = f"{f"{self.NPCS[npc]["NAME"]}":<20}||     {f"{self.NPCS[npc]["DESCRIPTION"]}":<90}|| {self.NPCS[npc]["TYPE"]}"
+            self.set_types(npc, npc_str)
+        return True
+print(CASE().generate_case())

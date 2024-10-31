@@ -30,7 +30,7 @@ class GAME():
             case 68: self.loading_text.f_info["text"] = "Loading assets please wait . ."
             case 78: self.loading_text.f_info["text"] = self.string_loading_text
             case 79: self.timer = 0
-        self.case_obj.generate_case()
+        if self.case_obj.generate_case(): self.loaded = True
         self.loading_text.render()
         self.loading_text.update()
     def render(self):

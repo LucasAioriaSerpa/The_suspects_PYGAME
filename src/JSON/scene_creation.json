@@ -1,8 +1,4 @@
 {
-  "NPCS": {
-    "TYPES": ["Assasino", "suspeito", "vitima"],
-    "QTD": 6
-  },
   "CASO": {
     "PREMISSA_VAR": {
       "ALPHABET": [
@@ -23,6 +19,7 @@
     },
     "CAUSA_DA_MORTE": ["Envenenado", "Esfaqueado"],
     "LUGAR_DA_MORTE": ["cozinha", "sala de estar", "quarto"],
+    "NPC_TYPES": ["Assasino", "suspeito", "vitima"],
     "CASO_ENVENADO": {
       "CAUSA_DA_MORTE": "0 morreu envenenado na $",
       "EVIDENCIAS": {
