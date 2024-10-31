@@ -4,7 +4,7 @@
     "QTD": 6
   },
   "CASO": {
-    "PREMISSA_VAR":{
+    "PREMISSA_VAR": {
       "ALPHABET": [
         "a", "b", "c", "d", "e", "f", "g",
         "h", "i", "j", "k", "l", "m", "n",
@@ -19,71 +19,108 @@
         "0", "1", "2", "3", "4",
         "5", "6", "7", "8", "9"
       ],
-      "OPERATORS": ["→","↔","~","^","˅"]
+      "OPERATORS": ["→", "↔", "~", "^", "˅"]
     },
     "CAUSA_DA_MORTE": ["Envenenado", "Esfaqueado"],
+    "LUGAR_DA_MORTE": ["cozinha", "sala de estar", "quarto"],
     "CASO_ENVENADO": {
-      "CAUSA_DA_MORTE": "0 morreu envenenado na cozinha",
+      "CAUSA_DA_MORTE": "0 morreu envenenado na $",
       "EVIDENCIAS": {
         "EVIDENCIAS_VERDADES": [
-          {"DIALOG": ["2", ["Eu estava na cozinha por um tempo, lavando a louça. Vi o 0 e o 1 por lá juntos, mas não me pareceu nada suspeito no momento. Depois sai para cuidar de algumas coisas. Quando saí, lembro que vi o 4 entrando na cozinha com uma garrafa de vinho."]],
-            "FRASE": "Se 2 viu 1 e 0 na cozinha então 1 matou 0",
-            "PREMISSA": "0 → 1"},
-          {"DIALOG": ["4",["Eu estava conversando com o 0 e o 1 mais cedo, mas logo depois fui resolver algumas coisas. Depois disso, vi o 3 andando pelos corredores, parecia bem nervoso. O 1 saiu logo depois de mim, ele estava tranquilo, não acho que faria algo tão grave. Agora, o 3... ele estava sumido por um tempo, e, sinceramente, sempre tive a impressão de que ele poderia estar envolvido em algo estranho. Não ficaria surpreso se ele tivesse causado todo esse problema."]],
-            "FRASE": "Se 4 convidou 0 e 1 na cozinha então 4 é o possivel cúmplice",
-            "PREMISSA": "2 → 3"},
-          {"DIALOG": ["3", ["Eu lembro de estar na sala conversando com o 5 naquela hora. Estavamos tão imersos na conversa que nem percebi o tempo passando. Sei que fiquei lá com o 5 por um bom tempo, e não me lembro de ter saído da sala enquanto conversavamos."]],
-            "FRASE": "Se 3 estava conversando com 5 na sala ao lado então 3 e 5 são inocentes",
-            "PREMISSA": "4 → 5"},
-          {"DIALOG": ["5", ["Eu estava na sala conversando com o 3 durante todo aquele tempo. Estavámos distraídos com a conversa e, para ser honesto, não notei muita coisa acontecendo ao redor. Sei que o 3 também permaneceu lá comigo, e não lembro de termos saído da sala."]],
+          {
+            "DIALOG": ["2", ["Eu estava na $ por um tempo, lavando a louca. Vi o 0 e o 1 por la juntos, mas nao me pareceu nada suspeito no momento. Depois sai para cuidar de algumas coisas. Quando sai, lembro que vi o 4 entrando na $ com uma garrafa de vinho."]],
+            "FRASE": "Se 2 viu 1 e 0 na $ entao 1 matou 0",
+            "PREMISSA": "0 → 1"
+          },
+          {
+            "DIALOG": ["4", ["Eu estava conversando com o 0 e o 1 mais cedo, mas logo depois fui resolver algumas coisas. Depois disso, vi o 3 andando pelos corredores, parecia bem nervoso. O 1 saiu logo depois de mim, ele estava tranquilo, nao acho que faria algo tao grave. Agora, o 3... ele estava sumido por um tempo, e, sinceramente, sempre tive a impressao de que ele poderia estar envolvido em algo estranho. Nao ficaria surpreso se ele tivesse causado todo esse problema."]],
+            "FRASE": "Se 4 convidou 0 e 1 na $ entao 4 e o possivel cumpliice",
+            "PREMISSA": "2 → 3"
+          },
+          {
+            "DIALOG": ["3", ["Eu lembro de estar na sala conversando com o 5 naquela hora. Estavamos tao imersos na conversa que nem percebi o tempo passando. Sei que fiquei la com o 5 por um bom tempo, e nao me lembro de ter saido da sala enquanto conversavamos."]],
+            "FRASE": "Se 3 estava conversando com 5 na sala ao lado entao 3 e 5 sao inocentes",
+            "PREMISSA": "4 → 5"
+          },
+          {
+            "DIALOG": ["5", ["Eu estava na sala conversando com o 3 durante todo aquele tempo. Estavamos distraidos com a conversa e, para ser honesto, nao notei muita coisa acontecendo ao redor. Sei que o 3 tambem permaneceu la comigo, e nao lembro de termos saido da sala."]],
             "FRASE": "3 e 5 estavam na sala ao lado",
-            "PREMISSA": "6 ^ 7"},
-          {"DIALOG": ["3", ["No momento em que tudo aconteceu, eu estava conversando com o 5 na sala. Nós dois estavamos lá o tempo todo. Eu vi o 2 passar pela cozinha, mas não prestei atenção, pois estava distraído com a conversa."]],
-            "FRASE": "Se 3 viu 2 indo na cozinha então 2 viu 1 e 0",
-            "PREMISSA": "8 → 0"},
-          {"DIALOG": ["2", ["Naquela hora, eu estava perto da cozinha, arrumando umas coisas, não estava fazendo nada demais. Acho que vi o suspeito 3 em algum momento, mas não lembro exatamente o que ele estava fazendo. Ah, e antes que perguntem, tanto eu quanto o 3 temos o costume de carregar um canivete, mas é só habito, sabe? Algo comum, que a gente usa no dia a dia, pra coisas simples, nada que tenha a ver com essa situação."]],
+            "PREMISSA": "6 ^ 7"
+          },
+          {
+            "DIALOG": ["3", ["No momento em que tudo aconteceu, eu estava conversando com o 5 na sala. Nos dois estavamos la o tempo todo. Eu vi o 2 passar pela $, mas nao prestei atencao, pois estava distraido com a conversa."]],
+            "FRASE": "Se 3 viu 2 indo na $ entao 2 viu 1 e 0",
+            "PREMISSA": "8 → 0"
+          },
+          {
+            "DIALOG": ["2", ["Naquela hora, eu estava perto da $, arrumando umas coisas, nao estava fazendo nada demais. Acho que vi o suspeito 3 em algum momento, mas nao lembro exatamente o que ele estava fazendo. Ah, e antes que perguntem, tanto eu quanto o 3 temos o costume de carregar um canivete, mas e so habito, sabe? Algo comum, que a gente usa no dia a dia, pra coisas simples, nada que tenha a ver com essa situacao."]],
             "FRASE": "2 e 3 sempre andam com canivete",
-            "PREMISSA": "9 ^ 10"}
+            "PREMISSA": "9 ^ 10"
+          }
         ],
         "EVIDENCIAS_CONFLITANTES": [
-          {"DIALOG": ["5", ["Olha, só sei que o 0 adorava um bom vinho... Ele sempre nos reunia com uma taça na mão, como se estivesse celebrando alguma coisa. Quanto ao 2, todo mundo sabe que ele surta só de ver uma aranha por perto."]],
+          {
+            "DIALOG": ["5", ["Olha, so sei que o 0 adorava um bom vinho... Ele sempre nos reunia com uma taca na mao, como se estivesse celebrando alguma coisa. Quanto ao 2, todo mundo sabe que ele surta so de ver uma aranha por perto."]],
             "FRASE": "0 amava vinho e 2 tem medo de aranhas",
-            "PREMISSA": null},
-          {"DIALOG": ["1", ["Olha, as pessoas sempre especulam, mas é verdade, eu nunca fui chegado em tênis... Não vejo graça. Agora, o 4, por outro lado, é a mesma coisa com vôlei, ele sempre desconversa quando o assunto vem à tona. Acho que todo mundo tem suas preferências."]],
-            "FRASE": "Se 1 não gosta de tenis então 4 não gosta de volei",
-            "PREMISSA": null},
-          {"DIALOG": ["2", ["Eu sei que parece bobagem, mas é verdade, eu fico nervoso só de pensar em aranhas. E morcegos? Nem me fale! Se me deparo com qualquer um deles, não tem quem me segure. Mas também, quem não tem seus receios, não é? Até o 0 tinha seus próprios gostos e desgostos."]],
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["1", ["Olha, as pessoas sempre especulam, mas e verdade, eu nunca fui chegado em tenis... Nao vejo graça. Agora, o 4, por outro lado, e a mesma coisa com volei, ele sempre desconversa quando o assunto vem a tona. Acho que todo mundo tem suas preferencias."]],
+            "FRASE": "Se 1 nao gosta de tenis entao 4 nao gosta de volei",
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["2", ["Eu sei que parece bobagem, mas e verdade, eu fico nervoso so de pensar em aranhas. E morcegos? Nem me fale! Se me deparo com qualquer um deles, nao tem quem me segure. Mas tambem, quem nao tem seus receios, nao e? Ate o 0 tinha seus proprios gostos e desgostos."]],
             "FRASE": "2 tem medo de aranhas ou 2 tem medo de morcego",
-            "PREMISSA": null},
-          {"DIALOG": ["5", ["Ah, o 3 sempre gostou mais de cachorros... Vive dizendo que eles são leais, protetores. Eu, por outro lado, prefiro os gatos, mais independentes, sabe? Mas, honestamente, não acho que nossos gostos tenham algo a ver com o que aconteceu com o 0. Só que, às vezes, as preferências das pessoas dizem mais sobre elas do que imaginamos, não acha?"]],
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["5", ["Ah, o 3 sempre gostou mais de cachorros... Vive dizendo que eles sao leais, protetores. Eu, por outro lado, prefiro os gatos, mais independentes, sabe? Mas, honestamente, nao acho que nossos gostos tenham algo a ver com o que aconteceu com o 0. So que, as vezes, as preferencias das pessoas dizem mais sobre elas do que imaginamos, nao acha?"]],
             "FRASE": "3 gosta de cachorros e 5 gosta de gatos",
-            "PREMISSA": null},
-          {"DIALOG": ["2", ["O 4 nunca foi de se misturar quando o assunto é vôlei; ele sempre preferiu algo mais… discreto, ele curte mais tênis. Cada um de nós tem preferências diferentes, e acho curioso como elas dizem tanto sobre quem somos, não acha?"]],
-            "FRASE": "4 não gosta de volei logo 4 gosta de tenis",
-            "PREMISSA": null},
-          {"DIALOG": ["3", ["Olha, eu sempre fui fã de cachorros; eles têm essa energia contagiante. Já o 5 é mais do tipo que se encanta por gatos, sabe? Eu respeito as escolhas dele, mas é interessante como essas preferências podem dividir as pessoas. Cada um com seu próprio jeito de viver, isso é o que faz a gente ser quem somos, não é mesmo?"]],
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["2", ["O 4 nunca foi de se misturar quando o assunto e volei; ele sempre preferiu algo mais… discreto, ele curte mais tenis. Cada um de nos tem preferencias diferentes, e acho curioso como elas dizem tanto sobre quem somos, nao acha?"]],
+            "FRASE": "4 nao gosta de volei logo 4 gosta de tenis",
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["3", ["Olha, eu sempre fui fa de cachorros; eles tem essa energia contagiante. Ja o 5 e mais do tipo que se encanta por gatos, sabe? Eu respeito as escolhas dele, mas e interessante como essas preferencias podem dividir as pessoas. Cada um com seu proprio jeito de viver, isso e o que faz a gente ser quem somos, nao e mesmo?"]],
             "FRASE": "5 gosta de gatos e 3 gosta de cachorros",
-            "PREMISSA": null}
+            "PREMISSA": null
+          }
         ],
         "EVIDENCIAS_FALSAS": [
-          {"DIALOG": ["1", ["Eu realmente não sei o que aconteceu, mas é curioso que o 3 não estivesse na sala quando tudo isso ocorreu. Ele sempre gostou de ficar por perto, então a ausência dele naquele momento me faz questionar algumas coisas."]],
-            "FRASE": "Se 3 não estava na sala então 3 matou 0",
-            "PREMISSA": "~1 → 2"},
-          {"DIALOG": ["1", ["Eu estava na sala, mas a verdade é que o 3 não estava por lá naquele momento. Eu lembro de ter visto ele sair antes de tudo acontecer, e não sei onde ele foi parar. Eu estava apenas tentando relaxar na sala."]],
-            "FRASE": "Se 3 não estava na sala então 3 esfaqueou 0",
-            "PREMISSA": "~3 → 4"},
-          {"DIALOG": ["4", ["Olha, não quero me meter, mas sempre achei que o 3 e o 0 nçao se davam bem. Eles tinham suas desavenças, e não seria surpresa se algo tivesse acontecido entre eles. Eu estava ali, mas não vi o que realmente aconteceu, só percebi que a tensão estava no ar."]],
-            "FRASE": "Se 3 não gosta de 0 então 3 matou 0",
-            "PREMISSA": "5 → 2"},
-          {"DIALOG": ["1", ["Eu gostava muito do 0, ele era um bom amigo. Nunca faria nada para prejudicar ele, de jeito nenhum. Sempre tivemos uma boa relação e eu realmente não entendo por que alguém faria esse tipo de coisa com ele."]],
-            "FRASE": "Se 1 gostava de 0 então 1 não matou 0",
-            "PREMISSA": "10 → ~1"},
-          {"DIALOG": ["4", ["Olha, só para esclarecer, eu sempre achei estranho que o 3 anda com aquele canivete o tempo todo. Ele realmente parecia determinado ao ir para a cozinha naquela hora. Não sei exatamente o que ele estava pensando, mas é curioso como ele estava por ali logo antes do que aconteceu."]],
-            "FRASE": "Se 4 viu 3 indo na cozinha com canivete então 3 esfaqueou 0",
-            "PREMISSA": "6 → 0"},
-          {"DIALOG": ["4", ["Não quero acusar ninguém sem provas, mas eu vi o suspeito 2 perto da cozinha naquela hora. Não sei o que aconteceu depois, mas a presença dele ali me fez levantar algumas perguntas."]],
-          "FRASE": "Se 4 viu o 2 indo para a cozinha então 2 matou o 0",
-          "PREMISSA": "7 → 2"}
+          {
+            "DIALOG": ["1", ["Eu realmente nao sei o que aconteceu, mas e curioso que o 3 nao estivesse na sala quando tudo isso ocorreu. Ele sempre gostou de ficar por perto, entao a ausencia dele naquele momento me faz questionar algumas coisas."]],
+            "FRASE": "Se 3 nao estava na sala entao 3 matou 0",
+            "PREMISSA": "~1 → 2"
+          },
+          {
+            "DIALOG": ["1", ["Eu estava na sala, mas a verdade e que o 3 nao estava por la naquele momento. Eu lembro de ter visto ele sair antes de tudo acontecer, e nao sei onde ele foi parar. Eu estava apenas tentando relaxar na sala."]],
+            "FRASE": "Se 3 nao estava na sala entao 3 esfaqueou 0",
+            "PREMISSA": "~3 → 4"
+          },
+          {
+            "DIALOG": ["4", ["Olha, nao quero me meter, mas sempre achei que o 3 e o 0 nçao se davam bem. Eles tinham suas desavenças, e nao seria surpresa se algo tivesse acontecido entre eles. Eu estava ali, mas nao vi o que realmente aconteceu, so percebi que a tensao estava no ar."]],
+            "FRASE": "Se 3 nao gosta de 0 entao 3 matou 0",
+            "PREMISSA": "5 → 2"
+          },
+          {
+            "DIALOG": ["1", ["Eu gostava muito do 0, ele era um bom amigo. Nunca faria nada para prejudicar ele, de jeito nenhum. Sempre tivemos uma boa relacao e eu realmente nao entendo por que alguem faria esse tipo de coisa com ele."]],
+            "FRASE": "Se 1 gostava de 0 entao 1 nao matou 0",
+            "PREMISSA": "10 → ~1"
+          },
+          {
+            "DIALOG": ["4", ["Olha, so para esclarecer, eu sempre achei estranho que o 3 anda com aquele canivete o tempo todo. Ele realmente parecia determinado ao ir para a $ naquela hora. Nao sei exatamente o que ele estava pensando, mas e curioso como ele estava por ali logo antes do que aconteceu."]],
+            "FRASE": "Se 4 viu 3 indo na $ com canivete entao 3 esfaqueou 0",
+            "PREMISSA": "6 → 0"
+          },
+          {
+            "DIALOG": ["4", ["Nao quero acusar ninguem sem provas, mas eu vi o suspeito 2 perto da $ naquela hora. Nao sei o que aconteceu depois, mas a presenca dele ali me fez levantar algumas perguntas."]],
+            "FRASE": "Se 4 viu o 2 indo para a $ entao 2 matou o 0",
+            "PREMISSA": "7 → 2"
+          }
         ]
       }
     },

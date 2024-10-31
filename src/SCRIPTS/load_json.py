@@ -57,4 +57,5 @@ class CONFIG():
         #*print(f"paths DATA: {self.paths}")
     def load_json(self, file_str:str) -> dict[str]:
         path_json = f"{self.paths["PATH-JSON"]}{file_str}"
-        with open(path_json, "r") as file: return json.load(file)
+        with open(path_json, "r") as file: loaded_json = json.load(file)
+        return loaded_json

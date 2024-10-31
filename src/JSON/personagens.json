@@ -1,382 +1,382 @@
 {
-  "nomes": [
+  "NOMES": [
     {
       "nome": "Ana Silva",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Bruno Oliveira",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Carla Souza",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Diego Costa",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Eduardo Ferreira",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Fernanda Lima",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Gabriel Alves",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Helena Martins",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Igor Pereira",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Juliana Rocha",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Karla Mendes",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Lucas Azevedo",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Mariana Ribeiro",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Nathalia Duarte",
-      "gênero": "F"
+      "genero": "f"
     },
     {
-      "nome": "Otávio Nogueira",
-      "gênero": "M"
+      "nome": "Otavio Nogueira",
+      "genero": "m"
     },
     {
       "nome": "Paula Carvalho",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Rafael Monteiro",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Sara Teixeira",
-      "gênero": "F"
+      "genero": "f"
     },
     {
-      "nome": "Thiago Gonçalves",
-      "gênero": "M"
+      "nome": "Thiago Goncalves",
+      "genero": "m"
     },
     {
       "nome": "Vanessa Cardoso",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Yasmin Farias",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Zeca Lima",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Alice Barros",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Bernardo Vieira",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Camila Gomes",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Daniel Moreira",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Eduarda Pinto",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Felipe Machado",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Giovana Santana",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Henrique Xavier",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Isabela Brito",
-      "gênero": "F"
+      "genero": "f"
     },
     {
-      "nome": "João Almeida",
-      "gênero": "M"
+      "nome": "Joao Almeida",
+      "genero": "m"
     },
     {
       "nome": "Karen Ribeiro",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Leandro Queiroz",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Maria Borges",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Nicolas Barreto",
-      "gênero": "M"
+      "genero": "m"
     },
     {
-      "nome": "Otávia Ribeiro",
-      "gênero": "F"
+      "nome": "Otavia Ribeiro",
+      "genero": "f"
     },
     {
       "nome": "Pedro Santos",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Roberta Neves",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Samuel Fernandes",
-      "gênero": "M"
+      "genero": "m"
     },
     {
-      "nome": "Tatiane Corrêa",
-      "gênero": "F"
+      "nome": "Tatiane Correa",
+      "genero": "f"
     },
     {
       "nome": "Victor Oliveira",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Wesley Ribeiro",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Xavier Mendes",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Yuri Tavares",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Zuleica Rodrigues",
-      "gênero": "F"
+      "genero": "f"
     },
     {
-      "nome": "Amanda Araújo",
-      "gênero": "F"
+      "nome": "Amanda Araujo",
+      "genero": "f"
     },
     {
-      "nome": "Bárbara Cunha",
-      "gênero": "F"
+      "nome": "Barbara Cunha",
+      "genero": "f"
     },
     {
       "nome": "Carlos Figueiredo",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Debora Silveira",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Elias Batista",
-      "gênero": "M"
+      "genero": "m"
     },
     {
-      "nome": "Fátima Mello",
-      "gênero": "F"
+      "nome": "Fatima Mello",
+      "genero": "f"
     },
     {
       "nome": "Gustavo Andrade",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Hugo Matos",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Ingrid Sales",
-      "gênero": "F"
+      "genero": "f"
     },
     {
-      "nome": "José Pacheco",
-      "gênero": "M"
+      "nome": "Jose Pacheco",
+      "genero": "m"
     },
     {
       "nome": "Luciana Lima",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Marcelo Costa",
-      "gênero": "M"
+      "genero": "m"
     },
     {
-      "nome": "Natália Mendes",
-      "gênero": "F"
+      "nome": "Natalia Mendes",
+      "genero": "f"
     },
     {
-      "nome": "Olívia Araújo",
-      "gênero": "F"
+      "nome": "Olivia Araujo",
+      "genero": "f"
     },
     {
       "nome": "Paulo Antunes",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Renato Soares",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Sofia Alves",
-      "gênero": "F"
+      "genero": "f"
     },
     {
-      "nome": "Túlio Camargo",
-      "gênero": "M"
+      "nome": "Tulio Camargo",
+      "genero": "m"
     },
     {
-      "nome": "Verônica Moura",
-      "gênero": "F"
+      "nome": "Veronica Moura",
+      "genero": "f"
     },
     {
       "nome": "William Lopes",
-      "gênero": "M"
+      "genero": "m"
     },
     {
       "nome": "Ximena Nogueira",
-      "gênero": "F"
+      "genero": "f"
     },
     {
       "nome": "Yara Freitas",
-      "gênero": "F"
+      "genero": "f"
     },
     {
-      "nome": "Zélia Martins",
-      "gênero": "F"
+      "nome": "Zelia Martins",
+      "genero": "f"
     }
   ],
   "DESCRICOES": [
     {
-      "gênero": "feminino",
-      "ocupação": "designer gráfico",
+      "genero": "feminino",
+      "ocupacao": "designer grafico",
       "personalidade": "criativa e extrovertida"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "engenheiro de software",
-      "personalidade": "analítico e reservado"
+      "genero": "masculino",
+      "ocupacao": "engenheiro de software",
+      "personalidade": "analitico e reservado"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "estudante de medicina",
+      "genero": "feminino",
+      "ocupacao": "estudante de medicina",
       "personalidade": "determinado e compassivo"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "professor universitário",
+      "genero": "masculino",
+      "ocupacao": "professor universitario",
       "personalidade": "sabido e paciente"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "jornalista",
+      "genero": "feminino",
+      "ocupacao": "jornalista",
       "personalidade": "curiosa e ousada"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "médico",
+      "genero": "masculino",
+      "ocupacao": "medico",
       "personalidade": "gentil e dedicado"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "fotógrafa",
-      "personalidade": "artística e espontânea"
+      "genero": "feminino",
+      "ocupacao": "fotografa",
+      "personalidade": "artistica e espontanea"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "executivo",
-      "personalidade": "decidido e carismático"
+      "genero": "masculino",
+      "ocupacao": "executivo",
+      "personalidade": "decidido e carismatico"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "programadora",
+      "genero": "feminino",
+      "ocupacao": "programadora",
       "personalidade": "inteligente e determinada"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "arquitetos",
-      "personalidade": "visionário e criativo"
+      "genero": "masculino",
+      "ocupacao": "arquitetos",
+      "personalidade": "visionario e criativo"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "nutricionista",
-      "personalidade": "empática e prática"
+      "genero": "feminino",
+      "ocupacao": "nutricionista",
+      "personalidade": "empatica e pratica"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "advogado",
-      "personalidade": "persuasivo e analítico"
+      "genero": "masculino",
+      "ocupacao": "advogado",
+      "personalidade": "persuasivo e analitico"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "cientista",
-      "personalidade": "curiosa e metódica"
+      "genero": "feminino",
+      "ocupacao": "cientista",
+      "personalidade": "curiosa e metodica"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "chef de cozinha",
+      "genero": "masculino",
+      "ocupacao": "chef de cozinha",
       "personalidade": "apaixonado e detalhista"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "bailarina",
+      "genero": "feminino",
+      "ocupacao": "bailarina",
       "personalidade": "graciosa e dedicada"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "gestor de projetos",
+      "genero": "masculino",
+      "ocupacao": "gestor de projetos",
       "personalidade": "organizado e eficiente"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "estudante de arte",
+      "genero": "feminino",
+      "ocupacao": "estudante de arte",
       "personalidade": "sonhadora e livre-espirituosa"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "psicólogo",
-      "personalidade": "atencioso e analítico"
+      "genero": "masculino",
+      "ocupacao": "psicologo",
+      "personalidade": "atencioso e analitico"
     },
     {
-      "gênero": "feminino",
-      "ocupação": "atriz",
-      "personalidade": "expressiva e carismática"
+      "genero": "feminino",
+      "ocupacao": "atriz",
+      "personalidade": "expressiva e carismatica"
     },
     {
-      "gênero": "masculino",
-      "ocupação": "contador",
-      "personalidade": "metódico e detalhista"
+      "genero": "masculino",
+      "ocupacao": "contador",
+      "personalidade": "metodico e detalhista"
     }
   ]
 }
