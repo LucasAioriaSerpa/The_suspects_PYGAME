@@ -1,7 +1,7 @@
 #imports external
 import pygame as pyg, random
 #imports internal
-import SCRIPTS.load_json as _json
+import load_json as _json
 class CASE():
     def __init__(self) -> None:
         json_obj = _json.CONFIG()
@@ -20,11 +20,11 @@ class CASE():
             "FALSES": [...]
         }
     def generate_case(self):
-        npc_pt1 = {1:random.choice(self.NPC_VALUES["NOMES"]), 2:random.choice(self.NPC_VALUES["DESCRICOES"])}
-        print(npc_pt1)
-        if npc_pt1[1]["genero"]:
-            ...
-        self.NPCS.append(
-            {"nome": ...}
-        )
+        name = random.choice(self.NPC_VALUES["NOMES"])
+        description = random.choice(self.NPC_VALUES["DESCRICOES"])
+        while name["genero"] != description["genero"][0]:
+            description = random.choice(self.NPC_VALUES["DESCRICOES"])
+        print(name,"\n",description)
+        self.NPCS.append({"NAME":name["nome"],"DESCRIPTION":{"OCUPACAO":description["ocupacao"],"PERSONALIDADE":description["personalidade"]}})
         print("true!")
+CASE().generate_case()
