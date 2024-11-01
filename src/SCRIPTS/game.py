@@ -17,6 +17,8 @@ class GAME():
         self.timer = 0
         self.string_loading_text = "Loading assets please wait . . ."
         self.loading_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]), self.string_loading_text, False, "#999999")
+        self.string_choose_suspect_text = "ESCOLHA UM SUSPEITO !"
+        self.choose_suspect_text = _util.text_fonts(self.display, "N_E_B.ttf", 15, (self.half_screen[0], self.half_screen[1]), self.string_choose_suspect_text, False, "#ffffff")
     def loading_assets(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#454545")
@@ -37,6 +39,9 @@ class GAME():
         if self.loaded:
             self.display.blit(self.display, (0,0))
             self.display.fill("#000000")
+            ...
+            self.choose_suspect_text.render()
+            self.choose_suspect_text.update()
             self.mouse_obj.render()
             self.mouse_obj.update(4)
         else: self.loading_assets()

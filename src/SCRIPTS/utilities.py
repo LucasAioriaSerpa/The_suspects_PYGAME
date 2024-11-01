@@ -43,7 +43,8 @@ class text_fonts():
             "size":size,
             "text":text,
             "antialias":antialias,
-            "color":color
+            "color":color,
+            "animated": False
         }
         self.f_pos = pos
         self.f_path = self.json_object.paths["PATH-FONTS"]
@@ -52,6 +53,8 @@ class text_fonts():
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
     def draw_rect(self, color:str, border_rad:int):
         return _pyg.draw.rect(self.display, color, self.f_rect, border_radius=border_rad)
+    def appear_text(self):
+        ...
     def render(self):
         self.display.blit(self.f_surface, self.f_rect)
     def update(self):
