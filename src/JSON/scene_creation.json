@@ -19,7 +19,7 @@
     },
     "CAUSA_DA_MORTE": ["Envenenado", "Esfaqueado"],
     "LUGAR_DA_MORTE": ["cozinha", "sala de estar", "quarto"],
-    "NPC_TYPES": ["Assasino", "suspeito", "vitima"],
+    "NPC_TYPES": ["Assasino", "Suspeito", "Vitima"],
     "CASO_ENVENADO": {
       "CAUSA_DA_MORTE": "0 morreu envenenado na $",
       "EVIDENCIAS": {
