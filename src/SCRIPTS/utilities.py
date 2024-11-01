@@ -44,7 +44,10 @@ class text_fonts():
             "text":text,
             "antialias":antialias,
             "color":color,
-            "animated": False
+        }
+        self.f_animation = {
+            "done": False,
+            "frame": 0
         }
         self.f_pos = pos
         self.f_path = self.json_object.paths["PATH-FONTS"]
@@ -53,8 +56,17 @@ class text_fonts():
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
     def draw_rect(self, color:str, border_rad:int):
         return _pyg.draw.rect(self.display, color, self.f_rect, border_radius=border_rad)
-    def appear_text(self):
-        ...
+    def apear(self, speed: int):
+        blank = ""
+        if self.f_animation["frame"] < speed * len(self.f_info["text"]):
+            self.f_animation["frame"] += 1
+            blank = self.f_info["text"][0:self.f_animation["frame"]//speed]
+        elif self.f_animation["frame"] >= speed * len(self.f_info["text"]):
+            self.f_animation["done"] = True
+            return
+        self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
+        self.f_surface = self.f_obj.render(blank, self.f_info["antialias"], self.f_info["color"]).convert()
+        self.f_rect = self.f_surface.get_rect(center = self.f_pos)
     def render(self):
         self.display.blit(self.f_surface, self.f_rect)
     def update(self):
@@ -85,3 +97,7 @@ class button_rect():
         self.b_surface.fill(self.b_color)
         self.b_rect = self.b_surface.get_rect(center=self.b_pos)
         self.b_mask = _pyg.mask.from_surface(self.b_surface)
+
+class dialog():
+    def __init__(self, display: _pyg.Surface):
+        ...

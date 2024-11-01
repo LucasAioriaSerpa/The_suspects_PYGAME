@@ -13,17 +13,17 @@ class GAME():
         self.mouse_obj = _mou.MOUSE(self.display)
         self.util_obj = _util.utility(self.display)
         self.case_obj = _gen.CASE()
+        self.timer = [0, 0]
         self.half_screen = (self.display.get_width()/2, self.display.get_height()/2)
-        self.timer = 0
         self.string_loading_text = "Loading assets please wait . . ."
         self.loading_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]), self.string_loading_text, False, "#999999")
-        self.string_choose_suspect_text = "ESCOLHA UM SUSPEITO !"
-        self.choose_suspect_text = _util.text_fonts(self.display, "N_E_B.ttf", 15, (self.half_screen[0], self.half_screen[1]), self.string_choose_suspect_text, False, "#ffffff")
+        self.string_choose_suspect_text = "ESCOLHA UM SUSPEITO ! ! !"
+        self.choose_suspect_text = _util.text_fonts(self.display, "N_E_B.ttf", 15, (self.half_screen[0], self.half_screen[1]+65), self.string_choose_suspect_text, False, "#ffffff")
     def loading_assets(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#454545")
-        self.timer += 1
-        match self.timer:
+        self.timer[0] += 1
+        match self.timer[0]:
             case 18: self.loading_text.f_info["text"] = self.string_loading_text
             case 28: self.loading_text.f_info["text"] = "Loading assets please wait . ."
             case 38: self.loading_text.f_info["text"] = "Loading assets please wait ."
@@ -31,15 +31,17 @@ class GAME():
             case 58: self.loading_text.f_info["text"] = "Loading assets please wait ."
             case 68: self.loading_text.f_info["text"] = "Loading assets please wait . ."
             case 78: self.loading_text.f_info["text"] = self.string_loading_text
-            case 79: self.timer = 0
-        self.loaded = self.case_obj.generate_case()
+            case 79:
+                self.timer[0] = 0
+                self.timer[1] += 1
+        if self.timer[1] == 1: self.loaded = self.case_obj.generate_case()
         self.loading_text.render()
         self.loading_text.update()
     def render(self):
         if self.loaded:
             self.display.blit(self.display, (0,0))
             self.display.fill("#000000")
-            ...
+            self.choose_suspect_text.apear(3)
             self.choose_suspect_text.render()
             self.choose_suspect_text.update()
             self.mouse_obj.render()
