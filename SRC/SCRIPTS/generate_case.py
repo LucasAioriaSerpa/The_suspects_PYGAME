@@ -8,12 +8,16 @@ class CASE():
         json_obj.create_config()
         self.SCENE_VALUES = json_obj.load_json("scene_creation.json")
         self.NPC_VALUES = json_obj.load_json("personagens.json")
+        self.EVIDENCE_VALUES = {
+            "VERDADES": ...,
+            "CONFLITANTES": ...,
+            "FALSAS": ...
+        }
         self.NPCS = []
         self.CASO = {
             "DEATH_CASE": ...,
             "DEATH_PLACE": ...,
         }
-        self.DIALOG_
     def set_types(self, npc: int):
         match self.CASO["DEATH_CASE"]:
             case "Envenenado":
@@ -47,9 +51,12 @@ class CASE():
                     case 0:
                         ...
     def generate_case(self):
-        self.CASO["DEATH_CASE"] = "Envenenado" # random.choice(self.SCENE_VALUES["CASO"]["CAUSA_DA_MORTE"])
+        self.CASO["DEATH_CASE"] = "Envenenado" #! random.choice(self.SCENE_VALUES["CASO"]["CAUSA_DA_MORTE"])
         self.CASO["DEATH_PLACE"] = random.choice(self.SCENE_VALUES["CASO"]["LUGAR_DA_MORTE"])
         print(self.CASO)
+        parts_list = ["VERDADES", "CONFLITANTES", "FALSAS"]
+        for i in range(len(self.EVIDENCE_VALUES)):
+            self.EVIDENCE_VALUES[parts_list[i]] = self.SCENE_VALUES["CASO"][f"CASO_{self.CASO["DEATH_CASE"].upper()}"]["EVIDENCIAS"][f"EVIDENCIAS_{parts_list[i]}"]
         for _ in range(6):
             name = random.choice(self.NPC_VALUES["NOMES"])
             description = random.choice(self.NPC_VALUES["DESCRICOES"])
@@ -57,6 +64,14 @@ class CASE():
             self.NPCS.append({"NAME":name["nome"],"DESCRIPTION":{"OCUPACAO":description["ocupacao"],"PERSONALIDADE":description["personalidade"]}, "TYPE":...})
         for npc in range(len(self.NPCS)):
             self.set_types(npc)
-        self.EVIDENCES[""]
+        for i in range(len(parts_list)):
+            for evidence in self.EVIDENCE_VALUES[parts_list[i]]:
+                index_evi = self.EVIDENCE_VALUES[parts_list[i]].index(evidence)
+                self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1].replace("$", f"{self.CASO["DEATH_PLACE"]}")
+                for n in range(len(self.NPCS)):
+                    self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
+                    self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
+                self.NPCS[int(evidence["DIALOG"][0])]["EVIDENCIA"] = [evidence["DIALOG"][1], evidence["FRASE"], evidence["PREMISSA"]]
+                print(f"\n{parts_list[i]}: {evidence}\n")
         return True
 print(CASE().generate_case())
