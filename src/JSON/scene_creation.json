@@ -27,17 +27,17 @@
           {
             "DIALOG": ["2", "Eu estava na $ por um tempo, lavando a louca. Vi o 0 e o 1 por la juntos, mas nao me pareceu nada suspeito no momento. Depois sai para cuidar de algumas coisas. Quando sai, lembro que vi o 4 entrando na $ com uma garrafa de vinho."],
             "FRASE": "Se 2 viu 1 e 0 na $ entao 1 matou 0",
-            "PREMISSA": "0 -> 1"
+            "PREMISSA": "0 IF 1"
           },
           {
             "DIALOG": ["4", "Eu estava conversando com o 0 e o 1 mais cedo, mas logo depois fui resolver algumas coisas. Depois disso, vi o 3 andando pelos corredores, parecia bem nervoso. O 1 saiu logo depois de mim, ele estava tranquilo, nao acho que faria algo tao grave. Agora, o 3... ele estava sumido por um tempo, e, sinceramente, sempre tive a impressao de que ele poderia estar envolvido em algo estranho. Nao ficaria surpreso se ele tivesse causado todo esse problema."],
             "FRASE": "Se 4 convidou 0 e 1 na $ entao 4 e o possivel cumpliice",
-            "PREMISSA": "2 -> 3"
+            "PREMISSA": "2 IF 3"
           },
           {
             "DIALOG": ["3", "Eu lembro de estar na sala conversando com o 5 naquela hora. Estavamos tao imersos na conversa que nem percebi o tempo passando. Sei que fiquei la com o 5 por um bom tempo, e nao me lembro de ter saido da sala enquanto conversavamos."],
             "FRASE": "Se 3 estava conversando com 5 na sala ao lado entao 3 e 5 sao inocentes",
-            "PREMISSA": "4 -> 5"
+            "PREMISSA": "4 IF 5"
           },
           {
             "DIALOG": ["5", "Eu estava na sala conversando com o 3 durante todo aquele tempo. Estavamos distraidos com a conversa e, para ser honesto, nao notei muita coisa acontecendo ao redor. Sei que o 3 tambem permaneceu la comigo, e nao lembro de termos saido da sala."],
@@ -47,7 +47,7 @@
           {
             "DIALOG": ["3", "No momento em que tudo aconteceu, eu estava conversando com o 5 na sala. Nos dois estavamos la o tempo todo. Eu vi o 2 passar pela $, mas nao prestei atencao, pois estava distraido com a conversa."],
             "FRASE": "Se 3 viu 2 indo na $ entao 2 viu 1 e 0",
-            "PREMISSA": "8 -> 0"
+            "PREMISSA": "8 IF 0"
           },
           {
             "DIALOG": ["2", "Naquela hora, eu estava perto da $, arrumando umas coisas, nao estava fazendo nada demais. Acho que vi o suspeito 3 em algum momento, mas nao lembro exatamente o que ele estava fazendo. Ah, e antes que perguntem, tanto eu quanto o 3 temos o costume de carregar um canivete, mas e so habito, sabe? Algo comum, que a gente usa no dia a dia, pra coisas simples, nada que tenha a ver com essa situacao."],
@@ -91,32 +91,32 @@
           {
             "DIALOG": ["1", "Eu realmente nao sei o que aconteceu, mas e curioso que o 3 nao estivesse na sala quando tudo isso ocorreu. Ele sempre gostou de ficar por perto, entao a ausencia dele naquele momento me faz questionar algumas coisas."],
             "FRASE": "Se 3 nao estava na sala entao 3 matou 0",
-            "PREMISSA": "~1 -> 2"
+            "PREMISSA": "~1 IF 2"
           },
           {
             "DIALOG": ["1", "Eu estava na sala, mas a verdade e que o 3 nao estava por la naquele momento. Eu lembro de ter visto ele sair antes de tudo acontecer, e nao sei onde ele foi parar. Eu estava apenas tentando relaxar na sala."],
             "FRASE": "Se 3 nao estava na sala entao 3 esfaqueou 0",
-            "PREMISSA": "~3 -> 4"
+            "PREMISSA": "~3 IF 4"
           },
           {
             "DIALOG": ["4", "Olha, nao quero me meter, mas sempre achei que o 3 e o 0 nçao se davam bem. Eles tinham suas desavenças, e nao seria surpresa se algo tivesse acontecido entre eles. Eu estava ali, mas nao vi o que realmente aconteceu, so percebi que a tensao estava no ar."],
             "FRASE": "Se 3 nao gosta de 0 entao 3 matou 0",
-            "PREMISSA": "5 -> 2"
+            "PREMISSA": "5 IF 2"
           },
           {
             "DIALOG": ["1", "Eu gostava muito do 0, ele era um bom amigo. Nunca faria nada para prejudicar ele, de jeito nenhum. Sempre tivemos uma boa relacao e eu realmente nao entendo por que alguem faria esse tipo de coisa com ele."],
             "FRASE": "Se 1 gostava de 0 entao 1 nao matou 0",
-            "PREMISSA": "10 -> ~1"
+            "PREMISSA": "10 IF ~1"
           },
           {
             "DIALOG": ["4", "Olha, so para esclarecer, eu sempre achei estranho que o 3 anda com aquele canivete o tempo todo. Ele realmente parecia determinado ao ir para a $ naquela hora. Nao sei exatamente o que ele estava pensando, mas e curioso como ele estava por ali logo antes do que aconteceu."],
             "FRASE": "Se 4 viu 3 indo na $ com canivete entao 3 esfaqueou 0",
-            "PREMISSA": "6 -> 0"
+            "PREMISSA": "6 IF 0"
           },
           {
             "DIALOG": ["4", "Nao quero acusar ninguem sem provas, mas eu vi o suspeito 2 perto da $ naquela hora. Nao sei o que aconteceu depois, mas a presenca dele ali me fez levantar algumas perguntas."],
             "FRASE": "Se 4 viu o 2 indo para a $ entao 2 matou o 0",
-            "PREMISSA": "7 -> 2"
+            "PREMISSA": "7 IF 2"
           }
         ]
       }
