@@ -15,13 +15,12 @@ class utility():
         return surface.get_rect(midbottom = (vector2))
     def font_rect(self, surface: _pyg.Surface, pos: float):
         return surface.get_rect(center = pos)
-
 class transition_image():
     def __init__(self, display: _pyg.Surface) -> None:
         self.display = display
         self.fade_alpha = 0
         self.cordinates = (display.get_width(), display.get_height())
-        self.fade_surface = _pyg.Surface().convert()
+        self.fade_surface = _pyg.Surface(self.cordinates).convert()
         self.fade_surface.fill("#000000")
         self.fade_surface.set_alpha(self.fade_alpha)
     def fade_in(self, speed):
@@ -32,7 +31,6 @@ class transition_image():
         self.fade_alpha -= speed
         self.fade_surface.set_alpha(self.fade_alpha)
         self.display.blit(self.fade_surface, (0,0))
-
 class text_fonts():
     def __init__(self, display: _pyg.Surface, font_ttf: str, size: int, pos: tuple, text: str, antialias: bool, color: str):
         self.display = display
@@ -73,7 +71,6 @@ class text_fonts():
         self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
         self.f_surface = self.f_obj.render(self.f_info["text"], self.f_info["antialias"], self.f_info["color"]).convert()
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
-
 class button_rect():
     def __init__(self, display: _pyg.Surface, size: tuple, pos: tuple, color:str, text_obj:text_fonts):
         self.display = display
@@ -87,7 +84,7 @@ class button_rect():
         self.b_mask = _pyg.mask.from_surface(self.b_surface)
     def render(self):
         self.display.blit(self.b_surface, self.b_rect)
-        self.display.blit(self.b_text_obj.f_surface, self.b_text_obj.f_rect)
+        self.b_text_obj.render()
     def check_collision(self, m_obj: _mous.MOUSE) -> bool:
         if self.b_mask.overlap(m_obj.mask, (m_obj.pos[0] - self.b_rect.x, m_obj.pos[1] - self.b_rect.y)):
             return True
@@ -97,7 +94,3 @@ class button_rect():
         self.b_surface.fill(self.b_color)
         self.b_rect = self.b_surface.get_rect(center=self.b_pos)
         self.b_mask = _pyg.mask.from_surface(self.b_surface)
-
-class dialog():
-    def __init__(self, display: _pyg.Surface):
-        ...

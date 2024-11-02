@@ -39,14 +39,9 @@ class Game:
             #? check events in pygame
             for event in pyg.event.get():
                 if event.type == pyg.QUIT: self.end()
-                self.event_key(event)
             self.screen.blit(pyg.transform.scale(self.display, self.screen.get_size()), (0, 0))
             self.clock.tick(self.FPS)
             pyg.display.update()
-    def event_key(self, event:pyg.event):
-        if event.type == pyg.KEYDOWN:
-            if event.key == pyg.K_ESCAPE: self.end()
-            if self.game_state['Game']: print("butões sendo apertados")
     def end(self):
         print("Main ending!")
         pyg.quit()
