@@ -54,7 +54,7 @@ class text_fonts():
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
     def draw_rect(self, color:str, border_rad:int):
         return _pyg.draw.rect(self.display, color, self.f_rect, border_radius=border_rad)
-    def long_text(self):
+    def long_text_dialog(self, speed: int):
         list_words = [word.split(" ") for word in self.f_info["text"].splitlines()]
         space_height = self.f_obj.size(" ")[0]
         x,y = self.f_pos
@@ -64,10 +64,17 @@ class text_fonts():
                 word_pos = self.f_surface.get_size()
                 if x + word_pos[0] >= self.display.get_width():
                     x = self.f_pos[0]
-                    y += word_pos[0]
-                self.apear(5)
+                    y += word_pos[1]
+                blank = ""
+                if self.f_animation["frame"] < speed * len(words):
+                    self.f_animation["frame"] += 1
+                    blank = words[0:self.f_animation["frame"]//speed]
+                    self.f_surface = self.f_obj.render(blank, self.f_info["antialias"], self.f_info["color"]).convert()
+                elif self.f_animation["frame"] >= speed * len(words):
+                    self.f_animation["done"] = True
                 self.display.blit(self.f_surface, (x,y))
                 x += word_pos[0] + space_height
+        return True
     def apear(self, speed: int):
         blank = ""
         if self.f_animation["frame"] < speed * len(self.f_info["text"]):
