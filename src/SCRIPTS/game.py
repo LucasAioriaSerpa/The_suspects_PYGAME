@@ -44,7 +44,6 @@ class GAME():
             "day_screen": True,
             "case_introduction": False,
             "suspects_list": False,
-            "interrogatory": False,
             "won":False,
             "lost": False
         }
@@ -53,7 +52,7 @@ class GAME():
         self.day_text = _util.text_fonts(self.display, "SEASRN__.ttf", 30, (self.half_screen[0], self.half_screen[1]), self.day_string, False, "#ffffff")
         self.continue_case = _util.text_fonts(self.display, "lobato.ttf", 10, (self.half_screen[0], self.half_screen[1]+20), "aperte [SPACE] para continuar", False, "#ffffff")
         #* case introduction
-        ...
+        self.dialog_instructions = [""]
         #* suspects list
         self.background_1img = pyg.image.load("src/IMAGES/scenes/background_suspects.png").convert()
         self.background_1rect = self.util_obj.get_rect(self.background_1img, (self.half_screen[0], self.half_screen[1]+80))
@@ -102,6 +101,7 @@ class GAME():
                 if self.continue_input:
                     self.fade_obj.fade_in(45)
                     if self.fade_obj.fade_alpha >= 255:
+                        self.continue_input = False
                         self.game_part["day_screen"] = False
                         self.game_part["case_introduction"] = True
                         return
@@ -114,15 +114,35 @@ class GAME():
         elif self.game_part["case_introduction"]:
             self.display.blit(self.display, (0,0))
             self.display.fill("#000000")
-            dialog_instructions = [
-                "Boa noite Espector..",
-                f"Hoje o caso {self.case_obj.CASO["DEATH_DIALOG"]}"
-            ]
+            if len(self.dialog_instructions) == self.npc_cop.npc_dialog["part"]:
+                self.fade_obj.fade_in(45)
+                if self.fade_obj.fade_alpha >= 255:
+                    self.continue_input = False
+                    self.game_part["case_introduction"] = False
+                    self.game_part["suspects_list"] = True
+                return
+            if self.case_obj.CASO["DEATH_CASE"] == "Envenenado":
+                self.dialog_instructions = [
+                    "Boa noite Espector..",
+                    f"hoje o caso {self.case_obj.CASO["DEATH_DIALOG"]}..",
+                    "Os suspeitos são..",
+                    f"{self.case_obj.NPCS[1]["NAME"]} é {self.case_obj.NPCS[1]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[1]["DESCRIPTION"]["PERSONALIDADE"]}",
+                    f"{self.case_obj.NPCS[2]["NAME"]} é {self.case_obj.NPCS[2]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[2]["DESCRIPTION"]["PERSONALIDADE"]}",
+                    f"{self.case_obj.NPCS[4]["NAME"]} é {self.case_obj.NPCS[4]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[4]["DESCRIPTION"]["PERSONALIDADE"]}",
+                    f"{self.case_obj.NPCS[5]["NAME"]} é {self.case_obj.NPCS[5]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[5]["DESCRIPTION"]["PERSONALIDADE"]}",
+                    f"O principal suspeito é {self.case_obj.NPCS[3]["NAME"]} é {self.case_obj.NPCS[3]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[3]["DESCRIPTION"]["PERSONALIDADE"]}..",
+                    "faça a escolha certa Espector."
+                ]
             self.npc_cop.render()
-            self.npc_cop.dialog(dialog_instructions, self.continue_input)
+            self.npc_cop.dialog(self.dialog_instructions, self.continue_input)
             if self.continue_input: self.continue_input = False
             self.npc_cop.update()
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(5)
+        elif self.game_part["suspects_list"]:
+            self.display.blit(self.display, (0,0))
+            self.display.fill('#000000')
+            self.display.blit(self.background_1img, self.background_1rect)
+            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
         self.mouse_obj.render()
         self.mouse_obj.update(4)
     def render(self):
