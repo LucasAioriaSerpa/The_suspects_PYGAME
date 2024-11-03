@@ -36,11 +36,11 @@ class MENU():
         else:
             self.exit_button.b_color = "#454545"
             self.exit_button.b_text_obj.f_info["color"] = "#999999"
-        self.title_text.render()
-        self.start_button.render()
+        self.title_text.render(False)
+        self.start_button.render(False)
         self.start_button.update()
         self.start_button.b_text_obj.update()
-        self.exit_button.render()
+        self.exit_button.render(False)
         self.exit_button.update()
         self.exit_button.b_text_obj.update()
         self.mouse_obj.render()

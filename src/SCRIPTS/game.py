@@ -25,7 +25,7 @@ class GAME():
         self.loading_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]), self.string_loading_text, False, "#999999")
         #? tutorial part
         self.string_tutorial_text = ""
-        self.tutorial_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]+65), self.string_tutorial_text, False, "#ffffff")
+        self.tutorial_text = _util.text_fonts(self.display, "SpecialElite.ttf", 16, (self.half_screen[0], self.half_screen[1]+65), self.string_tutorial_text, False, "#ffffff")
         self.npc_tutorial = _npc.NPC(self.display, (self.half_screen[0], self.half_screen[1]+88), "tutorial_npc", self.tutorial_text)
     def loading_assets(self):
         self.display.blit(self.display, (0,0))
@@ -43,13 +43,14 @@ class GAME():
                 self.timer[0] = 0
                 self.timer[1] += 1
         if self.timer[1] == 1: self.parts["loaded"] = self.case_obj.generate_case()
-        self.loading_text.render()
+        self.loading_text.render(False)
         self.loading_text.update()
     def tutorial_part(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#000000")
         self.npc_tutorial.render()
-        self.npc_tutorial.dialog(["Bem vindo Espector!","Aperte ESPACE para continuar"], self.continue_input)
+        self.npc_tutorial.dialog(["Bem vindo Espector!","Aperte ESPACE para continuar",
+                                "seu objetivo é descobrir quem é inocente e quem é o"], self.continue_input)
         self.npc_tutorial.update()
         self.mouse_obj.render()
         self.mouse_obj.update(4)

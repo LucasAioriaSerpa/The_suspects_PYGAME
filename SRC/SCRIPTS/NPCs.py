@@ -30,12 +30,12 @@ class NPC():
         self.display.blit(outline_block_text, outline_block_rect)
         self.display.blit(block_text, block_rect)
         self.text_obj.f_info["text"] = list_dialog[self.npc_dialog["part"]]
-        if continue_dialog and self.npc_dialog["done_part"]:
-            self.npc_dialog["part"] = 1
+        if continue_dialog and self.npc_dialog["done_part"] and self.npc_dialog["part"] < len(list_dialog):
+            self.npc_dialog["part"] += 1
             self.npc_dialog["done_part"] = False
             return
         self.npc_dialog["done_part"] = self.text_obj.apear(5)
-        self.text_obj.render()
+        self.text_obj.render(True)
         self.text_obj.update()
     def render(self):
         self.display.blit(self.npc_surface_img, self.npc_rect)

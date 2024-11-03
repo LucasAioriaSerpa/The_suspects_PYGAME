@@ -54,6 +54,20 @@ class text_fonts():
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
     def draw_rect(self, color:str, border_rad:int):
         return _pyg.draw.rect(self.display, color, self.f_rect, border_radius=border_rad)
+    def long_text(self):
+        list_words = [word.split(" ") for word in self.f_info["text"].splitlines()]
+        space_height = self.f_obj.size(" ")[0]
+        x,y = self.f_pos
+        for lines in list_words:
+            for words in lines:
+                self.f_surface = self.f_obj.render(words, self.f_info["antialias"], self.f_info["color"]).convert()
+                word_pos = self.f_surface.get_size()
+                if x + word_pos[0] >= self.display.get_width():
+                    x = self.f_pos[0]
+                    y += word_pos[0]
+                self.apear(5)
+                self.display.blit(self.f_surface, (x,y))
+                x += word_pos[0] + space_height
     def apear(self, speed: int):
         blank = ""
         if self.f_animation["frame"] < speed * len(self.f_info["text"]):
@@ -65,7 +79,8 @@ class text_fonts():
         self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
         self.f_surface = self.f_obj.render(blank, self.f_info["antialias"], self.f_info["color"]).convert()
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
-    def render(self):
+    def render(self, by_pos: bool):
+        if by_pos: return self.display.blit(self.f_surface, self.f_pos)
         self.display.blit(self.f_surface, self.f_rect)
     def update(self):
         self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
@@ -82,9 +97,10 @@ class button_rect():
         self.b_surface.fill(self.b_color)
         self.b_rect = self.b_surface.get_rect(center=self.b_pos)
         self.b_mask = _pyg.mask.from_surface(self.b_surface)
-    def render(self):
+    def render(self, by_pos: bool):
         self.display.blit(self.b_surface, self.b_rect)
-        self.b_text_obj.render()
+        if by_pos: return self.b_text_obj.render(True)
+        self.b_text_obj.render(False)
     def check_collision(self, m_obj: _mous.MOUSE) -> bool:
         if self.b_mask.overlap(m_obj.mask, (m_obj.pos[0] - self.b_rect.x, m_obj.pos[1] - self.b_rect.y)):
             return True
