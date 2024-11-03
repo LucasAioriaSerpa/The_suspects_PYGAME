@@ -2,7 +2,8 @@
 import pygame as pyg
 #import internal
 import SCRIPTS.utilities as _util
-class NPC():
+import SCRIPTS.mouse as _mous
+class COP_NPC():
     def __init__(self, display: pyg.display, pos: tuple, name: str, text_obj: _util.text_fonts):
         self.display = display
         self.npc_pos = pos
@@ -39,5 +40,30 @@ class NPC():
         self.display.blit(self.npc_surface_img, self.npc_rect)
     def update(self):
         self.npc_surface_img = self.util_obj.image_load("PATH-IMAGES-characteres","NPCs/cop.png")
+        self.npc_rect = self.util_obj.get_rect(self.npc_surface_img, self.npc_pos)
+        self.npc_mask = pyg.mask.from_surface(self.npc_surface_img)
+class SUS_NPC():
+    def __init__(self, display: pyg.display, pos: tuple, npc_info: list[dict], text_obj: _util.text_fonts):
+        self.display = display
+        self.npc_pos = pos
+        self.npc_info = npc_info
+        self.text_obj = text_obj
+        self.util_obj = _util.utility(display)
+        self.npc_dialog = {
+            "part": 0
+        }
+        self.npc_surface_img = self.util_obj.image_load("PATH-IMAGES-characteres","NPCs/suspect_shadow.png")
+        self.npc_rect = self.util_obj.get_rect(self.npc_surface_img, self.npc_pos)
+        self.npc_mask = pyg.mask.from_surface(self.npc_surface_img)
+    def dialog(self, list_dialog: list[str]):
+        ...
+    def check_collision(self, m_obj: _mous.MOUSE) -> bool:
+        if self.npc_mask.overlap(m_obj.mask, (m_obj.pos[0]-self.npc_rect.x, m_obj.pos[1]-self.npc_rect.y)):
+            return True
+        return False
+    def render(self):
+        self.display.blit(self.npc_surface_img, self.npc_rect)
+    def update(self):
+        self.npc_surface_img = self.util_obj.image_load("PATH-IMAGES-characteres","NPCs/suspect_shadow.png")
         self.npc_rect = self.util_obj.get_rect(self.npc_surface_img, self.npc_pos)
         self.npc_mask = pyg.mask.from_surface(self.npc_surface_img)

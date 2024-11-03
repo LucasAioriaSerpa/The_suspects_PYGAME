@@ -1,26 +1,26 @@
 #imports external
-import pygame as _pyg
+import pygame as pyg
 #imports internal
 import SCRIPTS.load_json as _json
 import SCRIPTS.mouse as _mous
 class utility():
-    def __init__(self, display:_pyg.Surface):
+    def __init__(self, display:pyg.Surface):
         self.json_data = _json.CONFIG()
         self.json_data.create_config()
         self.PATH = self.json_data.paths
         self.display = display
-    def image_load(self, folder:str, file_name:str) -> _pyg.surface:
-        return _pyg.image.load(self.PATH[folder]+file_name).convert()
-    def get_rect(self, surface: _pyg.Surface, vector2: _pyg.Vector2) -> _pyg.Rect:
+    def image_load(self, folder:str, file_name:str) -> pyg.surface:
+        return pyg.image.load(self.PATH[folder]+file_name).convert()
+    def get_rect(self, surface: pyg.Surface, vector2: pyg.Vector2) -> pyg.Rect:
         return surface.get_rect(midbottom = (vector2))
-    def font_rect(self, surface: _pyg.Surface, pos: float):
+    def font_rect(self, surface: pyg.Surface, pos: float):
         return surface.get_rect(center = pos)
 class transition_image():
-    def __init__(self, display: _pyg.Surface) -> None:
+    def __init__(self, display: pyg.Surface) -> None:
         self.display = display
         self.fade_alpha = 0
         self.cordinates = (display.get_width(), display.get_height())
-        self.fade_surface = _pyg.Surface(self.cordinates).convert()
+        self.fade_surface = pyg.Surface(self.cordinates).convert()
         self.fade_surface.fill("#000000")
         self.fade_surface.set_alpha(self.fade_alpha)
     def fade_in(self, speed):
@@ -32,7 +32,7 @@ class transition_image():
         self.fade_surface.set_alpha(self.fade_alpha)
         self.display.blit(self.fade_surface, (0,0))
 class text_fonts():
-    def __init__(self, display: _pyg.Surface, font_ttf: str, size: int, pos: tuple, text: str, antialias: bool, color: str):
+    def __init__(self, display: pyg.Surface, font_ttf: str, size: int, pos: tuple, text: str, antialias: bool, color: str):
         self.display = display
         self.json_object = _json.CONFIG()
         self.json_object.create_config()
@@ -49,11 +49,11 @@ class text_fonts():
         }
         self.f_pos = pos
         self.f_path = self.json_object.paths["PATH-FONTS"]
-        self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
+        self.f_obj = pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
         self.f_surface = self.f_obj.render(self.f_info["text"], self.f_info["antialias"], self.f_info["color"]).convert()
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
     def draw_rect(self, color:str, border_rad:int):
-        return _pyg.draw.rect(self.display, color, self.f_rect, border_radius=border_rad)
+        return pyg.draw.rect(self.display, color, self.f_rect, border_radius=border_rad)
     def long_text_dialog(self, speed: int):
         list_words = [word.split(" ") for word in self.f_info["text"].splitlines()]
         space_height = self.f_obj.size(" ")[0]
@@ -87,27 +87,27 @@ class text_fonts():
         elif self.f_animation["frame"] >= speed * len(self.f_info["text"]):
             self.f_animation["done"] = True
             return True
-        self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
+        self.f_obj = pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
         self.f_surface = self.f_obj.render(blank, self.f_info["antialias"], self.f_info["color"]).convert()
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
     def render(self, by_pos: bool):
         if by_pos: return self.display.blit(self.f_surface, self.f_pos)
         self.display.blit(self.f_surface, self.f_rect)
     def update(self):
-        self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
+        self.f_obj = pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
         self.f_surface = self.f_obj.render(self.f_info["text"], self.f_info["antialias"], self.f_info["color"]).convert()
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
 class button_rect():
-    def __init__(self, display: _pyg.Surface, size: tuple, pos: tuple, color:str, text_obj:text_fonts):
+    def __init__(self, display: pyg.Surface, size: tuple, pos: tuple, color:str, text_obj:text_fonts):
         self.display = display
         self.b_size = size
         self.b_pos = pos
         self.b_color = color
         self.b_text_obj = text_obj
-        self.b_surface = _pyg.Surface(self.b_size).convert()
+        self.b_surface = pyg.Surface(self.b_size).convert()
         self.b_surface.fill(self.b_color)
         self.b_rect = self.b_surface.get_rect(center=self.b_pos)
-        self.b_mask = _pyg.mask.from_surface(self.b_surface)
+        self.b_mask = pyg.mask.from_surface(self.b_surface)
     def render(self, by_pos: bool):
         self.display.blit(self.b_surface, self.b_rect)
         if by_pos: return self.b_text_obj.render(True)
@@ -117,7 +117,7 @@ class button_rect():
             return True
         return False
     def update(self):
-        self.b_surface = _pyg.Surface(self.b_size).convert()
+        self.b_surface = pyg.Surface(self.b_size).convert()
         self.b_surface.fill(self.b_color)
         self.b_rect = self.b_surface.get_rect(center=self.b_pos)
-        self.b_mask = _pyg.mask.from_surface(self.b_surface)
+        self.b_mask = pyg.mask.from_surface(self.b_surface)

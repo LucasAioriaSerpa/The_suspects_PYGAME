@@ -38,7 +38,7 @@ class GAME():
             "agora vá Espector, já há um caso te esperando."
         ]
         self.tutorial_text = _util.text_fonts(self.display, "SpecialElite.ttf", 15, (10, self.half_screen[1]+45), self.string_tutorial_text, False, "#ffffff")
-        self.npc_cop = _npc.NPC(self.display, (self.half_screen[0], self.half_screen[1]+88), "tutorial_npc", self.tutorial_text)
+        self.npc_cop = _npc.COP_NPC(self.display, (self.half_screen[0], self.half_screen[1]+88), "tutorial_npc", self.tutorial_text)
         #? gaming part
         self.game_part = {
             "day_screen": True,
@@ -55,7 +55,9 @@ class GAME():
         self.dialog_instructions = [""]
         #* suspects list
         self.background_1img = pyg.image.load("src/IMAGES/scenes/background_suspects.png").convert()
-        self.background_1rect = self.util_obj.get_rect(self.background_1img, (self.half_screen[0], self.half_screen[1]+80))
+        self.background_1rect = self.util_obj.get_rect(self.background_1img, (self.half_screen[0], self.half_screen[1]+90))
+        self.suspects_text = _util.text_fonts(self.display, "Pixel-Noir.ttf", 10, (10, self.half_screen[1]+45), "", False, "#ffffff")
+        self.npc_objs = []
     def loading_assets(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#454545")
@@ -73,7 +75,10 @@ class GAME():
                 self.timer[1] += 1
         if self.timer[1] == 1:
             self.fade_obj.fade_in(45)
-            if self.fade_obj.fade_alpha >= 255: self.parts["loaded"] = self.case_obj.generate_case()
+            if self.fade_obj.fade_alpha >= 255:
+                self.parts["loaded"] = self.case_obj.generate_case()
+                for i in range(len(self.case_obj.NPCS)):
+                    self.npc_objs.append(_npc.SUS_NPC(self.display, ((self.half_screen[0]-120)+(i*48), self.half_screen[1]+20), self.case_obj.NPCS[i], self.suspects_text))
         self.loading_text.render(False)
         self.loading_text.update()
     def tutorial_part(self):
@@ -94,9 +99,9 @@ class GAME():
         self.mouse_obj.update(4)
         if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
     def gaming_part(self):
+        self.display.blit(self.display, (0,0))
+        self.display.fill('#000000')
         if self.game_part["day_screen"]:
-            self.display.blit(self.display, (0,0))
-            self.display.fill("#000000")
             if self.day_text.apear(15):
                 if self.continue_input:
                     self.fade_obj.fade_in(45)
@@ -112,8 +117,7 @@ class GAME():
             self.day_text.update()
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
         elif self.game_part["case_introduction"]:
-            self.display.blit(self.display, (0,0))
-            self.display.fill("#000000")
+            self.display.blit(self.background_1img, self.background_1rect)
             if len(self.dialog_instructions) == self.npc_cop.npc_dialog["part"]:
                 self.fade_obj.fade_in(45)
                 if self.fade_obj.fade_alpha >= 255:
@@ -139,9 +143,10 @@ class GAME():
             self.npc_cop.update()
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(5)
         elif self.game_part["suspects_list"]:
-            self.display.blit(self.display, (0,0))
-            self.display.fill('#000000')
             self.display.blit(self.background_1img, self.background_1rect)
+            for i in range(len(self.case_obj.NPCS)):
+                self.npc_objs[i].render()
+                self.npc_objs[i].update()
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
         self.mouse_obj.render()
         self.mouse_obj.update(4)
@@ -167,6 +172,6 @@ class GAME():
         if event.type == pyg.MOUSEBUTTONUP:
             self.mouse_obj.clicked = False
     def end(self):
-        print("Menu ending!")
+        print("GAME ending!")
         pyg.quit()
         sys.exit()

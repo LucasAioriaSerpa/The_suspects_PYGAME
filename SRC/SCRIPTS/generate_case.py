@@ -50,7 +50,12 @@ class CASE():
             name = random.choice(self.NPC_VALUES["NOMES"])
             description = random.choice(self.NPC_VALUES["DESCRICOES"])
             while name["genero"] != description["genero"][0]: description = random.choice(self.NPC_VALUES["DESCRICOES"])
-            self.NPCS.append({"NAME":name["nome"],"DESCRIPTION":{"OCUPACAO":description["ocupacao"],"PERSONALIDADE":description["personalidade"]}, "TYPE":...})
+            self.NPCS.append({"NAME":name["nome"],
+                "DESCRIPTION":{
+                    "GENERO":description["genero"],
+                    "OCUPACAO":description["ocupacao"],
+                    "PERSONALIDADE":description["personalidade"]
+                }, "TYPE":...})
         #? DEFININDO OS TIPOS DE CADA NPC DEPENDENDO DO CASO
         for npc in range(len(self.NPCS)):
             self.set_types(npc)
