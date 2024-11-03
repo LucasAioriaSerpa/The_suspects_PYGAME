@@ -40,7 +40,7 @@ class CASE():
     def generate_case(self):
         self.CASO["DEATH_CASE"] = "Envenenado" #! random.choice(self.SCENE_VALUES["CASO"]["CAUSA_DA_MORTE"])
         self.CASO["DEATH_PLACE"] = random.choice(self.SCENE_VALUES["CASO"]["LUGAR_DA_MORTE"])
-        self.CASO["DEATH_PLACE"] = self.SCENE_VALUES["CASO"][f"CASO_{self.CASO["DEATH_CASE"].upper()}"]["CAUSA_DA_MORTE"]
+        self.CASO["DEATH_DIALOG"] = self.SCENE_VALUES["CASO"][f"CASO_{self.CASO["DEATH_CASE"].upper()}"]["CAUSA_DA_MORTE"]
         #?debug: print(self.CASO)
         parts_list = ["VERDADES", "CONFLITANTES", "FALSAS"]
         for i in range(len(self.EVIDENCE_VALUES)):
@@ -64,6 +64,6 @@ class CASE():
                     self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
                 self.NPCS[int(evidence["DIALOG"][0])]["EVIDENCIA"] = [evidence["DIALOG"][1], evidence["FRASE"], evidence["PREMISSA"]]
                 #?debug: print(f"\n{parts_list[i]}: {evidence}\n")
-        self.CASO["DEATH_PLACE"] = self.CASO["DEATH_PLACE"].replace("$", f"{self.CASO["DEATH_PLACE"]}")
-        for n in range(len(self.NPCS)): self.CASO["DEATH_PLACE"] = self.CASO["DEATH_PLACE"].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
+        self.CASO["DEATH_DIALOG"] = self.CASO["DEATH_DIALOG"].replace("$", f"{self.CASO["DEATH_PLACE"]}")
+        for n in range(len(self.NPCS)): self.CASO["DEATH_DIALOG"] = self.CASO["DEATH_DIALOG"].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
         return True

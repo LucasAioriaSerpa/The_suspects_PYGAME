@@ -13,6 +13,7 @@ class GAME():
         self.mouse_obj = _mou.MOUSE(self.display)
         self.util_obj = _util.utility(self.display)
         self.case_obj = _gen.CASE()
+        self.fade_obj = _util.transition_image(self.display)
         self.parts = {
             "loaded":False,
             "tutorial":False,
@@ -28,16 +29,18 @@ class GAME():
         self.loading_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]), self.string_loading_text, False, "#999999")
         #? tutorial part
         self.string_tutorial_text = ""
-        self.dialog_tutorial_text = ["Aperte [ESPACE] para continuar...",
-                                "Bem vindo Espector..",
-                                "seu objetivo é descobrir quem é inocente e quem é o assassino..",
-                                "você pode verificar as informações do suspeito, acusar ou interrogar qualquer suspeito no caso..",
-                                "no entanto, você tem um número determinado de interrogatórios, tenha cuidado Espector..",
-                                "agora vá Espector, já há um caso te esperando."]
+        self.dialog_tutorial_text = [
+            "Aperte [ESPACE] para continuar...",
+            "Bem vindo Espector..",
+            "seu objetivo é descobrir quem é inocente e quem é o assassino..",
+            "você pode verificar as informações do suspeito, acusar ou interrogar qualquer suspeito no caso..",
+            "no entanto, você tem um número determinado de interrogatórios, tenha cuidado Espector..",
+            "agora vá Espector, já há um caso te esperando."
+        ]
         self.tutorial_text = _util.text_fonts(self.display, "SpecialElite.ttf", 15, (10, self.half_screen[1]+45), self.string_tutorial_text, False, "#ffffff")
-        self.npc_tutorial = _npc.NPC(self.display, (self.half_screen[0], self.half_screen[1]+88), "tutorial_npc", self.tutorial_text)
+        self.npc_cop = _npc.NPC(self.display, (self.half_screen[0], self.half_screen[1]+88), "tutorial_npc", self.tutorial_text)
         #? gaming part
-        self.gaming_part = {
+        self.game_part = {
             "day_screen": True,
             "case_introduction": False,
             "suspects_list": False,
@@ -46,9 +49,11 @@ class GAME():
             "lost": False
         }
         #* day screen
-        self.day_string = self.PLAYER_obj.player_info["day"]
-        self.day_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]), self.day_string, False, "#ffffff")
+        self.day_string = f"DAY: {self.PLAYER_obj.player_info["day"]}"
+        self.day_text = _util.text_fonts(self.display, "SEASRN__.ttf", 30, (self.half_screen[0], self.half_screen[1]), self.day_string, False, "#ffffff")
+        self.continue_case = _util.text_fonts(self.display, "lobato.ttf", 10, (self.half_screen[0], self.half_screen[1]+20), "aperte [SPACE] para continuar", False, "#ffffff")
         #* case introduction
+        ...
         #* suspects list
         self.background_1img = pyg.image.load("src/IMAGES/scenes/background_suspects.png").convert()
         self.background_1rect = self.util_obj.get_rect(self.background_1img, (self.half_screen[0], self.half_screen[1]+80))
@@ -67,28 +72,59 @@ class GAME():
             case 79:
                 self.timer[0] = 0
                 self.timer[1] += 1
-        if self.timer[1] == 1: self.parts["loaded"] = self.case_obj.generate_case()
+        if self.timer[1] == 1:
+            self.fade_obj.fade_in(45)
+            if self.fade_obj.fade_alpha >= 255: self.parts["loaded"] = self.case_obj.generate_case()
         self.loading_text.render(False)
         self.loading_text.update()
     def tutorial_part(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#000000")
-        if len(self.dialog_tutorial_text) == self.npc_tutorial.npc_dialog["part"]:
-            self.parts["tutorial"] = True
-            self.parts["gaming"] = True
+        if len(self.dialog_tutorial_text) == self.npc_cop.npc_dialog["part"]:
+            self.fade_obj.fade_in(45)
+            if self.fade_obj.fade_alpha >= 255:
+                self.npc_cop.npc_dialog["part"] = 0
+                self.parts["tutorial"] = True
+                self.parts["gaming"] = True
             return
-        self.npc_tutorial.render()
-        self.npc_tutorial.dialog(self.dialog_tutorial_text, self.continue_input)
+        self.npc_cop.render()
+        self.npc_cop.dialog(self.dialog_tutorial_text, self.continue_input)
         if self.continue_input: self.continue_input = False
-        self.npc_tutorial.update()
+        self.npc_cop.update()
         self.mouse_obj.render()
         self.mouse_obj.update(4)
+        if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
     def gaming_part(self):
-        if self.gaming_part["day_screen"]:
+        if self.game_part["day_screen"]:
             self.display.blit(self.display, (0,0))
             self.display.fill("#000000")
+            if self.day_text.apear(15):
+                if self.continue_input:
+                    self.fade_obj.fade_in(45)
+                    if self.fade_obj.fade_alpha >= 255:
+                        self.game_part["day_screen"] = False
+                        self.game_part["case_introduction"] = True
+                        return
+                self.continue_case.apear(5)
+                self.continue_case.render(False)
+                self.continue_case.update()
             self.day_text.render(False)
             self.day_text.update()
+            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
+        elif self.game_part["case_introduction"]:
+            self.display.blit(self.display, (0,0))
+            self.display.fill("#000000")
+            dialog_instructions = [
+                "Boa noite Espector..",
+                f"Hoje o caso {self.case_obj.CASO["DEATH_DIALOG"]}"
+            ]
+            self.npc_cop.render()
+            self.npc_cop.dialog(dialog_instructions, self.continue_input)
+            if self.continue_input: self.continue_input = False
+            self.npc_cop.update()
+            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(5)
+        self.mouse_obj.render()
+        self.mouse_obj.update(4)
     def render(self):
         if not self.parts["loaded"]:
             self.loading_assets()
@@ -102,10 +138,10 @@ class GAME():
         if event.type == pyg.QUIT: self.end()
         if event.type == pyg.KEYDOWN:
             if event.key == pyg.K_SPACE:
-                if self.part["tutorial"]: self.continue_input = True
+                if not self.parts["tutorial"] or self.parts["gaming"]: self.continue_input = True
         if event.type == pyg.KEYUP:
             if event.key == pyg.K_SPACE:
-                if self.part["tutorial"]: self.contniue_input = False
+                if not self.parts["tutorial"] or self.parts["gaming"]: self.contniue_input = False
         if event.type == pyg.MOUSEBUTTONDOWN:
             self.mouse_obj.clicked = True
         if event.type == pyg.MOUSEBUTTONUP:

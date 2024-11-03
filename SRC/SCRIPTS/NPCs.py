@@ -29,7 +29,7 @@ class NPC():
         self.display.blit(outline_block_text, outline_block_rect)
         self.display.blit(block_text, block_rect)
         self.text_obj.f_info["text"] = list_dialog[self.npc_dialog["part"]]
-        if continue_dialog and not self.npc_dialog["part"] == len(list_dialog) and self.npc_dialog["flag"]:
+        if continue_dialog and not self.npc_dialog["part"] == len(list_dialog):
             self.npc_dialog["part"] += 1
             self.text_obj.f_animation["frame"] = 0
             return

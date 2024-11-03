@@ -58,9 +58,13 @@ class text_fonts():
         list_words = [word.split(" ") for word in self.f_info["text"].splitlines()]
         space_height = self.f_obj.size(" ")[0]
         x,y = self.f_pos
+        highlight_color = self.f_info["color"]
         for lines in list_words:
             for words in lines:
-                self.f_surface = self.f_obj.render(words, self.f_info["antialias"], self.f_info["color"]).convert()
+                if words == "envenenado(a)":
+                    highlight_color = "#00FF00"
+                else: highlight_color = self.f_info["color"]
+                self.f_surface = self.f_obj.render(words, self.f_info["antialias"], highlight_color).convert()
                 word_pos = self.f_surface.get_size()
                 if x + word_pos[0] >= self.display.get_width():
                     x = self.f_pos[0]
@@ -69,7 +73,7 @@ class text_fonts():
                 if self.f_animation["frame"] < speed * len(words):
                     self.f_animation["frame"] += 1
                     blank = words[0:self.f_animation["frame"]//speed]
-                    self.f_surface = self.f_obj.render(blank, self.f_info["antialias"], self.f_info["color"]).convert()
+                    self.f_surface = self.f_obj.render(blank, self.f_info["antialias"], highlight_color).convert()
                 elif self.f_animation["frame"] >= speed * len(words):
                     self.f_animation["done"] = True
                 self.display.blit(self.f_surface, (x,y))
