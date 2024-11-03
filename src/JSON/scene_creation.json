@@ -13,7 +13,7 @@
       ],
       "NUMBER": [
         "0", "1", "2", "3", "4",
-        "5", "6", "7", "8", "9"
+        "5", "6", "7", "8", "9", "10"
       ],
       "OPERATORS": ["IF", "ELSEIF", "NOT", "AND", "OR"]
     },
@@ -122,21 +122,102 @@
       }
     },
     "CASO_ESFAQUEADO": {
-      "CAUSA_DA_MORTE": "0 morreu esfaqueado em seu quarto",
+      "CAUSA_DA_MORTE": "4 morreu esfaqueado em seu quarto",
       "EVIDENCIAS_VERDADES": [
-        {"FRASE": "", "PREMISSA": ""},
-        {"FRASE": "", "PREMISSA": ""},
-        {"FRASE": "", "PREMISSA": ""}
+        {
+          "DIALOG": ["2",""], 
+          "FRASE": "2 não viu o 3 na sala logo 3 matou 4", 
+          "PREMISSA": "~1 IF 2"
+        },
+        {
+          "DIALOG": ["1",""], 
+          "FRASE": "Se 5 foi ao quarto minutos antes no esfaquamento então 5 é um possível cumplice", 
+          "PREMISSA": "3 IF 4"
+        },
+        {
+          "DIALOG": ["0",""], 
+          "FRASE": "Se 0 saiu do quarto para jogar video game na sala então 0 viu 3 e 4", 
+          "PREMISSA": "5 IF 6"
+        },  
+        {
+          "DIALOG": ["2",""], 
+          "FRASE": "Se 3 devia dinheiro para o 0 então 3 matou 4", 
+          "PREMISSA": "7 IF 2"
+        },
+        {
+          "DIALOG": ["5",""], 
+          "FRASE": "0 e 1 são sócios de uma loja de facas renomada na cidade", 
+          "PREMISSA": "8 AND 9"
+        },
+        {
+          "DIALOG": ["1",""], 
+          "FRASE": "Se 1 e 0 estavam conversando sobre os assuntos financeiros de sua loja de facas logo 1 e 0 são inocentes", 
+          "PREMISSA": "0 IF 10"
+        }
       ],
       "EVIDENCIAS_CONFLITANTES": [
-        {"FRASE": "", "PREMISSA": ""},
-        {"FRASE": "", "PREMISSA": ""},
-        {"FRASE": "", "PREMISSA": ""}
+        {
+          "DIALOG": ["0", ""], 
+          "FRASE": "0 é viciado em video game", 
+          "PREMISSA": null
+        },
+        {
+          "DIALOG": ["1", ""], 
+          "FRASE": "1 odeia ratos e 4 tem pavor de baratas", 
+          "PREMISSA": null
+        },
+        {
+          "DIALOG": ["2", ""], 
+          "FRASE": "2 é formado em administração", 
+          "PREMISSA": null
+        },
+        {
+          "DIALOG": ["3", ""], 
+          "FRASE": "3 lê jornal todas as manhãs", 
+          "PREMISSA": null
+        },
+        {
+          "DIALOG": ["3", ""], 
+          "FRASE": "0 e 2 sempre andam com uma arma de choque no bolso da blusa", 
+          "PREMISSA": null
+        },
+        {
+          "DIALOG": ["5", ""], 
+          "FRASE": "5 tem vários animais de estimação incluindo coelhos, papagaios e até mesmo uma cobra", 
+          "PREMISSA": null
+        }
       ],
       "EVIDENCIAS_FALSAS": [
-        {"FRASE": "", "PREMISSA": ""},
-        {"FRASE": "", "PREMISSA": ""},
-        {"FRASE": "", "PREMISSA": ""}
+        {
+          "DIALOG": ["3", ""], 
+          "FRASE": "Se 0 anda com uma arma de choque então 0 matou 4 eletrocutado", 
+          "PREMISSA": "0 IF 2"
+        },
+        {
+          "DIALOG": ["5", ""], 
+          "FRASE": "Se 0 estava no quarto minutos antes do assassinato então 0 matou o 4", 
+          "PREMISSA": "3 IF 4"
+        },
+        {
+          "DIALOG": ["3", ""], 
+          "FRASE": "Se 4 não gostava do 1 então 1 matou o 4", 
+          "PREMISSA": "5 IF 6"
+        },
+        {
+          "DIALOG": ["5", ""], 
+          "FRASE": "Se 2 anda com uma arma de choque então 2 matou 4 eletrocutado", 
+          "PREMISSA": "7 IF 2"
+        },
+        {
+          "DIALOG": ["3", ""], 
+          "FRASE": "Se 0 tem uma loja de facas então 0 matou o 4", 
+          "PREMISSA": "8 IF 6"
+        },
+        {
+          "DIALOG": ["5", ""], 
+          "FRASE": "Se 1 gosta de estudar quimica então 1 envenenou 4", 
+          "PREMISSA": "1 IF 9"
+        }
       ]
     }
   }
