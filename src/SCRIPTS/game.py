@@ -18,6 +18,7 @@ class GAME():
             "gaming":False
             }
         self.timer = [0, 0]
+        self.continue_input = False
         self.half_screen = (self.display.get_width()/2, self.display.get_height()/2)
         #? loading assets
         self.string_loading_text = "Loading assets please wait . . ."
@@ -25,7 +26,7 @@ class GAME():
         #? tutorial part
         self.string_tutorial_text = ""
         self.tutorial_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]+65), self.string_tutorial_text, False, "#ffffff")
-        self.cop_npc = ...
+        self.npc_tutorial = _npc.NPC(self.display, (self.half_screen[0], self.half_screen[1]+88), "tutorial_npc", self.tutorial_text)
     def loading_assets(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#454545")
@@ -47,10 +48,9 @@ class GAME():
     def tutorial_part(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#000000")
-        npc_tutorial = _npc.NPC(self.display, (self.half_screen[0], self.half_screen[1]+88), "tutorial_npc", self.tutorial_text)
-        npc_tutorial.render()
-        npc_tutorial.dialog(["Bem vindo Espector!","Aperte ESPACE para continuar"], False)
-        npc_tutorial.update()
+        self.npc_tutorial.render()
+        self.npc_tutorial.dialog(["Bem vindo Espector!","Aperte ESPACE para continuar"], self.continue_input)
+        self.npc_tutorial.update()
         self.mouse_obj.render()
         self.mouse_obj.update(4)
     def render(self):
@@ -66,7 +66,11 @@ class GAME():
         for event in pyg.event.get():
             if event.type == pyg.QUIT: self.end()
             if event.type == pyg.KEYDOWN:
-                if event.key == pyg.K_SPACE: print("NEXT!")
+                if event.key == pyg.K_SPACE:
+                    self.continue_input = True
+            if event.type == pyg.KEYUP:
+                if event.key == pyg.K_SPACE:
+                    self.continue_input = False
             if event.type == pyg.MOUSEBUTTONDOWN:
                 self.mouse_obj.clicked = True
             if event.type == pyg.MOUSEBUTTONUP:

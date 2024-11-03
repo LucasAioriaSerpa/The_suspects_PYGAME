@@ -61,7 +61,7 @@ class text_fonts():
             blank = self.f_info["text"][0:self.f_animation["frame"]//speed]
         elif self.f_animation["frame"] >= speed * len(self.f_info["text"]):
             self.f_animation["done"] = True
-            return
+            return True
         self.f_obj = _pyg.font.Font(self.f_path+self.f_info["font"], self.f_info["size"])
         self.f_surface = self.f_obj.render(blank, self.f_info["antialias"], self.f_info["color"]).convert()
         self.f_rect = self.f_surface.get_rect(center = self.f_pos)
