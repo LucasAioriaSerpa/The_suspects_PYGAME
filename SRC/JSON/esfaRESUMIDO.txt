@@ -1,0 +1,28 @@
+  Num perguntas/interregar (dicas) → 10
+||---------------------------------||
+
+4 morreu esfaqueado
+
+0 - Suspeito principal      Sempre fala verdade || 25% fala uma conflitante
+1 - Suspeito (sócio do 0)	Sempre fala verdade || 25% fala uma conflitante
+2 - testemunha			    Sempre fala verdade || 25% fala uma conflitante
+3 - Pessoa que assassinou   Sempre fala mentira || 50% fala uma conflitante
+4 - Pessoa que morreu		  F
+5 - Cúmplice/testemunha 	Sempre fala mentira || 50% fala uma conflitante
+
+Falsas:
+                 "FRASE": "Se 0 anda com uma arma de choque então 0 matou 4 eletrocutado"
+                 "FRASE": "Se 0 estava no quarto momentos antes do assassinato então 0 matou o 4"
+                 "FRASE": "Se 4 não gostava do 1 então 1 matou o 4"
+                 "FRASE": "Se 2 anda com uma arma de choque então 2 matou 4 eletrocutado"
+                 "FRASE": "Se 0 tem uma loja de facas então 0 matou o 4"
+                 "FRASE": "Se 1 gosta de estudar quimica então 1 envenenou 4"
+
+
+Verdadeiras:
+                 "FRASE": "2 não viu o 3 na sala logo 3 matou 4"
+                 "FRASE": "Se 5 foi ao quarto minutos antes do esfaqueamento então 5 é um possível cumplice"
+                 "FRASE": "Se 0 saiu do quarto para jogar video game com o 2 na sala então 0 viu 3 e 4"
+                 "FRASE": "Se 3 devia dinheiro para o 4 então 3 matou 4"
+                 "FRASE": "0 e 1 são sócios de uma loja de facas renomada na cidade"
+                 "FRASE": "Se 1 e 0 estavam conversando sobre os assuntos financeiros de sua loja de facas logo 1 e 0 são inocentes"
