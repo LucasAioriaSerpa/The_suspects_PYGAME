@@ -136,8 +136,8 @@
         },
         {
           "DIALOG": ["0","Eu saí do quarto para jogar um pouco de videogame com o 2 na sala, então acho que cruzei com quase todo mundo. Sabe como é, em um momento ou outro, vi o 3 e o 4 por ali também... parecia tudo normal, pelo menos naquela hora."],
-          "FRASE": "Se 0 saiu do quarto para jogar video game com o 2 na sala então 0 viu 3 e 4",
-          "PREMISSA": "5 IF 6"
+          "FRASE": "Se 0 saiu do quarto para jogar video game com o 2 na sala então 2 não viu 3 e 4",
+          "PREMISSA": "5 IF ~6"
         },
         {
           "DIALOG": ["2","Sabe, ouvi rumores de que o 3 tinha uma divida com o 4, uma boa quantia de dinheiro ele devia. Mas, claro, isso é só o que se comenta, não que eu esteja dizendo que ele tenha algo a ver com o 4."],
