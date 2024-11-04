@@ -52,9 +52,15 @@ class SUS_NPC():
         self.npc_dialog = {
             "part": 0
         }
-        self.npc_surface_img = self.util_obj.image_load("PATH-IMAGES-characteres","NPCs/suspect_shadow.png")
-        self.npc_rect = self.util_obj.get_rect(self.npc_surface_img, self.npc_pos)
-        self.npc_mask = pyg.mask.from_surface(self.npc_surface_img)
+        self.npc_surfaces_imgs = [
+            self.util_obj.image_load("PATH-IMAGES-characteres","NPCs/suspect_shadow.png"),
+            self.util_obj.image_load("PATH-IMAGES-characteres","NPCs/suspect_M.png"),
+            self.util_obj.image_load("PATH-IMAGES-characteres","NPCs/suspect_F.png")
+        ]
+        self.type_int = 0
+        self.selected = False
+        self.npc_rect = self.util_obj.get_rect(self.npc_surfaces_imgs[self.type_int], self.npc_pos)
+        self.npc_mask = pyg.mask.from_surface(self.npc_surfaces_imgs[self.type_int])
     def dialog(self, list_dialog: list[str], continue_dialog: bool):
         outline_block_pos = (self.display.get_width()/2, self.display.get_height())
         outline_block_size = (self.display.get_width(), 110)
@@ -74,8 +80,7 @@ class SUS_NPC():
             return True
         return False
     def render(self):
-        self.display.blit(self.npc_surface_img, self.npc_rect)
+        self.display.blit(self.npc_surfaces_imgs[self.type_int], self.npc_rect)
     def update(self):
-        self.npc_surface_img = self.util_obj.image_load("PATH-IMAGES-characteres","NPCs/suspect_shadow.png")
-        self.npc_rect = self.util_obj.get_rect(self.npc_surface_img, self.npc_pos)
-        self.npc_mask = pyg.mask.from_surface(self.npc_surface_img)
+        self.npc_rect = self.util_obj.get_rect(self.npc_surfaces_imgs[self.type_int], self.npc_pos)
+        self.npc_mask = pyg.mask.from_surface(self.npc_surfaces_imgs[self.type_int])

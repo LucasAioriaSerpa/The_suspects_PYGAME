@@ -110,8 +110,16 @@ class button_rect():
         self.b_surface.fill(self.b_color)
         self.b_rect = self.b_surface.get_rect(center=self.b_pos)
         self.b_mask = pyg.mask.from_surface(self.b_surface)
-    def render(self, by_pos: bool):
+    def outline(self, size:int, color: str):
+        outline_surface_pos = (self.b_pos[0], self.b_pos[1])
+        outline_surface_size = (self.b_size[0]+size, self.b_size[1]+size)
+        outline_surface = pyg.Surface(outline_surface_size).convert()
+        outline_surface.fill(color)
+        outline_surface_rect = outline_surface.get_rect(center=outline_surface_pos)
+        self.display.blit(outline_surface, outline_surface_rect)
+    def render(self, by_pos: bool, apear: bool, speed: int):
         self.display.blit(self.b_surface, self.b_rect)
+        if apear: self.b_text_obj.apear(speed)
         if by_pos: return self.b_text_obj.render(True)
         self.b_text_obj.render(False)
     def check_collision(self, m_obj: _mous.MOUSE) -> bool:

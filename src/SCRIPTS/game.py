@@ -56,8 +56,15 @@ class GAME():
         #* suspects list
         self.background_1img = pyg.image.load("src/IMAGES/scenes/background_suspects.png").convert()
         self.background_1rect = self.util_obj.get_rect(self.background_1img, (self.half_screen[0], self.half_screen[1]+90))
+        self.choose_suspect_text = _util.text_fonts(self.display, "N_E_B.ttf", 20, (self.half_screen[0], self.half_screen[1]+45), "Choose a Suspect!", False, "#FFFFFF")
         self.suspects_text = _util.text_fonts(self.display, "Pixel-Noir.ttf", 10, (10, self.half_screen[1]+45), "", False, "#ffffff")
         self.npc_objs = []
+        self.npc_selected = 0
+        self.interrogate_text = _util.text_fonts(self.display, "Pixel-Noir.ttf", 5, self.half_screen, "Interrogar", False, "#ffffff")
+        self.interrogate_button = _util.button_rect(self.display, (45,10), self.half_screen, "#000000", self.interrogate_text)
+        self.acusar_text = _util.text_fonts(self.display, "Pixel-Noir.ttf", 5, self.half_screen, "Acusar", False, '#ffffff')
+        self.acusar_button = _util.button_rect(self.display, (45,10), self.half_screen, "#000000", self.acusar_text)
+        self.acusar_interrogate_buttons_apear = False
     def loading_assets(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#454545")
@@ -80,9 +87,8 @@ class GAME():
                 n = 0
                 for i in range(len(self.case_obj.NPCS)):
                     if self.case_obj.NPCS[i]["TYPE"] == "Vitima": continue
-                    print(n)
                     n+=1
-                    self.npc_objs.append(_npc.SUS_NPC(self.display, ((self.half_screen[0]-120)+(n*48), self.half_screen[1]+20), self.case_obj.NPCS[i], self.suspects_text))
+                    self.npc_objs.append(_npc.SUS_NPC(self.display, ((self.half_screen[0]-145)+(n*48), self.half_screen[1]+20), self.case_obj.NPCS[i], self.suspects_text))
         self.loading_text.render(False)
         self.loading_text.update()
     def tutorial_part(self):
@@ -126,6 +132,7 @@ class GAME():
                 self.fade_obj.fade_in(45)
                 if self.fade_obj.fade_alpha >= 255:
                     self.continue_input = False
+                    self.npc_cop.npc_dialog["part"] = 0
                     self.game_part["case_introduction"] = False
                     self.game_part["suspects_list"] = True
                 return
@@ -161,8 +168,100 @@ class GAME():
         elif self.game_part["suspects_list"]:
             self.display.blit(self.background_1img, self.background_1rect)
             for i in range(len(self.case_obj.NPCS)-1):
+                if self.npc_objs[i].selected:
+                    match self.npc_objs[i].npc_info["DESCRIPTION"]["GENERO"][0].upper():
+                        case "F":
+                            self.npc_objs[i].type_int = 2
+                        case "M":
+                            self.npc_objs[i].type_int = 1
+                else: self.npc_objs[i].type_int = 0
                 self.npc_objs[i].render()
                 self.npc_objs[i].update()
+            for i in range(len(self.case_obj.NPCS)-1):
+                if self.npc_objs[i].check_collision(self.mouse_obj) and self.mouse_obj.clicked:
+                    new_pos = (self.npc_objs[i].npc_pos[0]+30, self.npc_objs[i].npc_pos[1]-50)
+                    self.npc_selected = i
+                    self.interrogate_button.b_pos = new_pos
+                    self.interrogate_button.b_text_obj.f_pos = new_pos
+                    self.interrogate_button.b_text_obj.f_animation["frame"] = 0
+                    self.acusar_button.b_pos = (new_pos[0], new_pos[1]+10)
+                    self.acusar_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]+10)
+                    self.acusar_button.b_text_obj.f_animation["frame"] = 0
+                    self.acusar_interrogate_buttons_apear = True
+                else: self.npc_objs[i].selected = False
+            if self.acusar_interrogate_buttons_apear:
+                self.npc_objs[self.npc_selected].selected = True
+                #! INTERROGAR
+                if self.interrogate_button.check_collision(self.mouse_obj):
+                    self.interrogate_button.outline(2, "#000000")
+                    self.interrogate_button.b_color = "#ffffff"
+                    self.interrogate_button.b_text_obj.f_info["color"] = "#000000"
+                else:
+                    self.interrogate_button.outline(2, "#ffffff")
+                    self.interrogate_button.b_color = "#000000"
+                    self.interrogate_button.b_text_obj.f_info["color"] = "#ffffff"
+                #! ACUSAR
+                if self.acusar_button.check_collision(self.mouse_obj):
+                    self.acusar_button.outline(2, "#000000")
+                    self.acusar_button.b_color = "#ffffff"
+                    self.acusar_button.b_text_obj.f_info["color"] = "#000000"
+                    if self.npc_objs[self.npc_selected].npc_info["TYPE"] == "Assassino":
+                        if self.mouse_obj.clicked:
+                            self.fade_obj.fade_in(45)
+                            if self.fade_obj.fade_alpha >= 255:
+                                self.game_part["suspects_list"] = False
+                                self.game_part["won"] = True
+                            return
+                    else:
+                        if self.mouse_obj.clicked:
+                            self.fade_obj.fade_in(45)
+                            if self.fade_obj.fade_alpha >= 255:
+                                self.game_part["suspects_list"] = False
+                                self.game_part["lost"] = True
+                            return
+                else:
+                    self.acusar_button.outline(2, "#ffffff")
+                    self.acusar_button.b_color = "#000000"
+                    self.acusar_button.b_text_obj.f_info["color"] = "#ffffff"
+                self.interrogate_button.render(False, True, 5)
+                self.interrogate_button.update()
+                self.interrogate_button.b_text_obj.update()
+                self.acusar_button.render(False, True, 5)
+                self.acusar_button.update()
+                self.acusar_button.b_text_obj.update()
+            self.choose_suspect_text.apear(5)
+            self.choose_suspect_text.render(False)
+            self.choose_suspect_text.update()
+            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
+        elif self.game_part["won"]:
+            won_dialog = [
+                "Inspector...",
+                "parece que você acertou neste caso..",
+                "tem mais casos amanhã."
+            ]
+            if len(won_dialog) == self.npc_cop.npc_dialog["part"]:
+                self.fade_obj.fade_in(45)
+                if self.fade_obj.fade_alpha >= 255:
+                    self.continue_input = False
+                    self.game_part["day_screen"] = True
+                    self.game_part["won"] = False
+            self.npc_cop.render()
+            self.npc_cop.dialog(won_dialog, self.continue_input)
+            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
+        elif self.game_part["lost"]:
+            lost_dialog = [
+                "Inspertor...",
+                "parece que você cometeu um erro neste caso..",
+                "tente novamente amanhã."
+            ]
+            if len(lost_dialog) == self.npc_cop.npc_dialog["part"]:
+                self.fade_obj.fade_in(45)
+                if self.fade_obj.fade_alpha >= 255:
+                    self.continue_input = False
+                    self.game_part["day_screen"] = True
+                    self.game_part["won"] = False
+            self.npc_cop.render()
+            self.npc_cop.dialog(lost_dialog, self.continue_input)
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
         self.mouse_obj.render()
         self.mouse_obj.update(4)
