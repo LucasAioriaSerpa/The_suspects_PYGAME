@@ -65,6 +65,18 @@ class GAME():
         self.acusar_text = _util.text_fonts(self.display, "Pixel-Noir.ttf", 5, self.half_screen, "Acusar", False, '#ffffff')
         self.acusar_button = _util.button_rect(self.display, (45,10), self.half_screen, "#000000", self.acusar_text)
         self.acusar_interrogate_buttons_apear = False
+        #? WON
+        self.won_dialog = [
+            "Inspector...",
+            "parece que você acertou neste caso..",
+            "tem mais casos amanhã."
+        ]
+        #! lost
+        self.lost_dialog = [
+                "Inspertor...",
+                "parece que você cometeu um erro neste caso..",
+                "tente novamente amanhã."
+            ]
     def loading_assets(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#454545")
@@ -97,6 +109,7 @@ class GAME():
         if len(self.dialog_tutorial_text) == self.npc_cop.npc_dialog["part"]:
             self.fade_obj.fade_in(45)
             if self.fade_obj.fade_alpha >= 255:
+                self.PLAYER_obj.player_info["tutorial_done"] = True
                 self.npc_cop.npc_dialog["part"] = 0
                 self.parts["tutorial"] = True
                 self.parts["gaming"] = True
@@ -119,6 +132,7 @@ class GAME():
                         self.continue_input = False
                         self.game_part["day_screen"] = False
                         self.game_part["case_introduction"] = True
+                        self.npc_cop.npc_dialog["part"] = 0
                         return
                 self.continue_case.apear(5)
                 self.continue_case.render(False)
@@ -132,9 +146,9 @@ class GAME():
                 self.fade_obj.fade_in(45)
                 if self.fade_obj.fade_alpha >= 255:
                     self.continue_input = False
-                    self.npc_cop.npc_dialog["part"] = 0
                     self.game_part["case_introduction"] = False
                     self.game_part["suspects_list"] = True
+                    self.npc_cop.npc_dialog["part"] = 0
                 return
             if self.case_obj.CASO["DEATH_CASE"] == "Envenenado":
                 self.dialog_instructions = [
@@ -179,13 +193,13 @@ class GAME():
                 self.npc_objs[i].update()
             for i in range(len(self.case_obj.NPCS)-1):
                 if self.npc_objs[i].check_collision(self.mouse_obj) and self.mouse_obj.clicked:
-                    new_pos = (self.npc_objs[i].npc_pos[0]+30, self.npc_objs[i].npc_pos[1]-50)
+                    new_pos = (self.npc_objs[i].npc_pos[0]+30, self.npc_objs[i].npc_pos[1]-40)
                     self.npc_selected = i
                     self.interrogate_button.b_pos = new_pos
                     self.interrogate_button.b_text_obj.f_pos = new_pos
                     self.interrogate_button.b_text_obj.f_animation["frame"] = 0
-                    self.acusar_button.b_pos = (new_pos[0], new_pos[1]+10)
-                    self.acusar_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]+10)
+                    self.acusar_button.b_pos = (new_pos[0], new_pos[1]+20)
+                    self.acusar_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]+20)
                     self.acusar_button.b_text_obj.f_animation["frame"] = 0
                     self.acusar_interrogate_buttons_apear = True
                 else: self.npc_objs[i].selected = False
@@ -207,17 +221,21 @@ class GAME():
                     self.acusar_button.b_text_obj.f_info["color"] = "#000000"
                     if self.npc_objs[self.npc_selected].npc_info["TYPE"] == "Assassino":
                         if self.mouse_obj.clicked:
-                            self.fade_obj.fade_in(45)
+                            self.fade_obj.fade_in(150)
                             if self.fade_obj.fade_alpha >= 255:
                                 self.game_part["suspects_list"] = False
                                 self.game_part["won"] = True
+                                self.npc_selected = 0
+                                self.npc_objs.clear()
                             return
                     else:
                         if self.mouse_obj.clicked:
-                            self.fade_obj.fade_in(45)
+                            self.fade_obj.fade_in(150)
                             if self.fade_obj.fade_alpha >= 255:
                                 self.game_part["suspects_list"] = False
                                 self.game_part["lost"] = True
+                                self.npc_selected = 0
+                                self.npc_objs.clear()
                             return
                 else:
                     self.acusar_button.outline(2, "#ffffff")
@@ -234,41 +252,45 @@ class GAME():
             self.choose_suspect_text.update()
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
         elif self.game_part["won"]:
-            won_dialog = [
-                "Inspector...",
-                "parece que você acertou neste caso..",
-                "tem mais casos amanhã."
-            ]
-            if len(won_dialog) == self.npc_cop.npc_dialog["part"]:
-                self.fade_obj.fade_in(45)
+            if len(self.won_dialog) == self.npc_cop.npc_dialog["part"]:
+                self.fade_obj.fade_in(50)
                 if self.fade_obj.fade_alpha >= 255:
+                    self.PLAYER_obj.player_info["day"] += 1
+                    self.day_text.f_info["text"] = f"DAY: {self.PLAYER_obj.player_info["day"]}"
+                    self.day_text.f_animation["frame"] = 0
+                    self.day_text.update()
                     self.continue_input = False
-                    self.game_part["day_screen"] = True
+                    self.parts["loaded"] = False
                     self.game_part["won"] = False
+                    self.game_part["day_screen"] = True
+                return
             self.npc_cop.render()
-            self.npc_cop.dialog(won_dialog, self.continue_input)
+            self.npc_cop.dialog(self.won_dialog, self.continue_input)
+            if self.continue_input: self.continue_input = False
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
         elif self.game_part["lost"]:
-            lost_dialog = [
-                "Inspertor...",
-                "parece que você cometeu um erro neste caso..",
-                "tente novamente amanhã."
-            ]
-            if len(lost_dialog) == self.npc_cop.npc_dialog["part"]:
-                self.fade_obj.fade_in(45)
+            if len(self.lost_dialog) == self.npc_cop.npc_dialog["part"]:
+                self.fade_obj.fade_in(50)
                 if self.fade_obj.fade_alpha >= 255:
+                    self.PLAYER_obj.player_info["day"] += 1
+                    self.day_text.f_info["text"] = f"DAY: {self.PLAYER_obj.player_info["day"]}"
+                    self.day_text.f_animation["frame"] = 0
+                    self.day_text.update()
                     self.continue_input = False
+                    self.parts["loaded"] = False
+                    self.game_part["lost"] = False
                     self.game_part["day_screen"] = True
-                    self.game_part["won"] = False
+                return
             self.npc_cop.render()
-            self.npc_cop.dialog(lost_dialog, self.continue_input)
+            self.npc_cop.dialog(self.lost_dialog, self.continue_input)
+            if self.continue_input: self.continue_input = False
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
         self.mouse_obj.render()
         self.mouse_obj.update(4)
     def render(self):
         if not self.parts["loaded"]:
             self.loading_assets()
-        elif not self.parts["tutorial"]:
+        elif not self.parts["tutorial"] and not self.PLAYER_obj.player_info["tutorial_done"]:
             self.tutorial_part()
         elif self.parts["gaming"]:
             self.gaming_part()
@@ -280,8 +302,7 @@ class GAME():
             if event.key == pyg.K_SPACE:
                 if not self.parts["tutorial"] or self.parts["gaming"]: self.continue_input = True
         if event.type == pyg.KEYUP:
-            if event.key == pyg.K_SPACE:
-                if not self.parts["tutorial"] or self.parts["gaming"]: self.contniue_input = False
+            if event.key == pyg.K_SPACE: self.contniue_input = False
         if event.type == pyg.MOUSEBUTTONDOWN:
             self.mouse_obj.clicked = True
         if event.type == pyg.MOUSEBUTTONUP:

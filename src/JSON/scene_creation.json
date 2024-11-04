@@ -12,14 +12,14 @@
         "X", "Y", "Z"
       ],
       "NUMBER": [
-        "0", "1", "2", "3", "4","5", 
+        "0", "1", "2", "3", "4","5",
         "6", "7", "8", "9", "10", "11"
       ],
       "OPERATORS": ["IF", "ELSEIF", "NOT", "AND", "OR"]
     },
     "CAUSA_DA_MORTE": ["Envenenado", "Esfaqueado"],
     "LUGAR_DA_MORTE": ["cozinha", "sala de estar", "biblioteca", "galeria"],
-    "NPC_TYPES": ["Assasino", "Suspeito", "Vitima"],
+    "NPC_TYPES": ["Assassino", "Suspeito", "Vitima"],
     "CASO_ENVENENADO": {
       "CAUSA_DA_MORTE": "0 morreu envenenado(a) na $",
       "EVIDENCIAS": {

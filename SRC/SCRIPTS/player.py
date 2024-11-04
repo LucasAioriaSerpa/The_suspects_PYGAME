@@ -12,6 +12,7 @@ class PLAYER():
             "casos_won": 0,
             "casos_lost": 0,
             "money": 100,
+            "tutorial_done": False,
             "number_of_interrogations": 15
         }
         self.dialog_already_seen = [
