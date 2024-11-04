@@ -35,10 +35,14 @@ class CASE():
                     #?debug: npc_str = f"{f"{self.NPCS[npc]["NAME"]}":<20}||     {f"{self.NPCS[npc]["DESCRIPTION"]}":<90}||      {self.NPCS[npc]["TYPE"]}"
                     #?debug: print(f"2-Testemunha:             {npc_str}")
             case "Esfaqueado":
-                if npc == int:
-                    ...
+                if npc == 4:
+                    self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][2]
+                elif npc == 3:
+                    self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][0]
+                else:
+                    self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][1]
     def generate_case(self):
-        self.CASO["DEATH_CASE"] = "Envenenado" #! random.choice(self.SCENE_VALUES["CASO"]["CAUSA_DA_MORTE"])
+        self.CASO["DEATH_CASE"] = random.choice(self.SCENE_VALUES["CASO"]["CAUSA_DA_MORTE"])
         self.CASO["DEATH_PLACE"] = random.choice(self.SCENE_VALUES["CASO"]["LUGAR_DA_MORTE"])
         self.CASO["DEATH_DIALOG"] = self.SCENE_VALUES["CASO"][f"CASO_{self.CASO["DEATH_CASE"].upper()}"]["CAUSA_DA_MORTE"]
         #?debug: print(self.CASO)
