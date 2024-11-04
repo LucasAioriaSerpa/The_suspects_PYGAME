@@ -4,11 +4,11 @@
 4 morreu esfaqueado
 
 0 - Suspeito principal      Sempre fala verdade || 25% fala uma conflitante
-1 - Suspeito (sócio do 0)	Sempre fala verdade || 25% fala uma conflitante
-2 - testemunha			    Sempre fala verdade || 25% fala uma conflitante
+1 - Suspeito (sócio do 0)	  Sempre fala verdade || 25% fala uma conflitante
+2 - testemunha			        Sempre fala verdade || 25% fala uma conflitante
 3 - Pessoa que assassinou   Sempre fala mentira || 50% fala uma conflitante
-4 - Pessoa que morreu		  F
-5 - Cúmplice/testemunha 	Sempre fala mentira || 50% fala uma conflitante
+4 - Pessoa que morreu		    F
+5 - Cúmplice/testemunha 	  Sempre fala mentira || 50% fala uma conflitante
 
 Falsas:
                  "FRASE": "Se 0 anda com uma arma de choque então 0 matou 4 eletrocutado"
@@ -22,7 +22,8 @@ Falsas:
 Verdadeiras:
                  "FRASE": "2 não viu o 3 na sala logo 3 matou 4"
                  "FRASE": "Se 5 foi ao quarto minutos antes do esfaqueamento então 5 é um possível cumplice"
-                 "FRASE": "Se 0 saiu do quarto para jogar video game com o 2 na sala então 0 viu 3 e 4"
+                 "FRASE": "Se 0 saiu do quarto para jogar video game com o 2 na sala então 2 não viu o 3 na sala"
                  "FRASE": "Se 3 devia dinheiro para o 4 então 3 matou 4"
-                 "FRASE": "0 e 1 são sócios de uma loja de facas renomada na cidade"
-                 "FRASE": "Se 1 e 0 estavam conversando sobre os assuntos financeiros de sua loja de facas logo 1 e 0 são inocentes"
+                 "FRASE": "1 e 4 são sócios de uma loja de facas renomada na cidade"
+                 "FRASE": "Se 1 e 4 são sócios de uma loja de facas renomada na cidade e 4 e 1 estavam comentado sobre as dividas da loja então 3 devia dinheiro para 4"
+(0 ^ 1) → 2
