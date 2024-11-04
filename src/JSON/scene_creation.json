@@ -131,7 +131,7 @@
         },
         {
           "DIALOG": ["1","Olha, eu vi o 5 indo em direção ao quarto antes de tudo acontecer. Sei lá, talvez ele só tenha passado por lá por acaso. Mas, enfim, vai ver ele só estava no lugar errado, na hora errada."],
-          "FRASE": "Se 5 foi ao quarto minutos antes no esfaqueamento então 5 é um possível cumplice",
+          "FRASE": "Se 5 foi ao quarto minutos antes do esfaqueamento então 5 é um possível cumplice",
           "PREMISSA": "3 IF 4"
         },
         {
