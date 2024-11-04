@@ -24,5 +24,5 @@ Verdadeiras:
                  "FRASE": "Se 5 foi ao quarto minutos antes do esfaqueamento então 5 é um possível cumplice"
                  "FRASE": "Se 0 saiu do quarto para jogar video game com o 2 na sala então 0 viu 3 e 4"
                  "FRASE": "Se 3 devia dinheiro para o 4 então 3 matou 4"
-                 "FRASE": "0 e 1 são sócios de uma loja de facas renomada na cidade"
-                 "FRASE": "Se 1 e 0 estavam conversando sobre os assuntos financeiros de sua loja de facas logo 1 e 0 são inocentes"
+                 "FRASE": "1 e 4 são sócios de uma loja de facas renomada na cidade",
+                 "FRASE": "Se 1 e 4 estavam conversando sobre as dividas de sua loja de facas logo 3 devia para 1 e 4",
