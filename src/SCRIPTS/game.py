@@ -77,8 +77,12 @@ class GAME():
             self.fade_obj.fade_in(45)
             if self.fade_obj.fade_alpha >= 255:
                 self.parts["loaded"] = self.case_obj.generate_case()
+                n = 0
                 for i in range(len(self.case_obj.NPCS)):
-                    self.npc_objs.append(_npc.SUS_NPC(self.display, ((self.half_screen[0]-120)+(i*48), self.half_screen[1]+20), self.case_obj.NPCS[i], self.suspects_text))
+                    if self.case_obj.NPCS[i]["TYPE"] == "Vitima": continue
+                    print(n)
+                    n+=1
+                    self.npc_objs.append(_npc.SUS_NPC(self.display, ((self.half_screen[0]-120)+(n*48), self.half_screen[1]+20), self.case_obj.NPCS[i], self.suspects_text))
         self.loading_text.render(False)
         self.loading_text.update()
     def tutorial_part(self):
@@ -137,6 +141,18 @@ class GAME():
                     f"O principal suspeito é {self.case_obj.NPCS[3]["NAME"]} é {self.case_obj.NPCS[3]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[3]["DESCRIPTION"]["PERSONALIDADE"]}..",
                     "faça a escolha certa Espector."
                 ]
+            if self.case_obj.CASO["DEATH_CASE"] == "Esfaqueado":
+                self.dialog_instructions = [
+                    "Boa noite Esppector..",
+                    f"hoje o caso {self.case_obj.CASO["DEATH_DIALOG"]}..",
+                    "Os suspeitos são..",
+                    f"{self.case_obj.NPCS[1]["NAME"]} é {self.case_obj.NPCS[1]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[1]["DESCRIPTION"]["PERSONALIDADE"]}",
+                    f"{self.case_obj.NPCS[2]["NAME"]} é {self.case_obj.NPCS[2]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[2]["DESCRIPTION"]["PERSONALIDADE"]}",
+                    f"{self.case_obj.NPCS[3]["NAME"]} é {self.case_obj.NPCS[3]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[3]["DESCRIPTION"]["PERSONALIDADE"]}",
+                    f"{self.case_obj.NPCS[5]["NAME"]} é {self.case_obj.NPCS[5]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[5]["DESCRIPTION"]["PERSONALIDADE"]}",
+                    f"O principal suspeito é {self.case_obj.NPCS[0]["NAME"]} é {self.case_obj.NPCS[0]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[0]["DESCRIPTION"]["PERSONALIDADE"]}..",
+                    "faça a escolha certa Espector."
+                ]
             self.npc_cop.render()
             self.npc_cop.dialog(self.dialog_instructions, self.continue_input)
             if self.continue_input: self.continue_input = False
@@ -144,7 +160,7 @@ class GAME():
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(5)
         elif self.game_part["suspects_list"]:
             self.display.blit(self.background_1img, self.background_1rect)
-            for i in range(len(self.case_obj.NPCS)):
+            for i in range(len(self.case_obj.NPCS)-1):
                 self.npc_objs[i].render()
                 self.npc_objs[i].update()
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)

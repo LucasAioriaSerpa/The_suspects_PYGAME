@@ -122,103 +122,106 @@
       }
     },
     "CASO_ESFAQUEADO": {
-      "CAUSA_DA_MORTE": "4 morreu esfaqueado em seu quarto",
-      "EVIDENCIAS_VERDADES": [
-        {
-          "DIALOG": ["2","Eu estava na sala, meio distraído com o video game, mas notei quem entrou e saiu da sala. E agora que penso bem... o 3 não apareceu por lá enquanto eu estava. Pode ter sido apenas uma coincidencia, claro. Isso foi um pouco antes do 0 chegar para jogar comigo."],
-          "FRASE": "2 não viu o 3 na sala logo 3 matou 4",
-          "PREMISSA": "~1 IF 2"
-        },
-        {
-          "DIALOG": ["1","Olha, eu vi o 5 indo em direção ao quarto antes de tudo acontecer. Sei lá, talvez ele só tenha passado por lá por acaso. Mas, enfim, vai ver ele só estava no lugar errado, na hora errada."],
-          "FRASE": "Se 5 foi ao quarto minutos antes do esfaqueamento então 5 é um possível cumplice",
-          "PREMISSA": "3 IF 4"
-        },
-        {
-          "DIALOG": ["0","Eu saí do quarto para jogar um pouco de videogame com o 2 na sala, então acho que cruzei com quase todo mundo. Sabe como é, em um momento ou outro, vi o 3 e o 4 por ali também... parecia tudo normal, pelo menos naquela hora."],
-          "FRASE": "Se 0 saiu do quarto para jogar video game com o 2 na sala então 2 não viu 3 e 4",
-          "PREMISSA": "5 IF ~6"
-        },
-        {
-          "DIALOG": ["2","Sabe, ouvi rumores de que o 3 tinha uma divida com o 4, uma boa quantia de dinheiro ele devia. Mas, claro, isso é só o que se comenta, não que eu esteja dizendo que ele tenha algo a ver com o 4."],
-          "FRASE": "Se 3 devia dinheiro para o 4 então 3 matou 4",
-          "PREMISSA": "7 IF 2"
-        },
-        {
-          "DIALOG": ["5","Eu só queria lembrar que o 0 e o 1 são sócios de uma loja de facas muito renomada na cidade. Sempre achei curioso como eles têm acesso a essas coisas, mas isso não significa nada, certo?"],
-          "FRASE": "0 e 1 são sócios de uma loja de facas renomada na cidade",
-          "PREMISSA": "8 AND 9"
-        },
-        {
-          "DIALOG": ["1","Estávamos eu e o 0 conversando sobre as finanças da nossa loja de facas, antes de ele ir jogar video game com o 2. Mas, sinceramente, estávamos apenas discutindo números e nada mais."],
-          "FRASE": "Se 1 e 0 estavam conversando sobre os assuntos financeiros de sua loja de facas logo 1 e 0 são inocentes",
-          "PREMISSA": "0 IF 10"
-        }
-      ],
-      "EVIDENCIAS_CONFLITANTES": [
-        {
-          "DIALOG": ["0", "Olha, eu sou realmente viciado em videogame. Passo horas jogando e às vezes acabo perdendo a noção do tempo."],
-          "FRASE": "0 é viciado em video game",
-          "PREMISSA": null
-        },
-        {
-          "DIALOG": ["1", "Olha, eu realmente odeio ratos. Eles me dão arrepios só de pensar. E o 4, por outro lado, sempre teve um pavor enorme de baratas."],
-          "FRASE": "1 odeia ratos e 4 tem pavor de baratas",
-          "PREMISSA": null
-        },
-        {
-          "DIALOG": ["2", "Acho que é bom mencionar que eu sou formado em administração. Isso me ajudou a entender como algumas coisas funcionam, tanto nos negócios quanto na vida."],
-          "FRASE": "2 é formado em administração",
-          "PREMISSA": null
-        },
-        {
-          "DIALOG": ["3", "Todo dia de manhã, faço questão de ler o jornal. É uma maneira de me manter informado sobre o que está acontecendo na cidade e no mundo."],
-          "FRASE": "3 lê jornal todas as manhãs",
-          "PREMISSA": null
-        },
-        {
-          "DIALOG": ["5", "É curioso notar que o 0 e o 2 sempre andam com uma arma de choque no bolso da blusa. Não sei se é por segurança ou só um hábito deles, mas isso sempre me chamou a atenção."],
-          "FRASE": "0 e 2 sempre andam com uma arma de choque no bolso da blusa",
-          "PREMISSA": null
-        },
-        {
-          "DIALOG": ["0", "Eu sempre achei interessante que o 5 tem vários animais de estimação, como coelhos, papagaios e até mesmo uma cobra. É um gosto peculiar, mas quem sou eu para julgar?"],
-          "FRASE": "5 tem vários animais de estimação incluindo coelhos, papagaios e até mesmo uma cobra",
-          "PREMISSA": null
-        }
-      ],
-      "EVIDENCIAS_FALSAS": [
-        {
-          "DIALOG": ["3", "Olha, ouvi por aí que o 0 anda sempre com uma arma de choque. É interessante pensar que, se alguém tem uma coisa dessas, poderia fazer algo inesperado, não?"],
-          "FRASE": "Se 0 anda com uma arma de choque então 0 matou 4 eletrocutado",
-          "PREMISSA": "0 IF 2"
-        },
-        {
-          "DIALOG": ["5", "Olha, eu não posso afirmar com certeza, mas parece que o 0 estava no quarto momentos antes do assassinato do 4. Se ele estava lá, bem... pode ser que ele tenha tido a oportunidade de fazer algo."],
-          "FRASE": "Se 0 estava no quarto momentos antes do assassinato então 0 matou o 4",
-          "PREMISSA": "3 IF 4"
-        },
-        {
-          "DIALOG": ["3", "É curioso pensar que, se o 4 não gostasse do 1, isso poderia ter gerado uma situação tensa entre eles. Quem sabe o que pode ter acontecido em um momento de raiva?"],
-          "FRASE": "Se 4 não gostava do 1 então 1 matou o 4",
-          "PREMISSA": "5 IF 6"
-        },
-        {
-          "DIALOG": ["5", "Olha, eu só estou dizendo que, se o 2 anda por aí com uma arma de choque, é um pouco suspeito, não acha? Pode ser que, em um momento de descontrole, ele tenha usado isso contra o 4."],
-          "FRASE": "Se 2 anda com uma arma de choque então 2 matou 4 eletrocutado",
-          "PREMISSA": "7 IF 2"
-        },
-        {
-          "DIALOG": ["3", "Eu não posso deixar de notar que, se o 0 tem uma loja de facas, isso pode levantar algumas questões. Fica a pergunta: quem mais teria acesso a uma faca na hora do crime?"],
-          "FRASE": "Se 0 tem uma loja de facas então 0 matou o 4",
-          "PREMISSA": "8 IF 6"
-        },
-        {
-          "DIALOG": ["5", "É interessante pensar que, se o 1 realmente gosta de estudar química, isso poderia dar a ele algumas idéias sobre como envenenar alguém. Mas, olha, isso é apenas uma hipótese."],
-          "FRASE": "Se 1 gosta de estudar quimica então 1 envenenou 4",
-          "PREMISSA": "1 IF 9"
-        }
-      ]
+      "CAUSA_DA_MORTE": "4 morreu esfaqueado(a) em seu $",
+      "EVIDENCIAS": {
+        "EVIDENCIAS_VERDADES": [
+          {
+            "DIALOG": ["2","Eu estava na sala, meio distraído com o video game, mas notei quem entrou e saiu da sala. E agora que penso bem... o 3 não apareceu por lá enquanto eu estava. Pode ter sido apenas uma coincidencia, claro. Isso foi um pouco antes do 0 chegar para jogar comigo."],
+            "FRASE": "2 não viu o 3 na sala logo 3 matou 4",
+            "PREMISSA": "~1 IF 2"
+          },
+          {
+            "DIALOG": ["1","Olha, eu vi o 5 indo em direção ao $ antes de tudo acontecer. Sei lá, talvez ele só tenha passado por lá por acaso. Mas, enfim, vai ver ele só estava no lugar errado, na hora errada."],
+            "FRASE": "Se 5 foi ao $ minutos antes no esfaqueamento então 5 é um possível cumplice",
+            "PREMISSA": "3 IF 4"
+          },
+          {
+            "DIALOG": ["0","Eu saí do $ para jogar um pouco de videogame com o 2 na sala, então acho que cruzei com quase todo mundo. Sabe como é, em um momento ou outro, vi o 3 e o 4 por ali também... parecia tudo normal, pelo menos naquela hora."],
+            "FRASE": "Se 0 saiu do $ para jogar video game com o 2 na sala então 0 viu 3 e 4",
+            "PREMISSA": "5 IF 6"
+          },
+          {
+            "DIALOG": ["2","Sabe, ouvi rumores de que o 3 tinha uma divida com o 4, uma boa quantia de dinheiro ele devia. Mas, claro, isso é só o que se comenta, não que eu esteja dizendo que ele tenha algo a ver com o 4."],
+            "FRASE": "Se 3 devia dinheiro para o 4 então 3 matou 4",
+            "PREMISSA": "7 IF 2"
+          },
+          {
+            "DIALOG": ["5","Eu só queria lembrar que o 0 e o 1 são sócios de uma loja de facas muito renomada na cidade. Sempre achei curioso como eles têm acesso a essas coisas, mas isso não significa nada, certo?"],
+            "FRASE": "0 e 1 são sócios de uma loja de facas renomada na cidade",
+            "PREMISSA": "8 AND 9"
+          },
+          {
+            "DIALOG": ["1","Estávamos eu e o 0 conversando sobre as finanças da nossa loja de facas, antes de ele ir jogar video game com o 2. Mas, sinceramente, estávamos apenas discutindo números e nada mais."],
+            "FRASE": "Se 1 e 0 estavam conversando sobre os assuntos financeiros de sua loja de facas logo 1 e 0 são inocentes",
+            "PREMISSA": "0 IF 10"
+          }
+        ],
+        "EVIDENCIAS_CONFLITANTES": [
+          {
+            "DIALOG": ["0", "Olha, eu sou realmente viciado em videogame. Passo horas jogando e às vezes acabo perdendo a noção do tempo."],
+            "FRASE": "0 é viciado em video game",
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["1", "Olha, eu realmente odeio ratos. Eles me dão arrepios só de pensar. E o 4, por outro lado, sempre teve um pavor enorme de baratas."],
+            "FRASE": "1 odeia ratos e 4 tem pavor de baratas",
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["2", "Acho que é bom mencionar que eu sou formado em administração. Isso me ajudou a entender como algumas coisas funcionam, tanto nos negócios quanto na vida."],
+            "FRASE": "2 é formado em administração",
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["3", "Todo dia de manhã, faço questão de ler o jornal. É uma maneira de me manter informado sobre o que está acontecendo na cidade e no mundo."],
+            "FRASE": "3 lê jornal todas as manhãs",
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["5", "É curioso notar que o 0 e o 2 sempre andam com uma arma de choque no bolso da blusa. Não sei se é por segurança ou só um hábito deles, mas isso sempre me chamou a atenção."],
+            "FRASE": "0 e 2 sempre andam com uma arma de choque no bolso da blusa",
+            "PREMISSA": null
+          },
+          {
+            "DIALOG": ["0", "Eu sempre achei interessante que o 5 tem vários animais de estimação, como coelhos, papagaios e até mesmo uma cobra. É um gosto peculiar, mas quem sou eu para julgar?"],
+            "FRASE": "5 tem vários animais de estimação incluindo coelhos, papagaios e até mesmo uma cobra",
+            "PREMISSA": null
+          }
+        ],
+        "EVIDENCIAS_FALSAS": [
+          {
+            "DIALOG": ["3", "Olha, ouvi por aí que o 0 anda sempre com uma arma de choque. É interessante pensar que, se alguém tem uma coisa dessas, poderia fazer algo inesperado, não?"],
+            "FRASE": "Se 0 anda com uma arma de choque então 0 matou 4 eletrocutado",
+            "PREMISSA": "0 IF 2"
+          },
+          {
+            "DIALOG": ["5", "Olha, eu não posso afirmar com certeza, mas parece que o 0 estava no $ momentos antes do assassinato do 4. Se ele estava lá, bem... pode ser que ele tenha tido a oportunidade de fazer algo."],
+            "FRASE": "Se 0 estava no $ momentos antes do assassinato então 0 matou o 4",
+            "PREMISSA": "3 IF 4"
+          },
+          {
+            "DIALOG": ["3", "É curioso pensar que, se o 4 não gostasse do 1, isso poderia ter gerado uma situação tensa entre eles. Quem sabe o que pode ter acontecido em um momento de raiva?"],
+            "FRASE": "Se 4 não gostava do 1 então 1 matou o 4",
+            "PREMISSA": "5 IF 6"
+          },
+          {
+            "DIALOG": ["5", "Olha, eu só estou dizendo que, se o 2 anda por aí com uma arma de choque, é um pouco suspeito, não acha? Pode ser que, em um momento de descontrole, ele tenha usado isso contra o 4."],
+            "FRASE": "Se 2 anda com uma arma de choque então 2 matou 4 eletrocutado",
+            "PREMISSA": "7 IF 2"
+          },
+          {
+            "DIALOG": ["3", "Eu não posso deixar de notar que, se o 0 tem uma loja de facas, isso pode levantar algumas questões. Fica a pergunta: quem mais teria acesso a uma faca na hora do crime?"],
+            "FRASE": "Se 0 tem uma loja de facas então 0 matou o 4",
+            "PREMISSA": "8 IF 6"
+          },
+          {
+            "DIALOG": ["5", "É interessante pensar que, se o 1 realmente gosta de estudar química, isso poderia dar a ele algumas idéias sobre como envenenar alguém. Mas, olha, isso é apenas uma hipótese."],
+            "FRASE": "Se 1 gosta de estudar quimica então 1 envenenou 4",
+            "PREMISSA": "1 IF 9"
+          }
+        ]
+      }
+
     }
   }
 }

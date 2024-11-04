@@ -63,6 +63,8 @@ class text_fonts():
             for words in lines:
                 if words == "envenenado(a)":
                     highlight_color = "#00FF00"
+                if words == "esfaqueado(a)":
+                    highlight_color = "#FF0000"
                 else: highlight_color = self.f_info["color"]
                 self.f_surface = self.f_obj.render(words, self.f_info["antialias"], highlight_color).convert()
                 word_pos = self.f_surface.get_size()
