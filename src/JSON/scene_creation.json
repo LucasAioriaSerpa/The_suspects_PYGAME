@@ -12,8 +12,8 @@
         "X", "Y", "Z"
       ],
       "NUMBER": [
-        "0", "1", "2", "3", "4",
-        "5", "6", "7", "8", "9", "10"
+        "0", "1", "2", "3", "4","5", 
+        "6", "7", "8", "9", "10", "11"
       ],
       "OPERATORS": ["IF", "ELSEIF", "NOT", "AND", "OR"]
     },
@@ -153,7 +153,7 @@
           {
             "DIALOG": ["1","Estávamos eu e o 4 conversando sobre as pessoas que possuiam dividas em nossa loja de facas, inclusive a divida que o 3 tinha conosco. Mas, sinceramente, estávamos apenas discutindo números e nada mais."],
             "FRASE": "Se 1 e 4 estavam conversando sobre as dividas de sua loja de facas logo 3 devia para 1 e 4",
-            "PREMISSA": "0 IF 10"
+            "PREMISSA": "(0 AND 10) IF 11"
           }
         ],
         "EVIDENCIAS_CONFLITANTES": [
