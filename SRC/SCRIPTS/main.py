@@ -22,6 +22,8 @@ class Game:
         pyg.init()
         pyg.mouse.set_visible(False)
         pyg.display.set_caption("Project ttg")
+        icon_game = pyg.image.load("src/IMAGES/icon_THESUS.png")
+        pyg.display.set_icon(icon_game)
         self.screen = pyg.display.set_mode(self.RESOLUTION)
         self.display = pyg.Surface((self.screen.get_width()/self.size_scale, self.screen.get_height()/self.size_scale)).convert()
         self.clock = pyg.time.Clock()

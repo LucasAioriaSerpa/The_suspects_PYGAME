@@ -67,6 +67,10 @@ class GAME():
         self.npc_selected = None
         self.npc_dialog = []
         self.npc_dialog_flag = False
+        self.info_text = _util.text_fonts(self.display, "Pixel-Noir.ttf", 5, self.half_screen, "Info", False, "#ffffff")
+        self.info_button = _util.button_rect(self.display, (45,10), self.half_screen, "#000000", self.info_text)
+        self.info_dialog = []
+        self.info_flag = False
         self.interrogate_text = _util.text_fonts(self.display, "Pixel-Noir.ttf", 5, self.half_screen, "Interrogar", False, "#ffffff")
         self.interrogate_button = _util.button_rect(self.display, (45,10), self.half_screen, "#000000", self.interrogate_text)
         self.acusar_text = _util.text_fonts(self.display, "Pixel-Noir.ttf", 5, self.half_screen, "Acusar", False, '#ffffff')
@@ -219,6 +223,9 @@ class GAME():
                 if self.npc_objs[j].check_collision(self.mouse_obj) and self.mouse_obj.clicked:
                         new_pos = (self.npc_objs[j].npc_pos[0]+30, self.npc_objs[j].npc_pos[1]-40)
                         self.npc_selected = j
+                        self.info_button.b_pos = (new_pos[0], new_pos[1]-20)
+                        self.info_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]-20)
+                        self.info_button.b_text_obj.f_animation["frame"] = 0
                         self.interrogate_button.b_pos = new_pos
                         self.interrogate_button.b_text_obj.f_pos = new_pos
                         self.interrogate_button.b_text_obj.f_animation["frame"] = 0
@@ -229,6 +236,20 @@ class GAME():
                 else: self.npc_objs[j].selected = False
             if self.acusar_interrogate_buttons_apear:
                 self.npc_objs[self.npc_selected].selected = True
+                #! INFO
+                if self.info_button.check_collision(self.mouse_obj):
+                    self.info_button.outline(2, "#000000")
+                    self.info_button.b_color = "#ffffff"
+                    self.info_button.b_text_obj.f_info["color"] = "#000000"
+                    if self.mouse_obj.clicked:
+                        self.info_dialog = [f"{self.npc_objs[self.npc_selected].npc_info["NAME"]} é..",
+                                            f"{self.npc_objs[self.npc_selected].npc_info["DESCRIPTION"]["OCUPACAO"]}, {self.npc_objs[self.npc_selected].npc_info["DESCRIPTION"]["PERSONALIDADE"]}."]
+                        self.info_flag = True
+                        return
+                else:
+                    self.info_button.outline(2, "#ffffff")
+                    self.info_button.b_color = "#000000"
+                    self.info_button.b_text_obj.f_info["color"] = "#ffffff"
                 #! INTERROGAR
                 if self.interrogate_button.check_collision(self.mouse_obj):
                     self.interrogate_button.outline(2, "#000000")
@@ -269,6 +290,12 @@ class GAME():
                     self.acusar_button.outline(2, "#ffffff")
                     self.acusar_button.b_color = "#000000"
                     self.acusar_button.b_text_obj.f_info["color"] = "#ffffff"
+                if self.info_flag:
+                    if len(self.info_dialog) == self.npc_objs[self.npc_selected].npc_dialog["part"]:
+                        self.info_flag = False
+                        self.npc_objs[self.npc_selected].npc_dialog["part"] = 0
+                    self.npc_objs[self.npc_selected].dialog(self.info_dialog, self.continue_input)
+                    if self.continue_input: self.continue_input = False
                 if self.npc_dialog_flag:
                     if len(self.npc_dialog[0]) == self.npc_objs[self.npc_selected].npc_dialog["part"]:
                         self.player_dialog = [self.npc_dialog[1]["FRASE"]]
@@ -286,13 +313,16 @@ class GAME():
                         return
                     self.player_obj.dialog(self.player_dialog, self.continue_input)
                     if self.continue_input: self.continue_input = False
+                self.info_button.render(False, True, 5)
+                self.info_button.update()
+                self.info_button.b_text_obj.update()
                 self.interrogate_button.render(False, True, 5)
                 self.interrogate_button.update()
                 self.interrogate_button.b_text_obj.update()
                 self.acusar_button.render(False, True, 5)
                 self.acusar_button.update()
                 self.acusar_button.b_text_obj.update()
-            if not (self.npc_dialog_flag or self.player_dialog_flag):
+            if not (self.npc_dialog_flag or self.player_dialog_flag or self.info_flag):
                 self.player_info_string = f"Dia:{self.player_obj.player_info["day"]} -- Dinheiro: $ {self.player_obj.player_info["money"]} -- interrogatorios: {self.player_obj.player_info["number_of_interrogations"]} -- Vidas: {self.player_obj.player_info["vidas"]}"
                 self.player_info_text.f_info["text"] = self.player_info_string
                 self.player_info_text.apear(4)
@@ -338,10 +368,18 @@ class GAME():
         self.game_over_text.apear(6)
         self.game_over_text.render(False)
         self.game_over_text.update()
+        self.score_board = [
+            f"Dias: {self.player_obj.player_info["day"]}",
+            f"Casos won: {self.player_obj.player_info["casos_won"]}   Casos lost: {self.player_obj.player_info["casos_lost"]}",
+            f"Dinheiro: {self.player_obj.player_info["money"]}   Vidas: {self.player_obj.player_info["vidas"]}",
+        ]
+        self.score_board_texts[0].f_info["text"] = self.score_board[0]
+        self.score_board_texts[1].f_info["text"] = self.score_board[1]
+        self.score_board_texts[2].f_info["text"] = self.score_board[2]
         for i in range(3):
+            self.score_board_texts[i].update()
             self.score_board_texts[i].apear(3)
             self.score_board_texts[i].render(False)
-            self.score_board_texts[i].update()
         if self.exit_button.check_collision(self.mouse_obj):
             self.exit_button.outline(2,"#000000")
             self.exit_button.b_color = "#ffffff"
