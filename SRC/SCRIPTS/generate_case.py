@@ -23,11 +23,15 @@ class CASE():
         match self.CASO["DEATH_CASE"]:
             case "Envenenado":
                 if npc == 0:
-                    self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][2]
+                    self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][3]
                     #?debug: npc_str = f"{f"{self.NPCS[npc]["NAME"]}":<20}||     {f"{self.NPCS[npc]["DESCRIPTION"]}":<90}||      {self.NPCS[npc]["TYPE"]}"
                     #?debug: print(f"0-Vitima:                 {npc_str}")
                 elif npc == 1:
                     self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][0]
+                    #?debug: npc_str = f"{f"{self.NPCS[npc]["NAME"]}":<20}||     {f"{self.NPCS[npc]["DESCRIPTION"]}":<90}||      {self.NPCS[npc]["TYPE"]}"
+                    #?debug: print(f"1-Assassino:              {npc_str}")
+                elif npc == 4:
+                    self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][2]
                     #?debug: npc_str = f"{f"{self.NPCS[npc]["NAME"]}":<20}||     {f"{self.NPCS[npc]["DESCRIPTION"]}":<90}||      {self.NPCS[npc]["TYPE"]}"
                     #?debug: print(f"1-Assassino:              {npc_str}")
                 else:
@@ -36,7 +40,7 @@ class CASE():
                     #?debug: print(f"2-Testemunha:             {npc_str}")
             case "Esfaqueado":
                 if npc == 4:
-                    self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][2]
+                    self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][3]
                 elif npc == 3:
                     self.NPCS[npc]["TYPE"] = self.SCENE_VALUES["CASO"]["NPC_TYPES"][0]
                 else:
@@ -67,9 +71,11 @@ class CASE():
         for i in range(len(parts_list)):
             for evidence in self.EVIDENCE_VALUES[parts_list[i]]:
                 index_evi = self.EVIDENCE_VALUES[parts_list[i]].index(evidence)
-                self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1].replace("$", f"{self.CASO["DEATH_PLACE"]}")
+                for j in range(len(self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1])):
+                    self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1][j] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1][j].replace("$", f"{self.CASO["DEATH_PLACE"]}")
                 for n in range(len(self.NPCS)):
-                    self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
+                    for j in range(len(self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1])):
+                        self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1][j] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1][j].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
                     self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
                 self.NPCS[int(evidence["DIALOG"][0])]["EVIDENCIA"] = [evidence["DIALOG"][1], evidence["FRASE"], evidence["PREMISSA"]]
                 #?debug: print(f"\n{parts_list[i]}: {evidence}\n")
