@@ -76,6 +76,7 @@ class CASE():
                 for n in range(len(self.NPCS)):
                     for j in range(len(self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1])):
                         self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1][j] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["DIALOG"][1][j].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
+                    self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"].replace("$", f"{self.CASO["DEATH_PLACE"]}")
                     self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"] = self.EVIDENCE_VALUES[parts_list[i]][index_evi]["FRASE"].replace(f"{n}", f"{self.NPCS[n]["NAME"]}")
                 self.NPCS[int(evidence["DIALOG"][0])]["EVIDENCIA"] = [evidence["DIALOG"][1], evidence["FRASE"], evidence["PREMISSA"]]
                 #?debug: print(f"\n{parts_list[i]}: {evidence}\n")
