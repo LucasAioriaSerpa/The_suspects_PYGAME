@@ -221,7 +221,7 @@ class GAME():
                 self.npc_objs[i].update()
             for j in range(len(self.npc_objs)):
                 if self.npc_objs[j].check_collision(self.mouse_obj) and self.mouse_obj.clicked:
-                        new_pos = (self.npc_objs[j].npc_pos[0]+30, self.npc_objs[j].npc_pos[1]-40)
+                        new_pos = (self.npc_objs[j].npc_pos[0]-20, self.npc_objs[j].npc_pos[1]-15)
                         self.npc_selected = j
                         self.info_button.b_pos = (new_pos[0], new_pos[1]-20)
                         self.info_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]-20)
