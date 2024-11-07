@@ -25,12 +25,13 @@ class Game:
         icon_game = pyg.image.load("src/IMAGES/icon_THESUS.png")
         pyg.display.set_icon(icon_game)
         self.screen = pyg.display.set_mode(self.RESOLUTION)
+        #self.orginal_screen = pyg.Surface((self.screen.get_width(), self.screen.get_height())).convert()
         self.display = pyg.Surface((self.screen.get_width()/self.size_scale, self.screen.get_height()/self.size_scale)).convert()
         self.clock = pyg.time.Clock()
         #? objects
         self.mouse_obj = _mou.MOUSE(self.display)
         self.objs_states = {
-            "menu":_menu.MENU(self.display, self.game_state),
+            "menu":_menu.MENU(self.display, self.screen, self.game_state),
             "game":_game.GAME(self.display, self.game_state)
         }
         self.objs_util = _util.utility(self.display)
@@ -42,6 +43,7 @@ class Game:
             for event in pyg.event.get():
                 if event.type == pyg.QUIT: self.end()
             self.screen.blit(pyg.transform.scale(self.display, self.screen.get_size()), (0, 0))
+            #self.screen.blit(self.orginal_screen, (0,0))
             self.clock.tick(self.FPS)
             pyg.display.update()
     def end(self):

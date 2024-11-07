@@ -4,13 +4,14 @@ import pygame as pyg, sys
 import SCRIPTS.mouse as _mou
 import SCRIPTS.utilities as _util
 class MENU():
-    def __init__(self, display:pyg.display, game_state: dict    ):
+    def __init__(self, display:pyg.display, screen:pyg.display, game_state: dict    ):
         self.display = display
+        self.screen = screen
         self.game_state = game_state
         self.mouse_obj = _mou.MOUSE(self.display)
         self.util_obj = _util.utility(self.display)
         self.half_screen = (self.display.get_width()/2, self.display.get_height()/2)
-        self.title_text = _util.text_fonts(self.display, "SEASRN__.ttf", 30, (self.half_screen[0], self.half_screen[1]-30), "The Suspects", False, "#ffffff")
+        self.title_text = _util.text_fonts(self.screen, "SEASRN__.ttf", 30, (self.half_screen[0], self.half_screen[1]-30), "The Suspects", False, "#ffffff")
         self.start_text = _util.text_fonts(self.display, "upheavtt.ttf", 20, (self.half_screen[0], self.half_screen[1]+20), "START", False, "#999999")
         self.start_button = _util.button_rect(self.display, (128,32), (self.half_screen[0], self.half_screen[1]+20), "#454545", self.start_text)
         self.exit_text = _util.text_fonts(self.display, "upheavtt.ttf", 20, (self.half_screen[0], self.half_screen[1]+60), "SAIR", False, "#999999")

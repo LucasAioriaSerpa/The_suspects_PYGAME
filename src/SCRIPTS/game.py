@@ -151,7 +151,7 @@ class GAME():
         self.display.fill('#000000')
         #? =============[ DAY-SCREEN ]=============
         if self.game_part["day_screen"]:
-            self.suspects_text()
+            self.day_screen()
         #? =============[ CASE-INTRODUCTION ]=============
         elif self.game_part["case_introduction"]:
             self.case_instruction()
