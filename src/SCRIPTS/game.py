@@ -208,130 +208,7 @@ class GAME():
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(5)
         #? =============[ SUSPECTS-LIST ]=============
         elif self.game_part["suspects_list"]:
-            self.display.blit(self.background_1img, self.background_1rect)
-            for i in range(len(self.npc_objs)):
-                if self.npc_objs[i].selected:
-                    match self.npc_objs[i].npc_info["DESCRIPTION"]["GENERO"][0].upper():
-                        case "F":
-                            self.npc_objs[i].type_int = 2
-                        case "M":
-                            self.npc_objs[i].type_int = 1
-                else: self.npc_objs[i].type_int = 0
-                self.npc_objs[i].render()
-                self.npc_objs[i].update()
-            for j in range(len(self.npc_objs)):
-                if self.npc_objs[j].check_collision(self.mouse_obj) and self.mouse_obj.clicked:
-                        new_pos = (self.npc_objs[j].npc_pos[0]-20, self.npc_objs[j].npc_pos[1]-15)
-                        self.npc_selected = j
-                        self.info_button.b_pos = (new_pos[0], new_pos[1]-20)
-                        self.info_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]-20)
-                        self.info_button.b_text_obj.f_animation["frame"] = 0
-                        self.interrogate_button.b_pos = new_pos
-                        self.interrogate_button.b_text_obj.f_pos = new_pos
-                        self.interrogate_button.b_text_obj.f_animation["frame"] = 0
-                        self.acusar_button.b_pos = (new_pos[0], new_pos[1]+20)
-                        self.acusar_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]+20)
-                        self.acusar_button.b_text_obj.f_animation["frame"] = 0
-                        self.acusar_interrogate_buttons_apear = True
-                else: self.npc_objs[j].selected = False
-            if self.acusar_interrogate_buttons_apear:
-                self.npc_objs[self.npc_selected].selected = True
-                #! INFO
-                if self.info_button.check_collision(self.mouse_obj):
-                    self.info_button.outline(2, "#000000")
-                    self.info_button.b_color = "#ffffff"
-                    self.info_button.b_text_obj.f_info["color"] = "#000000"
-                    if self.mouse_obj.clicked:
-                        self.info_dialog = [f"{self.npc_objs[self.npc_selected].npc_info["NAME"]} é..",
-                                            f"{self.npc_objs[self.npc_selected].npc_info["DESCRIPTION"]["OCUPACAO"]}, {self.npc_objs[self.npc_selected].npc_info["DESCRIPTION"]["PERSONALIDADE"]}."]
-                        self.info_flag = True
-                        return
-                else:
-                    self.info_button.outline(2, "#ffffff")
-                    self.info_button.b_color = "#000000"
-                    self.info_button.b_text_obj.f_info["color"] = "#ffffff"
-                #! INTERROGAR
-                if self.interrogate_button.check_collision(self.mouse_obj):
-                    self.interrogate_button.outline(2, "#000000")
-                    self.interrogate_button.b_color = "#ffffff"
-                    self.interrogate_button.b_text_obj.f_info["color"] = "#000000"
-                    if self.mouse_obj.clicked:
-                        self.player_dialog_flag = False
-                        match self.npc_objs[self.npc_selected].npc_info["TYPE"]:
-                            case "Assassino":
-                                op_ss = [self.case_obj.EVIDENCE_VALUES["FALSAS"], self.case_obj.EVIDENCE_VALUES["CONFLITANTES"]]
-                            case "cumplice":
-                                op_ss = [self.case_obj.EVIDENCE_VALUES["FALSAS"], self.case_obj.EVIDENCE_VALUES["CONFLITANTES"]]
-                            case "Suspeito":
-                                op_ss = [self.case_obj.EVIDENCE_VALUES["VERDADES"], self.case_obj.EVIDENCE_VALUES["CONFLITANTES"]]
-                        self.npc_dialog = self.npc_objs[self.npc_selected].generate_dialog(op_ss, self.npc_selected)
-                        self.npc_dialog_flag = True
-                        return
-                else:
-                    self.interrogate_button.outline(2, "#ffffff")
-                    self.interrogate_button.b_color = "#000000"
-                    self.interrogate_button.b_text_obj.f_info["color"] = "#ffffff"
-                #! ACUSAR
-                if self.acusar_button.check_collision(self.mouse_obj):
-                    self.acusar_button.outline(2, "#000000")
-                    self.acusar_button.b_color = "#ffffff"
-                    self.acusar_button.b_text_obj.f_info["color"] = "#000000"
-                    if self.npc_objs[self.npc_selected].npc_info["TYPE"] == "Assassino":
-                        if self.mouse_obj.clicked:
-                            self.fade_obj.fade_in(150)
-                            if self.fade_obj.fade_alpha >= 255: self.reset_values_list_npc("won")
-                            return
-                    else:
-                        if self.mouse_obj.clicked:
-                            self.fade_obj.fade_in(150)
-                            if self.fade_obj.fade_alpha >= 255: self.reset_values_list_npc("lost")
-                            return
-                else:
-                    self.acusar_button.outline(2, "#ffffff")
-                    self.acusar_button.b_color = "#000000"
-                    self.acusar_button.b_text_obj.f_info["color"] = "#ffffff"
-                if self.info_flag:
-                    if len(self.info_dialog) == self.npc_objs[self.npc_selected].npc_dialog["part"]:
-                        self.info_flag = False
-                        self.npc_objs[self.npc_selected].npc_dialog["part"] = 0
-                    self.npc_objs[self.npc_selected].dialog(self.info_dialog, self.continue_input)
-                    if self.continue_input: self.continue_input = False
-                if self.npc_dialog_flag:
-                    if len(self.npc_dialog[0]) == self.npc_objs[self.npc_selected].npc_dialog["part"]:
-                        self.player_dialog = [self.npc_dialog[1]["FRASE"]]
-                        self.player_dialog_flag = True
-                        self.npc_dialog_flag = False
-                        self.player_obj.player_info["number_of_interrogations"] -= 1
-                        self.npc_objs[self.npc_selected].npc_dialog["part"] = 0
-                        return
-                    self.npc_objs[self.npc_selected].dialog(self.npc_dialog[0], self.continue_input)
-                    if self.continue_input: self.continue_input = False
-                if self.player_dialog_flag:
-                    if len(self.player_dialog) == self.player_obj.player_dialog["part"]:
-                        self.player_obj.player_dialog["part"] = 0
-                        self.player_dialog_flag = False
-                        return
-                    self.player_obj.dialog(self.player_dialog, self.continue_input)
-                    if self.continue_input: self.continue_input = False
-                self.info_button.render(False, True, 5)
-                self.info_button.update()
-                self.info_button.b_text_obj.update()
-                self.interrogate_button.render(False, True, 5)
-                self.interrogate_button.update()
-                self.interrogate_button.b_text_obj.update()
-                self.acusar_button.render(False, True, 5)
-                self.acusar_button.update()
-                self.acusar_button.b_text_obj.update()
-            if not (self.npc_dialog_flag or self.player_dialog_flag or self.info_flag):
-                self.player_info_string = f"Dia:{self.player_obj.player_info["day"]} -- Dinheiro: $ {self.player_obj.player_info["money"]} -- interrogatorios: {self.player_obj.player_info["number_of_interrogations"]} -- Vidas: {self.player_obj.player_info["vidas"]}"
-                self.player_info_text.f_info["text"] = self.player_info_string
-                self.player_info_text.apear(4)
-                self.player_info_text.render(True)
-                self.player_info_text.update()
-                self.choose_suspect_text.apear(5)
-                self.choose_suspect_text.render(False)
-                self.choose_suspect_text.update()
-            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
+            self.suspects()
         elif self.game_part["won"]:
             if len(self.won_dialog) == self.npc_cop.npc_dialog["part"]:
                 self.fade_obj.fade_in(50)
@@ -362,6 +239,131 @@ class GAME():
             if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
         self.mouse_obj.render()
         self.mouse_obj.update(4)
+    def suspects(self):
+        self.display.blit(self.background_1img, self.background_1rect)
+        for i in range(len(self.npc_objs)):
+            if self.npc_objs[i].selected:
+                match self.npc_objs[i].npc_info["DESCRIPTION"]["GENERO"][0].upper():
+                    case "F":
+                        self.npc_objs[i].type_int = 2
+                    case "M":
+                        self.npc_objs[i].type_int = 1
+            else: self.npc_objs[i].type_int = 0
+            self.npc_objs[i].render()
+            self.npc_objs[i].update()
+        for j in range(len(self.npc_objs)):
+            if self.npc_objs[j].check_collision(self.mouse_obj) and self.mouse_obj.clicked:
+                    new_pos = (self.npc_objs[j].npc_pos[0]-20, self.npc_objs[j].npc_pos[1]-15)
+                    self.npc_selected = j
+                    self.info_button.b_pos = (new_pos[0], new_pos[1]-20)
+                    self.info_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]-20)
+                    self.info_button.b_text_obj.f_animation["frame"] = 0
+                    self.interrogate_button.b_pos = new_pos
+                    self.interrogate_button.b_text_obj.f_pos = new_pos
+                    self.interrogate_button.b_text_obj.f_animation["frame"] = 0
+                    self.acusar_button.b_pos = (new_pos[0], new_pos[1]+20)
+                    self.acusar_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]+20)
+                    self.acusar_button.b_text_obj.f_animation["frame"] = 0
+                    self.acusar_interrogate_buttons_apear = True
+            else: self.npc_objs[j].selected = False
+        if self.acusar_interrogate_buttons_apear:
+            self.npc_objs[self.npc_selected].selected = True
+            #! INFO
+            if self.info_button.check_collision(self.mouse_obj):
+                self.info_button.outline(2, "#000000")
+                self.info_button.b_color = "#ffffff"
+                self.info_button.b_text_obj.f_info["color"] = "#000000"
+                if self.mouse_obj.clicked:
+                    self.info_dialog = [f"{self.npc_objs[self.npc_selected].npc_info["NAME"]} é..",
+                                        f"{self.npc_objs[self.npc_selected].npc_info["DESCRIPTION"]["OCUPACAO"]}, {self.npc_objs[self.npc_selected].npc_info["DESCRIPTION"]["PERSONALIDADE"]}."]
+                    self.info_flag = True
+                    return
+            else:
+                self.info_button.outline(2, "#ffffff")
+                self.info_button.b_color = "#000000"
+                self.info_button.b_text_obj.f_info["color"] = "#ffffff"
+            #! INTERROGAR
+            if self.interrogate_button.check_collision(self.mouse_obj):
+                self.interrogate_button.outline(2, "#000000")
+                self.interrogate_button.b_color = "#ffffff"
+                self.interrogate_button.b_text_obj.f_info["color"] = "#000000"
+                if self.mouse_obj.clicked:
+                    self.player_dialog_flag = False
+                    match self.npc_objs[self.npc_selected].npc_info["TYPE"]:
+                        case "Assassino":
+                            op_ss = [self.case_obj.EVIDENCE_VALUES["FALSAS"], self.case_obj.EVIDENCE_VALUES["CONFLITANTES"]]
+                        case "cumplice":
+                            op_ss = [self.case_obj.EVIDENCE_VALUES["FALSAS"], self.case_obj.EVIDENCE_VALUES["CONFLITANTES"]]
+                        case "Suspeito":
+                            op_ss = [self.case_obj.EVIDENCE_VALUES["VERDADES"], self.case_obj.EVIDENCE_VALUES["CONFLITANTES"]]
+                    self.npc_dialog = self.npc_objs[self.npc_selected].generate_dialog(op_ss, self.npc_selected)
+                    self.npc_dialog_flag = True
+                    return
+            else:
+                self.interrogate_button.outline(2, "#ffffff")
+                self.interrogate_button.b_color = "#000000"
+                self.interrogate_button.b_text_obj.f_info["color"] = "#ffffff"
+            #! ACUSAR
+            if self.acusar_button.check_collision(self.mouse_obj):
+                self.acusar_button.outline(2, "#000000")
+                self.acusar_button.b_color = "#ffffff"
+                self.acusar_button.b_text_obj.f_info["color"] = "#000000"
+                if self.npc_objs[self.npc_selected].npc_info["TYPE"] == "Assassino":
+                    if self.mouse_obj.clicked:
+                        self.fade_obj.fade_in(150)
+                        if self.fade_obj.fade_alpha >= 255: self.reset_values_list_npc("won")
+                        return
+                else:
+                    if self.mouse_obj.clicked:
+                        self.fade_obj.fade_in(150)
+                        if self.fade_obj.fade_alpha >= 255: self.reset_values_list_npc("lost")
+                        return
+            else:
+                self.acusar_button.outline(2, "#ffffff")
+                self.acusar_button.b_color = "#000000"
+                self.acusar_button.b_text_obj.f_info["color"] = "#ffffff"
+            if self.info_flag:
+                if len(self.info_dialog) == self.npc_objs[self.npc_selected].npc_dialog["part"]:
+                    self.info_flag = False
+                    self.npc_objs[self.npc_selected].npc_dialog["part"] = 0
+                self.npc_objs[self.npc_selected].dialog(self.info_dialog, self.continue_input)
+                if self.continue_input: self.continue_input = False
+            if self.npc_dialog_flag:
+                if len(self.npc_dialog[0]) == self.npc_objs[self.npc_selected].npc_dialog["part"]:
+                    self.player_dialog = [self.npc_dialog[1]["FRASE"]]
+                    self.player_dialog_flag = True
+                    self.npc_dialog_flag = False
+                    self.player_obj.player_info["number_of_interrogations"] -= 1
+                    self.npc_objs[self.npc_selected].npc_dialog["part"] = 0
+                    return
+                self.npc_objs[self.npc_selected].dialog(self.npc_dialog[0], self.continue_input)
+                if self.continue_input: self.continue_input = False
+            if self.player_dialog_flag:
+                if len(self.player_dialog) == self.player_obj.player_dialog["part"]:
+                    self.player_obj.player_dialog["part"] = 0
+                    self.player_dialog_flag = False
+                    return
+                self.player_obj.dialog(self.player_dialog, self.continue_input)
+                if self.continue_input: self.continue_input = False
+            self.info_button.render(False, True, 5)
+            self.info_button.update()
+            self.info_button.b_text_obj.update()
+            self.interrogate_button.render(False, True, 5)
+            self.interrogate_button.update()
+            self.interrogate_button.b_text_obj.update()
+            self.acusar_button.render(False, True, 5)
+            self.acusar_button.update()
+            self.acusar_button.b_text_obj.update()
+        if not (self.npc_dialog_flag or self.player_dialog_flag or self.info_flag):
+            self.player_info_string = f"Dia:{self.player_obj.player_info["day"]} -- Dinheiro: $ {self.player_obj.player_info["money"]} -- interrogatorios: {self.player_obj.player_info["number_of_interrogations"]} -- Vidas: {self.player_obj.player_info["vidas"]}"
+            self.player_info_text.f_info["text"] = self.player_info_string
+            self.player_info_text.apear(4)
+            self.player_info_text.render(True)
+            self.player_info_text.update()
+            self.choose_suspect_text.apear(5)
+            self.choose_suspect_text.render(False)
+            self.choose_suspect_text.update()
+        if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
     def game_over(self):
         self.display.blit(self.display, (0,0))
         self.display.fill("#ffffff")
