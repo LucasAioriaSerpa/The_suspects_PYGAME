@@ -151,94 +151,74 @@ class GAME():
         self.display.fill('#000000')
         #? =============[ DAY-SCREEN ]=============
         if self.game_part["day_screen"]:
-            self.day_text.render(False)
-            self.day_text.update()
-            if self.day_text.apear(15):
-                self.continue_case.apear(5)
-                self.continue_case.render(False)
-                self.continue_case.update()
-                if self.continue_input:
-                    self.fade_obj.fade_in(45)
-                    if self.fade_obj.fade_alpha >= 255:
-                        self.continue_input = False
-                        self.game_part["day_screen"] = False
-                        self.game_part["case_introduction"] = True
-                        self.npc_cop.npc_dialog["part"] = 0
-                    return
-            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
+            self.suspects_text()
         #? =============[ CASE-INTRODUCTION ]=============
         elif self.game_part["case_introduction"]:
-            self.display.blit(self.background_1img, self.background_1rect)
-            if len(self.dialog_instructions) == self.npc_cop.npc_dialog["part"]:
-                self.fade_obj.fade_in(45)
-                if self.fade_obj.fade_alpha >= 255:
-                    self.continue_input = False
-                    self.game_part["case_introduction"] = False
-                    self.game_part["suspects_list"] = True
-                    self.npc_cop.npc_dialog["part"] = 0
-                return
-            if self.case_obj.CASO["DEATH_CASE"] == "Envenenado":
-                self.dialog_instructions = [
-                    "Boa noite Espector..",
-                    f"hoje o caso {self.case_obj.CASO["DEATH_DIALOG"]}..",
-                    "Os suspeitos são..",
-                    f"{self.case_obj.NPCS[1]["NAME"]} é {self.case_obj.NPCS[1]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[1]["DESCRIPTION"]["PERSONALIDADE"]}",
-                    f"{self.case_obj.NPCS[2]["NAME"]} é {self.case_obj.NPCS[2]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[2]["DESCRIPTION"]["PERSONALIDADE"]}",
-                    f"{self.case_obj.NPCS[4]["NAME"]} é {self.case_obj.NPCS[4]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[4]["DESCRIPTION"]["PERSONALIDADE"]}",
-                    f"{self.case_obj.NPCS[5]["NAME"]} é {self.case_obj.NPCS[5]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[5]["DESCRIPTION"]["PERSONALIDADE"]}",
-                    f"O principal suspeito é {self.case_obj.NPCS[3]["NAME"]} é {self.case_obj.NPCS[3]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[3]["DESCRIPTION"]["PERSONALIDADE"]}..",
-                    "faça a escolha certa Espector."
-                ]
-            if self.case_obj.CASO["DEATH_CASE"] == "Esfaqueado":
-                self.dialog_instructions = [
-                    "Boa noite Esppector..",
-                    f"hoje o caso {self.case_obj.CASO["DEATH_DIALOG"]}..",
-                    "Os suspeitos são..",
-                    f"{self.case_obj.NPCS[1]["NAME"]} é {self.case_obj.NPCS[1]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[1]["DESCRIPTION"]["PERSONALIDADE"]}",
-                    f"{self.case_obj.NPCS[2]["NAME"]} é {self.case_obj.NPCS[2]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[2]["DESCRIPTION"]["PERSONALIDADE"]}",
-                    f"{self.case_obj.NPCS[3]["NAME"]} é {self.case_obj.NPCS[3]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[3]["DESCRIPTION"]["PERSONALIDADE"]}",
-                    f"{self.case_obj.NPCS[5]["NAME"]} é {self.case_obj.NPCS[5]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[5]["DESCRIPTION"]["PERSONALIDADE"]}",
-                    f"O principal suspeito é {self.case_obj.NPCS[0]["NAME"]} é {self.case_obj.NPCS[0]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[0]["DESCRIPTION"]["PERSONALIDADE"]}..",
-                    "faça a escolha certa Espector."
-                ]
-            self.npc_cop.render()
-            self.npc_cop.dialog(self.dialog_instructions, self.continue_input)
-            if self.continue_input: self.continue_input = False
-            self.npc_cop.update()
-            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(5)
+            self.case_instruction()
         #? =============[ SUSPECTS-LIST ]=============
         elif self.game_part["suspects_list"]:
             self.suspects()
         elif self.game_part["won"]:
-            if len(self.won_dialog) == self.npc_cop.npc_dialog["part"]:
-                self.fade_obj.fade_in(50)
-                if self.fade_obj.fade_alpha >= 255: self.reset_values_game("won")
-                return
-            self.npc_cop.render()
-            self.npc_cop.dialog(self.won_dialog, self.continue_input)
-            if self.continue_input: self.continue_input = False
-            if self.fade_obj.fade_alpha >= 0:
-                self.fade_obj.fade_out(3)
-                self.player_obj.player_info["money"] += 20
-                self.player_obj.player_info["casos_won"] += 1
+            self.won()
         elif self.game_part["lost"]:
-            if len(self.lost_dialog) == self.npc_cop.npc_dialog["part"]:
-                self.fade_obj.fade_in(50)
-                if self.fade_obj.fade_alpha >= 255:
-                    self.reset_values_game("lost")
-                    if self.player_obj.player_info["vidas"] <= 0:
-                        self.parts["gaming"] = False
-                        self.parts["game_over"] = True
-                        return
-                    self.player_obj.player_info["vidas"] -= 1
-                    self.player_obj.player_info["casos_lost"] += 1
-                return
-            self.npc_cop.render()
-            self.npc_cop.dialog(self.lost_dialog, self.continue_input)
-            if self.continue_input: self.continue_input = False
-            if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
+            self.lost()
         self.mouse_obj.render()
         self.mouse_obj.update(4)
+    def day_screen(self):
+        self.day_text.render(False)
+        self.day_text.update()
+        if self.day_text.apear(15):
+            self.continue_case.apear(5)
+            self.continue_case.render(False)
+            self.continue_case.update()
+            if self.continue_input:
+                self.fade_obj.fade_in(45)
+                if self.fade_obj.fade_alpha >= 255:
+                    self.continue_input = False
+                    self.game_part["day_screen"] = False
+                    self.game_part["case_introduction"] = True
+                    self.npc_cop.npc_dialog["part"] = 0
+                return
+        if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
+    def case_instruction(self):
+        self.display.blit(self.background_1img, self.background_1rect)
+        if len(self.dialog_instructions) == self.npc_cop.npc_dialog["part"]:
+            self.fade_obj.fade_in(45)
+            if self.fade_obj.fade_alpha >= 255:
+                self.continue_input = False
+                self.game_part["case_introduction"] = False
+                self.game_part["suspects_list"] = True
+                self.npc_cop.npc_dialog["part"] = 0
+            return
+        if self.case_obj.CASO["DEATH_CASE"] == "Envenenado":
+            self.dialog_instructions = [
+                "Boa noite Espector..",
+                f"hoje o caso {self.case_obj.CASO["DEATH_DIALOG"]}..",
+                "Os suspeitos são..",
+                f"{self.case_obj.NPCS[1]["NAME"]} é {self.case_obj.NPCS[1]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[1]["DESCRIPTION"]["PERSONALIDADE"]}",
+                f"{self.case_obj.NPCS[2]["NAME"]} é {self.case_obj.NPCS[2]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[2]["DESCRIPTION"]["PERSONALIDADE"]}",
+                f"{self.case_obj.NPCS[4]["NAME"]} é {self.case_obj.NPCS[4]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[4]["DESCRIPTION"]["PERSONALIDADE"]}",
+                f"{self.case_obj.NPCS[5]["NAME"]} é {self.case_obj.NPCS[5]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[5]["DESCRIPTION"]["PERSONALIDADE"]}",
+                f"O principal suspeito é {self.case_obj.NPCS[3]["NAME"]} é {self.case_obj.NPCS[3]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[3]["DESCRIPTION"]["PERSONALIDADE"]}..",
+                "faça a escolha certa Espector."
+            ]
+        if self.case_obj.CASO["DEATH_CASE"] == "Esfaqueado":
+            self.dialog_instructions = [
+                "Boa noite Esppector..",
+                f"hoje o caso {self.case_obj.CASO["DEATH_DIALOG"]}..",
+                "Os suspeitos são..",
+                f"{self.case_obj.NPCS[1]["NAME"]} é {self.case_obj.NPCS[1]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[1]["DESCRIPTION"]["PERSONALIDADE"]}",
+                f"{self.case_obj.NPCS[2]["NAME"]} é {self.case_obj.NPCS[2]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[2]["DESCRIPTION"]["PERSONALIDADE"]}",
+                f"{self.case_obj.NPCS[3]["NAME"]} é {self.case_obj.NPCS[3]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[3]["DESCRIPTION"]["PERSONALIDADE"]}",
+                f"{self.case_obj.NPCS[5]["NAME"]} é {self.case_obj.NPCS[5]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[5]["DESCRIPTION"]["PERSONALIDADE"]}",
+                f"O principal suspeito é {self.case_obj.NPCS[0]["NAME"]} é {self.case_obj.NPCS[0]["DESCRIPTION"]["OCUPACAO"]}, {self.case_obj.NPCS[0]["DESCRIPTION"]["PERSONALIDADE"]}..",
+                "faça a escolha certa Espector."
+            ]
+        self.npc_cop.render()
+        self.npc_cop.dialog(self.dialog_instructions, self.continue_input)
+        if self.continue_input: self.continue_input = False
+        self.npc_cop.update()
+        if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(5)
     def suspects(self):
         self.display.blit(self.background_1img, self.background_1rect)
         for i in range(len(self.npc_objs)):
@@ -416,6 +396,34 @@ class GAME():
         self.parts["loaded"] = False
         self.game_part[game_part] = False
         self.game_part["day_screen"] = True
+    def won(self):
+        if len(self.won_dialog) == self.npc_cop.npc_dialog["part"]:
+            self.fade_obj.fade_in(50)
+            if self.fade_obj.fade_alpha >= 255: self.reset_values_game("won")
+            return
+        self.npc_cop.render()
+        self.npc_cop.dialog(self.won_dialog, self.continue_input)
+        if self.continue_input: self.continue_input = False
+        if self.fade_obj.fade_alpha >= 0:
+            self.fade_obj.fade_out(3)
+            self.player_obj.player_info["money"] += 20
+            self.player_obj.player_info["casos_won"] += 1
+    def lost(self):
+        if len(self.lost_dialog) == self.npc_cop.npc_dialog["part"]:
+            self.fade_obj.fade_in(50)
+            if self.fade_obj.fade_alpha >= 255:
+                self.reset_values_game("lost")
+                if self.player_obj.player_info["vidas"] <= 0:
+                    self.parts["gaming"] = False
+                    self.parts["game_over"] = True
+                    return
+                self.player_obj.player_info["vidas"] -= 1
+                self.player_obj.player_info["casos_lost"] += 1
+                return
+        self.npc_cop.render()
+        self.npc_cop.dialog(self.lost_dialog, self.continue_input)
+        if self.continue_input: self.continue_input = False
+        if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
     def render(self):
         if self.parts["game_over"]:
             self.game_over()
