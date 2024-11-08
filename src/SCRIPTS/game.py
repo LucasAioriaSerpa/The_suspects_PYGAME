@@ -84,10 +84,10 @@ class GAME():
         ]
         #! lost
         self.lost_dialog = [
-                "Inspertor...",
-                "parece que você cometeu um erro neste caso..",
-                "tente novamente amanhã."
-            ]
+            "Inspertor...",
+            "parece que você cometeu um erro neste caso..",
+            "tente novamente amanhã."
+        ]
         #! GAME OVER
         self.game_over_text = _util.text_fonts(self.display, "SEASRN__.ttf", 30, (self.half_screen[0], self.half_screen[1]-70), "GAME OVER!", False, "#000000")
         self.score_board = [
@@ -159,9 +159,9 @@ class GAME():
         elif self.game_part["suspects_list"]:
             self.suspects()
         elif self.game_part["won"]:
-            self.won()
+            self.won_case()
         elif self.game_part["lost"]:
-            self.lost()
+            self.lost_case()
         self.mouse_obj.render()
         self.mouse_obj.update(4)
     def day_screen(self):
@@ -292,11 +292,14 @@ class GAME():
                     if self.mouse_obj.clicked:
                         self.fade_obj.fade_in(150)
                         if self.fade_obj.fade_alpha >= 255: self.reset_values_list_npc("won")
+                        self.player_obj.player_info["money"] += 20
+                        self.player_obj.player_info["casos_won"] += 1
                         return
                 else:
                     if self.mouse_obj.clicked:
                         self.fade_obj.fade_in(150)
                         if self.fade_obj.fade_alpha >= 255: self.reset_values_list_npc("lost")
+                        self.player_obj.player_info["casos_lost"] += 1
                         return
             else:
                 self.acusar_button.outline(2, "#ffffff")
@@ -396,7 +399,7 @@ class GAME():
         self.parts["loaded"] = False
         self.game_part[game_part] = False
         self.game_part["day_screen"] = True
-    def won(self):
+    def won_case(self):
         if len(self.won_dialog) == self.npc_cop.npc_dialog["part"]:
             self.fade_obj.fade_in(50)
             if self.fade_obj.fade_alpha >= 255: self.reset_values_game("won")
@@ -404,22 +407,18 @@ class GAME():
         self.npc_cop.render()
         self.npc_cop.dialog(self.won_dialog, self.continue_input)
         if self.continue_input: self.continue_input = False
-        if self.fade_obj.fade_alpha >= 0:
-            self.fade_obj.fade_out(3)
-            self.player_obj.player_info["money"] += 20
-            self.player_obj.player_info["casos_won"] += 1
-    def lost(self):
+        if self.fade_obj.fade_alpha >= 0: self.fade_obj.fade_out(3)
+    def lost_case(self):
         if len(self.lost_dialog) == self.npc_cop.npc_dialog["part"]:
             self.fade_obj.fade_in(50)
             if self.fade_obj.fade_alpha >= 255:
                 self.reset_values_game("lost")
+                self.player_obj.player_info["vidas"] -= 1
                 if self.player_obj.player_info["vidas"] <= 0:
                     self.parts["gaming"] = False
                     self.parts["game_over"] = True
                     return
-                self.player_obj.player_info["vidas"] -= 1
-                self.player_obj.player_info["casos_lost"] += 1
-                return
+            return
         self.npc_cop.render()
         self.npc_cop.dialog(self.lost_dialog, self.continue_input)
         if self.continue_input: self.continue_input = False
