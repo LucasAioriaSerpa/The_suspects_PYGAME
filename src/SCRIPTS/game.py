@@ -6,6 +6,7 @@ import SCRIPTS.utilities as _util
 import SCRIPTS.generate_case as _gen
 import SCRIPTS.NPCs as _npc
 import SCRIPTS.player as _ply
+import SCRIPTS.sound_mix as _smix
 class GAME():
     def __init__(self, display:pyg.display, game_state:dict):
         self.display = display
@@ -14,6 +15,9 @@ class GAME():
         self.util_obj = _util.utility(self.display)
         self.case_obj = _gen.CASE()
         self.fade_obj = _util.transition_image(self.display)
+        self.sound_mix_obj = _smix.sounds_mix()
+        self.sound_mix_obj.load_audios()
+        self.beep = "menuBeep.wav"
         self.parts = {
             "loaded":False,
             "tutorial":False,
@@ -232,7 +236,8 @@ class GAME():
             self.npc_objs[i].render()
             self.npc_objs[i].update()
         for j in range(len(self.npc_objs)):
-            if self.npc_objs[j].check_collision(self.mouse_obj) and self.mouse_obj.clicked:
+            if self.npc_objs[j].check_collision(self.mouse_obj) and self.mouse_obj.clicked and not self.info_button.check_collision(self.mouse_obj) and not self.interrogate_button.check_collision(self.mouse_obj) and not self.acusar_button.check_collision(self.mouse_obj):
+                    self.sound_mix_obj.play_sound(self.beep)
                     new_pos = (self.npc_objs[j].npc_pos[0]-20, self.npc_objs[j].npc_pos[1]-15)
                     self.npc_selected = j
                     self.info_button.b_pos = (new_pos[0], new_pos[1]-20)
@@ -245,6 +250,7 @@ class GAME():
                     self.acusar_button.b_text_obj.f_pos = (new_pos[0], new_pos[1]+20)
                     self.acusar_button.b_text_obj.f_animation["frame"] = 0
                     self.acusar_interrogate_buttons_apear = True
+                    self.mouse_obj.clicked  = False
             else: self.npc_objs[j].selected = False
         if self.acusar_interrogate_buttons_apear:
             self.npc_objs[self.npc_selected].selected = True
@@ -254,9 +260,11 @@ class GAME():
                 self.info_button.b_color = "#ffffff"
                 self.info_button.b_text_obj.f_info["color"] = "#000000"
                 if self.mouse_obj.clicked:
+                    self.sound_mix_obj.play_sound(self.beep)
                     self.info_dialog = [f"{self.npc_objs[self.npc_selected].npc_info["NAME"]} é..",
                                         f"{self.npc_objs[self.npc_selected].npc_info["DESCRIPTION"]["OCUPACAO"]}, {self.npc_objs[self.npc_selected].npc_info["DESCRIPTION"]["PERSONALIDADE"]}."]
                     self.info_flag = True
+                    self.mouse_obj.clicked = False
                     return
             else:
                 self.info_button.outline(2, "#ffffff")
@@ -268,6 +276,7 @@ class GAME():
                 self.interrogate_button.b_color = "#ffffff"
                 self.interrogate_button.b_text_obj.f_info["color"] = "#000000"
                 if self.mouse_obj.clicked:
+                    self.sound_mix_obj.play_sound(self.beep)
                     self.player_dialog_flag = False
                     match self.npc_objs[self.npc_selected].npc_info["TYPE"]:
                         case "Assassino":
@@ -278,6 +287,7 @@ class GAME():
                             op_ss = [self.case_obj.EVIDENCE_VALUES["VERDADES"], self.case_obj.EVIDENCE_VALUES["CONFLITANTES"]]
                     self.npc_dialog = self.npc_objs[self.npc_selected].generate_dialog(op_ss, self.npc_selected)
                     self.npc_dialog_flag = True
+                    self.mouse_obj.clicked = False
                     return
             else:
                 self.interrogate_button.outline(2, "#ffffff")
@@ -290,11 +300,13 @@ class GAME():
                 self.acusar_button.b_text_obj.f_info["color"] = "#000000"
                 if self.npc_objs[self.npc_selected].npc_info["TYPE"] == "Assassino":
                     if self.mouse_obj.clicked:
+                        self.sound_mix_obj.play_sound(self.beep)
                         self.fade_obj.fade_in(150)
                         if self.fade_obj.fade_alpha >= 255: self.reset_values_list_npc("won")
                         self.player_obj.player_info["money"] += 20
                         self.player_obj.player_info["casos_won"] += 1
                         return
+                    self.mouse_obj.clicked = False
                 else:
                     if self.mouse_obj.clicked:
                         self.fade_obj.fade_in(150)
@@ -438,6 +450,7 @@ class GAME():
         if event.type == pyg.QUIT: self.end()
         if event.type == pyg.KEYDOWN:
             if event.key == pyg.K_SPACE and not self.parts["tutorial"] or self.parts["gaming"]:
+                self.sound_mix_obj.play_sound(self.beep)
                 self.continue_input = True
         if event.type == pyg.KEYUP and event.key == pyg.K_SPACE:
             self.continue_input = False

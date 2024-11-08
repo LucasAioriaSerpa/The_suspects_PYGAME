@@ -174,26 +174,26 @@
           },
           {
             "DIALOG": ["1", [
-              "Eu gostava muito do 0, ele era um bom amigo.",
-              "Nunca faria nada para prejudicar ele, de jeito nenhum.",
-              "Sempre tivemos uma boa relacao e eu realmente nao entendo por que alguem faria esse tipo de coisa com ele."
+              "Eu gostava muito do 0 ele era um bom amigo",
+              "Nunca faria nada para prejudicar ele de jeito nenhum",
+              "Sempre tivemos uma boa relacao e eu realmente nao entendo por que alguem faria esse tipo de coisa com ele"
             ]],
             "FRASE": "Se 1 gostava de 0 entao 1 nao matou 0",
             "PREMISSA": "10 IF ~1"
           },
           {
             "DIALOG": ["4",[
-              "Olha, so para esclarecer, eu sempre achei estranho que o 3 anda com aquele canivete o tempo todo.",
-              "Ele realmente parecia determinado ao ir para a $ naquela hora.",
-              "Nao sei exatamente o que ele estava pensando, mas e curioso como ele estava por ali logo antes do que aconteceu."
+              "Olha so para esclarecer eu sempre achei estranho que o 3 anda com aquele canivete o tempo todo",
+              "Ele realmente parecia determinado ao ir para a $ naquela hora",
+              "Nao sei exatamente o que ele estava pensando mas e curioso como ele estava por ali logo antes do que aconteceu"
             ]],
             "FRASE": "Se 4 viu 3 indo na $ com canivete entao 3 esfaqueou 0",
             "PREMISSA": "6 IF 0"
           },
           {
             "DIALOG": ["4",[
-              "Nao quero acusar ninguem sem provas, mas eu vi o suspeito 2 perto da $ naquela hora.",
-              "Nao sei o que aconteceu depois, mas a presenca dele ali me fez levantar algumas perguntas."
+              "Nao quero acusar ninguem sem provas mas eu vi o suspeito 2 perto da $ naquela hora",
+              "Nao sei o que aconteceu depois mas a presenca dele ali me fez levantar algumas perguntas"
             ]],
             "FRASE": "Se 4 viu o 2 indo para a $ entao 2 matou o 0",
             "PREMISSA": "7 IF 2"
